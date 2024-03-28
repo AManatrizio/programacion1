@@ -5,3 +5,5 @@
 .env
 pyvenv.cfg
 venv
+
+backend/main/__pycache__/
