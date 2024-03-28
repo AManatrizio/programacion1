@@ -13,10 +13,15 @@ def create_app():
     load_dotenv()
 
     api.add_resource(resources.UsuariosResource, "/usuarios") #Hacerlo con minuscula
-
     api.add_resource(resources.UsuarioResource, "/usuario/<id>")
 
-    
+    api.add_resource(resources.LibrosResource, "/libros") #Hacerlo con minuscula
+    api.add_resource(resources.LibroResource, "/libro/<id>")
+
+    api.add_resource(resources.PrestamosResource, "/prestamos")
+    api.add_resource(resources.PrestamoResource, "/prestamo/<id>")
+
+
     api.init_app(app)
 
     return app
