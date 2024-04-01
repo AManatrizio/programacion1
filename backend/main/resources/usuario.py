@@ -1,7 +1,9 @@
 from flask_restful import Resource
 from flask import request
 
-USUARIOS = {}
+USUARIOS = {
+    1:['nombre', 'prestamos', 'notificaciones']
+}
 
 class Usuario(Resource):
     def get(self, id):
@@ -31,4 +33,4 @@ class Usuarios(Resource):
         usuario = request.get_json()
         id = int(max(USUARIOS.keys())) + 1
         USUARIOS[id] = usuario
-        return USUARIOS[id], 201
+        return 'Usuario: ', USUARIOS[id], 'creado.', 201
