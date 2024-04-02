@@ -10,4 +10,4 @@ from .login import LogIn as LogInResources
 from .notificacion import Notificaciones as NotificacionesResources
 from .prestamo import Prestamo as PrestamoResource
 from .prestamo import Prestamos as PrestamosResource
-from .sing_in import SignIn as SignInResources
+from .signin import SignIn as SignInResources
