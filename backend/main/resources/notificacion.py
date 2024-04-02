@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from usuario import USUARIOS, Usuario
+from .usuario import USUARIOS, Usuario
 
 NOTIFICACIONES = {
     1:{'notificacion'}

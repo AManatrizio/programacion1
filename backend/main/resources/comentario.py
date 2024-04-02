@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request
-from libros import LIBROS, Libro, Libros
+from .libros import LIBROS, Libro, Libros
 
 COMENTARIOS = {
     1:{'comentario'}
