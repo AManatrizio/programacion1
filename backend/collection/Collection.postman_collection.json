@@ -1,0 +1,727 @@
+{
+	"info": {
+		"_postman_id": "39505f1d-3e0f-4ed7-b003-0bf01d5c881d",
+		"name": "Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33909929",
+		"_collection_link": "https://www.postman.com/programacioncoleccion1/workspace/programacioncollection/collection/33909929-39505f1d-3e0f-4ed7-b003-0bf01d5c881d?action=share&source=collection_link&creator=33909929"
+	},
+	"item": [
+		{
+			"name": "Programacion Grupo C",
+			"item": [
+				{
+					"name": "Usuarios",
+					"item": [
+						{
+							"name": "usuarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/usuarios",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Usuario2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/usuario/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"usuario",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put Usuario2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Coca\",\n    \"rol\": \"Cliente\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/usuario/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"usuario",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Libros",
+					"item": [
+						{
+							"name": "Libros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/libros",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"libros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Libro2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/libro/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"libro",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post La casa del terror",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"nombre\": \"La Casa del TError\",\n        \"autor\": \"None\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/libros",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"libros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete libro3",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/libro/3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"libro",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "libro2 Cambiar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Narnia 3\",\n    \"autor\": \"C.S. Lewis\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/libro/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"libro",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Prestamo",
+					"item": [
+						{
+							"name": "Prestamo1",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "PrestamoS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/prestamos",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"prestamos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear prestamo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"usuario\": \"Maria\",\n    \"tiempo\": \"1 semana\",\n    \"libro\": \"La Casa del TError\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/prestamo/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"prestamo",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SingIn",
+					"item": [
+						{
+							"name": "SingIn get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/singin",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"singin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"1\": {\n        \"nombre\": \"Fernando\",\n        \"contrasena\": \"2223\",\n        \"email\": \"fer@yahoo.com\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/singin",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"singin"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "login get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"nombre_usuario\": \"CocaGonzalez\",\n        \"contrasena\": \"Banana\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notificaciones",
+					"item": [
+						{
+							"name": "Notificaciones",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/notificaciones",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"notificaciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Notificacion Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"mensaje\": \"nueva notificaciones\",\n        \"hora notificacion\": \"12:00\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/notificaciones",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"notificaciones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Configuracion",
+					"item": [
+						{
+							"name": "configuracionES",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/configuraciones",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"configuraciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "configuracion2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/configuracion/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"configuracion",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuracion2 Cambiar",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"ficcion\",\n    \"color\": \"violeta\",\n    \"old\": \"6 meses\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/configuracion/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"configuracion",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuracion Crear",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipo\": \"romance\",\n    \"color\": \"naranja\",\n    \"old\": \"2 dias\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/configuraciones",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"configuraciones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Valoracion",
+					"item": [
+						{
+							"name": "Valoraciones",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/valoraciones",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"valoraciones"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Valoraciones Crear",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"libro\": \"La Casa del TError\",\n        \"estrellas\": \"2\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/valoraciones",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"valoraciones"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comentario",
+					"item": [
+						{
+							"name": "ComentarioS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/comentarios",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"comentarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Comentario1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:6000/comentario/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"comentario",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "COmentario Crear",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre_usuario\": \"Abeja\",\n    \"comentario\": \"Terriblemente escrito\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:6000/comentarios",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "6000",
+									"path": [
+										"comentarios"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

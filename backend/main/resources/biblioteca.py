@@ -70,9 +70,9 @@ class Libro(Resource):
     #Edita un libro
     def put(self,id):
         if int(id) in  LIBROS:
-            libro = LIBROS[int(id)]
-            data = request.get_json
-            libro.update(data)
+            libros = LIBROS[int(id)]
+            data = request.get_json()
+            libros.update(data)
             return "", 201
 
         return "Not found", 404
@@ -87,22 +87,20 @@ class Libros(Resource):
         LIBROS[id] = libro
         return LIBROS[id], 201
     
-#-------------Sing In---------------- No seria lo mismo que un POST en Usuario? Y login?
-
-# class SingIn(Resource):
-        
-#     def post(self): #Crear un Usuario
-#         usuario = request.get_json()
-#         id = int(max(USUARIOS.keys())) + 1
-#         USUARIOS[id] = usuario
-#         return USUARIOS[id], 201
-    
 #------------Prestamos----------------
     
 PRESTAMOS = {
     1:{"usuario":"Coca", "tiempo":"2 semanas", "libro":"El principito"}
 
 }
+
+class Prestamo(Resource):
+
+    def get(self,id):
+        if int(id) in PRESTAMOS:
+            return PRESTAMOS[int(id)]
+        else:
+            return "Not found", 404
 
 class Prestamos(Resource):
 
@@ -126,27 +124,134 @@ class Prestamos(Resource):
     #         return PRESTAMOS[prestamo_id], 201
     #     else:
     #         return "Usuario no encontrado", 404
-    
 
-class Prestamo(Resource):
 
-    def get(self,id):
-        if int(id) in PRESTAMOS:
-            return PRESTAMOS[int(id)]
-        else:
-            return "Not found", 404
         
-#-------------Notificacion----------------------
-NOTIFICACIONES = {
+#-------------Sing In---------------- No seria lo mismo que un POST en Usuario? Crear un Usuario?
+
+SINGIN = {
+    1:{"nombre":"marta", "contrasena":"!23", "email":"marta@yahoo.com"}
 
 }
 
-class Notificaciones(Resource):
+class SingIn(Resource):
+    def get(self):
+        return SINGIN
+        
+    def post(self): #Crear un Usuario
+        singin = request.get_json()
+        id = int(max(SINGIN.keys())) + 1
+        SINGIN[id] = singin
+        return SINGIN[id], 201
+    
+#-------------Log In------------------
+    
+LOGIN = {
+    1:{"nombre_usuario":"Marta", "contrasena":"Marta123"},
+    2:{"nombre_usuario":"JosefaRamirez", "contrasena":"lajose"}
+}
+class Login(Resource):
+
+    def get(self):
+        return LOGIN
+
     def post(self):
-        notificacion = notificacion.get_json()
+        login = request.get_json()
+        id = int(max(LOGIN.keys()))+1
+        LOGIN[id] = login
+        return LOGIN[id], 201
+        
+#-------------Notificacion----------------------
+NOTIFICACIONES = {
+    1:{"mensaje":"su prestamo vence en 2 dias","hora notificacion":"2:30"},
+    2:{"mensaje":"vea nuestros nuevos libros", "hora notificacion":"5:00"}
+}
+
+class Notificaciones(Resource):
+    def get(self):
+        return NOTIFICACIONES
+    
+    def post(self):
+        notificacion = request.get_json()
         id = int(max(NOTIFICACIONES.keys())) + 1
         NOTIFICACIONES[id] = notificacion
         return NOTIFICACIONES[id], 201
+    
+#-------------Configuracion--------------
+
+CONFI = {
+    1:{"tipo":"historia", "color":"rojo", "old":"5 anos"},
+    2:{"tipo":"fantasia", "color":"violeta", "old":"6 meses"}
+}
+    
+class Configuracion(Resource):
+    def get(self,id):
+        if int(id) in CONFI:
+            return CONFI[int(id)]
+        else:
+            return "Not found", 404
         
+    def put(self,id):
+        if int(id) in  CONFI:
+            confi = CONFI[int(id)]
+            data = request.get_json()
+            confi.update(data)
+            return "", 201
+
+        return "Not found", 404
+    
+class Configuraciones(Resource):
+
+    def get(self):
+        return CONFI
+        
+    def post(self):
+        confi = request.get_json()
+        id = int(max(CONFI.keys())) + 1
+        CONFI[id] = confi
+        return CONFI[id], 201
+#--------------Valoracion----------------
+    
+VALORACION = { #Como puedo hacer que el libro sea el mismo libro de id 1 de LIBROS?
+    1:{"libro":"El Principito","estrellas":"5"},
+    2:{"libro":"Narnia", "estrellas":"4"}
+}
+
+class Valoraciones(Resource):
+    def get(self):
+        return VALORACION
+        
+    def post(self):
+        valo = request.get_json()
+        id = int(max(VALORACION.keys())) + 1
+        VALORACION[id] = valo
+        return VALORACION[id], 201
+
+#------------Comentario--------------
+
+COMENT = {
+    1:{"nombre_usuario":"Luna", "comentario":"me gusto"},
+    2:{"nombre_usuario":"Martes", "comentario":"es interesante"},
+    3:{"nombre_usuario":"Vivian", "comentario":"poco entretenido"}
+}
+
+
+class Comentario(Resource):
+    def get(self,id):
+        if int(id) in COMENT:
+            return COMENT[int(id)]
+        else:
+            return "Not found", 404
+
+    
+class Comentarios(Resource):
+    def get(self):
+        return COMENT
+          
+    def post(self):
+        comen = request.get_json()
+        id = int(max(COMENT.keys())) + 1
+        COMENT[id] = comen
+        return COMENT[id], 201
 
 
