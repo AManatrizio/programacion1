@@ -2,13 +2,13 @@ from flask_restful import Resource
 from flask import request
 
 USUARIOS = {
-    1:{'nombre', 'prestamos', 'notificaciones'}
+    1:{'nombre': 'Ana', 'prestamos': '0', 'notificaciones': '0'},
 }
 
 class Usuario(Resource):
     def get(self, id):
         if id in USUARIOS:
-            return USUARIOS(id)
+            return USUARIOS[id]
         return 'No existe el id', 404
     
     def delete(self, id):
@@ -19,7 +19,7 @@ class Usuario(Resource):
     
     def put(self, id):
         if id in USUARIOS:
-            usuario = USUARIOS(id)
+            usuario = USUARIOS[id]
             data = request.get_json()
             usuario.update(data)
             return '', 201
@@ -27,6 +27,7 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     def get(self):
+
         return USUARIOS
     
     def post(self):

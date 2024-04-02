@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request
 
 LIBROS = {
-    1:{'nombre', 'valoracion'}
+    1:{'nombre': 'Harry Potter', 'valoracion': '*****'}
 }
 
 class Libro(Resource):

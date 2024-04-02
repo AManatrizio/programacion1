@@ -3,7 +3,7 @@ from flask import request
 from .libros import LIBROS, Libro, Libros
 
 COMENTARIOS = {
-    1:{'comentario'}
+    1:{'comentario': 'comentario'}
 }
 
 class Comentario(Resource):
