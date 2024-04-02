@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request
 
 PRESTAMOS = {
-    1:['prestamo']
+    1:{'prestamo'}
 }
 
 class Prestamo(Resource):

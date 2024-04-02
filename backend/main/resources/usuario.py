@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request
 
 USUARIOS = {
-    1:['nombre', 'prestamos', 'notificaciones']
+    1:{'nombre', 'prestamos', 'notificaciones'}
 }
 
 class Usuario(Resource):
