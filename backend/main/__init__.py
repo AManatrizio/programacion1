@@ -30,8 +30,9 @@ def create_app():
     api.add_resource(resources.ConfiguracionResource, "/configuracion/<id>")  
     api.add_resource(resources.ConfiguracionesResource, "/configuraciones")  
 
+    api.add_resource(resources.ValoracionResource, "/valoracion/<id>")  
     api.add_resource(resources.ValoracionesResource, "/valoraciones")  
-
+    
     api.add_resource(resources.ComentarioResource, "/comentario/<id>")  
     api.add_resource(resources.ComentariosResource, "/comentarios")  
 

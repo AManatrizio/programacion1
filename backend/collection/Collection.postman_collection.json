@@ -586,12 +586,12 @@
 					"name": "Valoracion",
 					"item": [
 						{
-							"name": "Valoraciones",
+							"name": "Valoracion2",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://127.0.0.1:6000/valoraciones",
+									"raw": "http://127.0.0.1:6000/valoracion/2",
 									"protocol": "http",
 									"host": [
 										"127",
@@ -601,9 +601,18 @@
 									],
 									"port": "6000",
 									"path": [
-										"valoraciones"
+										"valoracion",
+										"2"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "Valoraciones",
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						},

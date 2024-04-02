@@ -16,6 +16,7 @@ from .biblioteca import Notificaciones as NotificacionResource
 from .biblioteca import Configuracion as ConfiguracionResource
 from .biblioteca import Configuraciones as ConfiguracionesResource
 
+from .biblioteca import Valoracion as ValoracionResource
 from .biblioteca import Valoraciones as ValoracionesResource
 
 from .biblioteca import Comentario as ComentarioResource
