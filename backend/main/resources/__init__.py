@@ -1,6 +1,7 @@
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
 from .valoraciones import Valoraciones as ValoracionesResources
+from .valoraciones import Valoracion as ValoracionResources
 from .comentario import Comentario as ComentarioResources
 from .comentario import Comentarios as ComentariosResources
 from .configuracion import Configuraciones as ConfiguracionesResources
