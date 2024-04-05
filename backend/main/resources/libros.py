@@ -2,7 +2,16 @@ from flask_restful import Resource
 from flask import request
 
 LIBROS = {
-    1:{'nombre': 'Harry Potter', 'valoracion': '*****'}
+    1:{'nombre': 'Harry Potter y la Piedra Filosofal',
+       'autor': 'JK',
+       'genero': 'Fantasia',
+       'estado': 'En prestamo'
+       },
+    2:{'nombre': 'Harry Potter y el Cáliz de Fuego',
+       'autor': 'JK',
+       'genero': 'Fantasia',
+       'estado': 'Disponible'
+       }
 }
 
 class Libro(Resource):

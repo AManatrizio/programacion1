@@ -2,7 +2,16 @@ from flask_restful import Resource
 from flask import request
 
 USUARIOS = {
-    1:{'nombre': 'Ana', 'prestamos': '0', 'notificaciones': '0'},
+    1:{'nombre_completo': 'Ana', 
+       'contraseña': '123456789',
+       'telefono': '2612345678',
+       'email': 'ana@gmail.com',
+       'estado': 'activo' },
+    2:{'nombre_completo': 'Susana', 
+       'contraseña': '123456789',
+       'telefono': '2612345679',
+       'email': 'susana@gmail.com',
+       'estado': 'inactivo' },
 }
 
 class Usuario(Resource):

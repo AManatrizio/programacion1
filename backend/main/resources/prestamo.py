@@ -2,7 +2,10 @@ from flask_restful import Resource
 from flask import request
 
 PRESTAMOS = {
-    1:{'prestamo': 'prestamo'}
+    1:{'prestamo': 'prestamo',
+       'libro': '1',
+       'usuario': '2'
+       }
 }
 
 class Prestamo(Resource):

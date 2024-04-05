@@ -3,7 +3,8 @@ from flask import request
 from .usuario import USUARIOS, Usuario
 
 NOTIFICACIONES = {
-    1:{'notificacion': 'Prestamo vencido'}
+    1:{'notificacion': 'Prestamo vencido',
+       'usuario': '2'}
 }
 
 class Notificaciones(Resource):
