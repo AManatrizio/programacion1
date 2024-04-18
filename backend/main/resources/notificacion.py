@@ -1,18 +1,16 @@
 from flask_restful import Resource
-from flask import request
-from .usuario import USUARIOS, Usuario
-
-NOTIFICACIONES = {
-    1:{'notificacion': 'Prestamo vencido',
-       'usuario': '2'}
-}
+from flask import request, jsonify
+from .. import db
+from main.models import NotificacionModel
 
 class Notificaciones(Resource):
-    def post(self):
-        notificacion = request.get_json()
-        id = int(max(NOTIFICACIONES.keys())) + 1
-        NOTIFICACIONES[int(id)] = notificacion
-        return 'Notificacion: ', NOTIFICACIONES[int(id)], 'enviada.', 201
-    
     def get(self):
-        return NOTIFICACIONES
+        notificaciones = db.session.query(NotificacionModel).all()
+        notificaciones_json = [notificacion.to_json() for notificacion in notificaciones]
+        return jsonify(notificaciones_json)
+        
+    def post(self):
+        notificacion = NotificacionModel.from_json(request.get_json())
+        db.session.add(notificacion)
+        db.session.commit()
+        return notificacion.to_json(), 201

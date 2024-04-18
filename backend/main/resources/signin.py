@@ -1,10 +1,13 @@
 from flask_restful import Resource
 from flask import request
-from .usuario import USUARIOS, Usuarios, Usuario
+from main.models import UsuarioModel
+from usuario import Usuarios
+from .. import db
 
 class SignIn(Resource):
     def post(self, id):
-        if id in USUARIOS:
-            return 'El id', USUARIOS, 'ya existe.', 404
+        usuario = db.session.query(UsuarioModel).get(id)
+        if usuario:
+            return 'El usuario ya existe', 404
         else:
             Usuarios.post()

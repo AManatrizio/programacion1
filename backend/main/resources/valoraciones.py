@@ -1,41 +1,31 @@
 from flask_restful import Resource
-from flask import request
-from .libros import LIBROS, Libro, Libros
-
-VALORACIONES = {
-    1:{'valoracion': '***',
-       'usuario': 1,
-       'libro': '2'
-       },
-    2:{'valoracion': '**',
-       'usuario': 1,
-       'libro': '1'
-       },
-    3:{'valoracion': '***',
-       'usuario': 2,
-       'libro': '2'
-       },
-    4:{'valoracion': '**',
-       'usuario': 4,
-       'libro': '1'
-       }
-}
+from flask import request, jsonify
+from main.models import ValoracionModel
+from .. import db
 
 class Valoracion(Resource):
-    def get(self):
-        if id in VALORACIONES:
-            return VALORACIONES(id)
-        return 'No existe', 404
+    def get(self, id):
+        valoracion = db.session.query(ValoracionModel).get_or_404(id)
+        return valoracion.to_json()
+    
+    def delete(self, id):
+        valoracion = db.session.query(ValoracionModel).get_or_404(id)
+        db.session.delete(valoracion)
+        db.session.commit()
+        return '', 201
+
 
 class Valoraciones(Resource):
     def get(self):
-        return VALORACIONES
-    
+        valoraciones = db.session.query(ValoracionModel).all()
+        valoraciones_json = [(valoracion.to_json) for valoracion in valoraciones]
+        return valoraciones_json
+
     def post(self):
-        valoracion = request.get_json()
-        id = int(max(VALORACIONES.keys())) + 1
-        VALORACIONES[id] = valoracion
-        return 'Valoracion: ', VALORACIONES[id], 'agregada.', 201
+        valoracion = ValoracionModel.from_json(request.get_json())
+        db.session.add(valoracion)
+        db.session.commit()
+        return valoracion.to_json(), 201
 
 
 

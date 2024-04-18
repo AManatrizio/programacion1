@@ -1,29 +1,29 @@
 from flask_restful import Resource
-from flask import request
-from .libros import LIBROS, Libro, Libros
-
-COMENTARIOS = {
-    1:{'comentario': 'comentario'}
-}
+from flask import request, jsonify
+from main.models import ComentarioModel
+from .. import db
 
 class Comentario(Resource):
     def get(self, id):
-        if int(id) in COMENTARIOS:
-            return COMENTARIOS[int(id)]
-        return 'No existe el comentario', 404
+        comentario = db.session.query(ComentarioModel).get_or_404(id)
+        return comentario.to_json()
     
     def delete(self, id):
-        if int(id) in COMENTARIOS:
-            del COMENTARIOS[int(id)]
-            return '', 204
-        return 'No existe el comentario', 404
+        comentario = db.session.query(ComentarioModel).get_or_404(id)
+        db.session.delete(comentario)
+        db.session.commit()
+        return '', 201
+
 
 class Comentarios(Resource):
     def get(self):
-        return COMENTARIOS
-    
+        comentarios = db.session.query(ComentarioModel).all()
+        comentarios_json = [(comentario.to_json) for comentario in comentarios]
+        return comentarios_json
+
     def post(self):
-        comentario = request.get_json()
-        id = int(max(COMENTARIOS.keys())) + 1
-        COMENTARIOS[int(id)] = comentario
-        return 'Comentario: ', COMENTARIOS[int(id)], 'agregado.', 201
+        comentario = ComentarioModel.from_json(request.get_json())
+        db.session.add(comentario)
+        db.session.commit()
+        return comentario.to_json(), 201
+
