@@ -1,46 +1,39 @@
 from flask_restful import Resource
 from flask import request
+from main.models import UsuarioModel
+from .. import db
+from flask import jsonify
 
-USUARIOS = {
-    1:{'nombre_completo': 'Ana', 
-       'contraseña': '123456789',
-       'telefono': '2612345678',
-       'email': 'ana@gmail.com',
-       'estado': 'activo' },
-    2:{'nombre_completo': 'Susana', 
-       'contraseña': '123456789',
-       'telefono': '2612345679',
-       'email': 'susana@gmail.com',
-       'estado': 'inactivo' },
-}
+USUARIOS = {}
 
 class Usuario(Resource):
     def get(self, id):
-        if id in USUARIOS:
-            return USUARIOS[id]
-        return 'No existe el id', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        return usuario.to_json()
     
     def delete(self, id):
-        if id in USUARIOS:
-            del USUARIOS[id]
-            return '', 204
-        return 'No existe el id', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        db.session.delete(usuario)
+        db.session.commit()
+        return '', 201
     
     def put(self, id):
-        if id in USUARIOS:
-            usuario = USUARIOS[id]
-            data = request.get_json()
-            usuario.update(data)
-            return '', 201
-        return 'No existe el id', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(id)
+        data = request.get_json().items()
+        for key , value in data:
+            setattr(usuario, key, value)
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json(), 201
 
 class Usuarios(Resource):
     def get(self):
-
-        return USUARIOS
-    
+        usuarios = db.session.query(UsuarioModel).all()
+        usuarios_json = [usuario.to_json() for usuario in usuarios]
+        return jsonify(usuarios_json)
+        
     def post(self):
-        usuario = request.get_json()
-        id = int(max(USUARIOS.keys())) + 1
-        USUARIOS[id] = usuario
-        return 'Usuario: ', USUARIOS[id], 'creado.', 201
+        usuario = UsuarioModel.from_json(request.get_json())
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json(), 201

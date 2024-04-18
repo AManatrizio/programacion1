@@ -8,12 +8,11 @@ NOTIFICACIONES = {
 }
 
 class Notificaciones(Resource):
-    def post(self, id_usuario):
+    def post(self):
         notificacion = request.get_json()
         id = int(max(NOTIFICACIONES.keys())) + 1
-        NOTIFICACIONES[id] = notificacion
-        USUARIOS[id_usuario][2] = notificacion
-        return 'Notificacion: ', NOTIFICACIONES[id], 'enviada.', 201
+        NOTIFICACIONES[int(id)] = notificacion
+        return 'Notificacion: ', NOTIFICACIONES[int(id)], 'enviada.', 201
     
     def get(self):
         return NOTIFICACIONES

@@ -16,19 +16,19 @@ LIBROS = {
 
 class Libro(Resource):
     def get(self, id):
-        if id in LIBROS:
-            return LIBROS(id)
+        if int(id) in LIBROS:
+            return LIBROS[int(id)]
         return 'No existe el id', 404
     
     def delete(self, id):
-        if id in LIBROS:
-            del LIBROS[id]
+        if int(id) in LIBROS:
+            del LIBROS[int(id)]
             return '', 204
         return 'No existe el id', 404
     
     def put(self, id):
-        if id in LIBROS:
-            libro = LIBROS(id)
+        if int(id) in LIBROS:
+            libro = LIBROS[int(id)]
             data = request.get_json()
             libro.update(data)
             return '', 201
@@ -41,5 +41,5 @@ class Libros(Resource):
     def post(self):
         libro = request.get_json()
         id = int(max(LIBROS.keys())) + 1
-        LIBROS[id] = libro
-        return 'Libro: ', LIBROS[id], 'creado.', 201
+        LIBROS[int(id)] = libro
+        return 'Libro: ', LIBROS[int(id)], 'creado.', 201

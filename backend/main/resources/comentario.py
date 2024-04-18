@@ -8,20 +8,22 @@ COMENTARIOS = {
 
 class Comentario(Resource):
     def get(self, id):
-        if id in COMENTARIOS:
-            return COMENTARIOS(id)
+        if int(id) in COMENTARIOS:
+            return COMENTARIOS[int(id)]
         return 'No existe el comentario', 404
     
     def delete(self, id):
-        if id in COMENTARIOS:
-            del COMENTARIOS[id]
+        if int(id) in COMENTARIOS:
+            del COMENTARIOS[int(id)]
             return '', 204
         return 'No existe el comentario', 404
 
 class Comentarios(Resource):
-    def post(self, id_libro):
+    def get(self):
+        return COMENTARIOS
+    
+    def post(self):
         comentario = request.get_json()
         id = int(max(COMENTARIOS.keys())) + 1
-        COMENTARIOS[id] = comentario
-        LIBROS[id_libro][2] = comentario
-        return 'Comentario: ', COMENTARIOS[id], 'agregado.', 201
+        COMENTARIOS[int(id)] = comentario
+        return 'Comentario: ', COMENTARIOS[int(id)], 'agregado.', 201

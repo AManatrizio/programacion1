@@ -10,19 +10,19 @@ PRESTAMOS = {
 
 class Prestamo(Resource):
     def get(self, id):
-        if id in Prestamo:
-            return PRESTAMOS(id)
+        if int(id) in PRESTAMOS:
+            return PRESTAMOS[int(id)]
         return 'No existe el id', 404
     
     def delete(self, id):
-        if id in PRESTAMOS:
-            del PRESTAMOS[id]
+        if int(id) in PRESTAMOS:
+            del PRESTAMOS[int(id)]
             return '', 204
         return 'No existe el id', 404
     
     def put(self, id):
-        if id in PRESTAMOS:
-            prestamo = PRESTAMOS(id)
+        if int(id) in PRESTAMOS:
+            prestamo = PRESTAMOS[int(id)]
             data = request.get_json()
             prestamo.update(data)
             return '', 201
@@ -35,5 +35,5 @@ class Prestamos(Resource):
     def post(self):
         prestamo = request.get_json()
         id = int(max(PRESTAMOS.keys())) + 1
-        PRESTAMOS[id] = prestamo
-        return 'Prestamo: ', PRESTAMOS[id], 'creado.', 201
+        PRESTAMOS[int(id)] = prestamo
+        return 'Prestamo: ', PRESTAMOS[int(id)], 'creado.', 201
