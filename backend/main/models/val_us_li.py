@@ -6,9 +6,9 @@ class ValUsLib(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable = False)
     libro_id = db.Column(db.Integer, db.ForeignKey("libro.id"), nullable = False)
 
-    valoracion = db.relationship("Valoracion", back_populates = "comentarios", uselist = False, single_parent = True)
+    valoracion = db.relationship("Valoracion", back_populates = "valoraciones", uselist = False, single_parent = True)
     usuario = db.relationship("Usuario", back_populates = "valoraciones", uselist = False, single_parent = True)
-    libro = db.relationship("Libro", back_populates = "comentarios", uselist = False, single_parent = True)
+    libro = db.relationship("Libro", back_populates = "valoraciones", uselist = False, single_parent = True)
 
 
     def to_json(self):
