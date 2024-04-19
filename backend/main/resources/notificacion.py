@@ -6,7 +6,7 @@ from main.models import NotificacionModel
 class Notificaciones(Resource):
     def get(self):
         notificaciones = db.session.query(NotificacionModel).all()
-        notificaciones_json = [notificacion.to_json() for notificacion in notificaciones]
+        notificaciones_json = [(notificacion.to_json()) for notificacion in notificaciones]
         return jsonify(notificaciones_json)
         
     def post(self):

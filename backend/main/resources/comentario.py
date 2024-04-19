@@ -18,8 +18,8 @@ class Comentario(Resource):
 class Comentarios(Resource):
     def get(self):
         comentarios = db.session.query(ComentarioModel).all()
-        comentarios_json = [(comentario.to_json) for comentario in comentarios]
-        return comentarios_json
+        comentarios_json = [(comentario.to_json()) for comentario in comentarios]
+        return jsonify(comentarios_json)
 
     def post(self):
         comentario = ComentarioModel.from_json(request.get_json())

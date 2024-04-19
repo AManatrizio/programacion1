@@ -27,7 +27,7 @@ class Autor(Resource):
 class Autores(Resource):
     def get(self):
         autores = db.session.query(AutorModel).all()
-        autores_json = [autor.to_json() for autor in autores]
+        autores_json = [(autor.to_json()) for autor in autores]
         return jsonify(autores_json)
         
     def post(self):

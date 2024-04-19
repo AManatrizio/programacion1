@@ -19,4 +19,4 @@ class Autor(db.Model):
         id = autor_json.get('id')
         autor = autor_json.get('autor')
         return Autor(id = id,
-                          autor = autor,)
+                    autor = autor,)

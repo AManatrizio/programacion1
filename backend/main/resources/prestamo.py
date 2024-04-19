@@ -26,7 +26,7 @@ class Prestamo(Resource):
 class Prestamos(Resource):
     def get(self):
         prestamos = db.session.query(PrestamoModel).all()
-        prestamos_json = [prestamo.to_json() for prestamo in prestamos]
+        prestamos_json = [(prestamo.to_json()) for prestamo in prestamos]
         return jsonify(prestamos_json)
         
     def post(self):

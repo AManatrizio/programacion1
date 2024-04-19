@@ -26,7 +26,7 @@ class Libro(Resource):
 class Libros(Resource):
     def get(self):
         libros = db.session.query(LibroModel).all()
-        libros_json = [libro.to_json() for libro in libros]
+        libros_json = [(libro.to_json()) for libro in libros]
         return jsonify(libros_json)
         
     def post(self):

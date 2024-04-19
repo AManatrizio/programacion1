@@ -18,8 +18,8 @@ class Valoracion(Resource):
 class Valoraciones(Resource):
     def get(self):
         valoraciones = db.session.query(ValoracionModel).all()
-        valoraciones_json = [(valoracion.to_json) for valoracion in valoraciones]
-        return valoraciones_json
+        valoraciones_json = [(valoracion.to_json()) for valoracion in valoraciones]
+        return jsonify(valoraciones_json)
 
     def post(self):
         valoracion = ValoracionModel.from_json(request.get_json())
