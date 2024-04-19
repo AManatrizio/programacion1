@@ -6,3 +6,4 @@ from .configuracion import Configuracion as ConfiguracionModel
 from .valoracion import Valoracion as ValoracionModel
 from .prestamo import Prestamo as PrestamoModel
 from .autor import Autor as AutorModel
+from .val_us_li import ValUsLib as ValUsLibModel

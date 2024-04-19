@@ -14,6 +14,15 @@ class Comentario(Resource):
         db.session.commit()
         return '', 201
 
+    def put(self, id):
+        comentario = db.session.query(ComentarioModel).get_or_404(id)
+        data = request.get_json().items()
+        for key , value in data:
+            setattr(comentario, key, value)
+        db.session.add(comentario)
+        db.session.commit()
+        return comentario.to_json(), 201
+
 
 class Comentarios(Resource):
     def get(self):

@@ -7,6 +7,12 @@ class Usuario(db.Model):
     telefono = db.Column(db.String(14), nullable = False)
     email = db.Column(db.String(100), nullable = False)
 
+    comentarios = db.relationship("Comentario", back_populates = "usuario", cascade = "all, delete-orphan")
+    prestamo = db.relationship("Prestamo", back_populates = "usuario", cascade = "all, delete-orphan")
+    notificacion = db.relationship("Notificacion", back_populates = "usuario", cascade = "all, delete-orphan")
+    valoraciones = db.relationship("ValUsLib", back_populates = "usuario", cascade = "all, delete-orphan")
+
+
     def __repr__(self):
         return ('<Usuario: %r >' % (self.nombre) )
 

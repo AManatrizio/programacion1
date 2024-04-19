@@ -20,3 +20,10 @@ class Autor(db.Model):
         autor = autor_json.get('autor')
         return Autor(id = id,
                     autor = autor,)
+
+autor_libro = db.Table(
+    'autor_libro',
+    db.Column('autor', db.Integer, db.ForeignKey("autor.id"), nullable = False),
+    db.Column('libro', db.Integer, db.ForeignKey("libro.id"), nullable = False)
+
+)

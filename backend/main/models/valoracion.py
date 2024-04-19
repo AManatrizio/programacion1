@@ -4,6 +4,9 @@ class Valoracion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     valoracion = db.Column(db.String(300), nullable = False)
 
+    valoraciones = db.relationship("ValUsLib", back_populates = "valoracion", cascade = "all, delete-orphan")
+
+
     def __repr__(self):
         return ('<Valoracion: %r >' % (self.valoracion) )
 
