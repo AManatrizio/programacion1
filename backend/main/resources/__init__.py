@@ -1,26 +1,16 @@
-from .biblioteca import Usuario as UsuarioResource
-from .biblioteca import Usuarios as UsuariosResource
-
-from .biblioteca import Libro as LibroResource
-from .biblioteca import Libros as LibrosResource
-
-from .biblioteca import Prestamo as PrestamoResource
-from .biblioteca import Prestamos as PrestamosResource
-
-from .biblioteca import SingIn as SignInResource
-
-from .biblioteca import Login as LoginResource
-
-from .biblioteca import Notificaciones as NotificacionResource
-
-from .biblioteca import Configuracion as ConfiguracionResource
-from .biblioteca import Configuraciones as ConfiguracionesResource
-
-from .biblioteca import Valoracion as ValoracionResource
-from .biblioteca import Valoraciones as ValoracionesResource
-
-from .biblioteca import Comentario as ComentarioResource
-from .biblioteca import Comentarios as ComentariosResource
-
-
-#Archivo para renombrar todos los recursos
+from .usuario import Usuario as UsuarioResource
+from .usuario import Usuarios as UsuariosResource
+from .valoraciones import Valoraciones as ValoracionesResources
+from .valoraciones import Valoracion as ValoracionResources
+from .comentario import Comentario as ComentarioResources
+from .comentario import Comentarios as ComentariosResources
+from .configuracion import Configuraciones as ConfiguracionesResources
+from .libros import Libros as LibrosResources
+from .libros import Libro as LibroResources
+from .login import LogIn as LogInResources
+from .notificacion import Notificaciones as NotificacionesResources
+from .prestamo import Prestamo as PrestamoResource
+from .prestamo import Prestamos as PrestamosResource
+from .signin import SignIn as SignInResources
+from .autor import Autor as AutorResource
+from .autor import Autores as AutoresResource

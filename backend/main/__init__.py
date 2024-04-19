@@ -1,42 +1,42 @@
 from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
-import main.resources as resources
-
-#Iniciamos restful
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 
 api = Api()
-#Este metodo create_app inicializa la app y todos los modulos
+
+db = SQLAlchemy()
+
 def create_app():
     app = Flask(__name__)
     load_dotenv()
 
-    api.add_resource(resources.UsuarioResource, "/usuario/<id>")
-    api.add_resource(resources.UsuariosResource, "/usuarios") #Hacerlo con minuscula
-
-    api.add_resource(resources.LibroResource, "/libro/<id>")
-    api.add_resource(resources.LibrosResource, "/libros") #Hacerlo con minuscula
-
-    api.add_resource(resources.PrestamoResource, "/prestamo/<id>")
-    api.add_resource(resources.PrestamosResource, "/prestamos")
-
-    api.add_resource(resources.SignInResource, "/singin")
-
-    api.add_resource(resources.LoginResource, "/login")
-
-    api.add_resource(resources.NotificacionResource, "/notificaciones")  
-
-    api.add_resource(resources.ConfiguracionResource, "/configuracion/<id>")  
-    api.add_resource(resources.ConfiguracionesResource, "/configuraciones")  
-
-    api.add_resource(resources.ValoracionResource, "/valoracion/<id>")  
-    api.add_resource(resources.ValoracionesResource, "/valoraciones")  
+    if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
+        os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))
     
-    api.add_resource(resources.ComentarioResource, "/comentario/<id>")  
-    api.add_resource(resources.ComentariosResource, "/comentarios")  
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
+    db.init_app(app)
 
+    import main.resources as resources
+    api.add_resource(resources.UsuariosResource, '/usuarios')
+    api.add_resource(resources.UsuarioResource, '/usuario/<int:id>')
+    api.add_resource(resources.ValoracionesResources, '/valoraciones')
+    api.add_resource(resources.ValoracionResources, '/valoracion/<id_user>')
+    api.add_resource(resources.SignInResources, '/signin/<id>')
+    api.add_resource(resources.PrestamosResource, '/prestamos')
+    api.add_resource(resources.PrestamoResource, '/prestamo/<id>')
+    api.add_resource(resources.NotificacionesResources, '/notificaciones')
+    api.add_resource(resources.LogInResources, '/login/<id>')
+    api.add_resource(resources.LibrosResources, '/libros')
+    api.add_resource(resources.LibroResources, '/libro/<id>')
+    api.add_resource(resources.ConfiguracionesResources, '/configuraciones')
+    api.add_resource(resources.ComentariosResources, '/comentarios')
+    api.add_resource(resources.ComentarioResources, '/comentario/<id>')
+    api.add_resource(resources.AutoresResource, '/autores')
+    api.add_resource(resources.AutorResource, '/autor/<int:id>')
 
     api.init_app(app)
-
     return app
