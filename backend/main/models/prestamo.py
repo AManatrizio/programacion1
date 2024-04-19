@@ -2,7 +2,7 @@ from .. import db
 
 class Prestamo(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    prestamo = db.Column(db.String(100), nullable = False)
+    fecha = db.Column(db.String(100), nullable = False)
 
     def __repr__(self):
         return ('<Prestamo: %r >' % (self.prestamo) )

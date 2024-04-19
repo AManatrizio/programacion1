@@ -4,8 +4,6 @@ from main.models import UsuarioModel
 from .. import db
 from flask import jsonify
 
-USUARIOS = {}
-
 class Usuario(Resource):
     def get(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)

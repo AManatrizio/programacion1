@@ -3,20 +3,6 @@ from flask import request, jsonify
 from main.models import LibroModel
 from .. import db
 
-
-LIBROS = {
-    1:{'nombre': 'Harry Potter y la Piedra Filosofal',
-       'autor': 'JK',
-       'genero': 'Fantasia',
-       'estado': 'En prestamo'
-       },
-    2:{'nombre': 'Harry Potter y el Cáliz de Fuego',
-       'autor': 'JK',
-       'genero': 'Fantasia',
-       'estado': 'Disponible'
-       }
-}
-
 class Libro(Resource):
     def get(self, id):
         libro = db.session.query(LibroModel).get_or_404(id)

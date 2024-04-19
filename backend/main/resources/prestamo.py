@@ -1,39 +1,36 @@
 from flask_restful import Resource
-from flask import request
-
-PRESTAMOS = {
-    1:{'prestamo': 'prestamo',
-       'libro': '1',
-       'usuario': '2'
-       }
-}
+from flask import request, jsonify
+from main.models import PrestamoModel
+from .. import db
 
 class Prestamo(Resource):
     def get(self, id):
-        if int(id) in PRESTAMOS:
-            return PRESTAMOS[int(id)]
-        return 'No existe el id', 404
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        return prestamo.to_json()
     
     def delete(self, id):
-        if int(id) in PRESTAMOS:
-            del PRESTAMOS[int(id)]
-            return '', 204
-        return 'No existe el id', 404
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        db.session.delete(prestamo)
+        db.session.commit()
+        return '', 201
     
     def put(self, id):
-        if int(id) in PRESTAMOS:
-            prestamo = PRESTAMOS[int(id)]
-            data = request.get_json()
-            prestamo.update(data)
-            return '', 201
-        return 'No existe el id', 404
+        prestamo = db.session.query(PrestamoModel).get_or_404(id)
+        data = request.get_json().items()
+        for key , value in data:
+            setattr(prestamo, key, value)
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201
 
 class Prestamos(Resource):
     def get(self):
-        return PRESTAMOS
-    
+        prestamos = db.session.query(PrestamoModel).all()
+        prestamos_json = [prestamo.to_json() for prestamo in prestamos]
+        return jsonify(prestamos_json)
+        
     def post(self):
-        prestamo = request.get_json()
-        id = int(max(PRESTAMOS.keys())) + 1
-        PRESTAMOS[int(id)] = prestamo
-        return 'Prestamo: ', PRESTAMOS[int(id)], 'creado.', 201
+        prestamo = PrestamoModel.from_json(request.get_json())
+        db.session.add(prestamo)
+        db.session.commit()
+        return prestamo.to_json(), 201

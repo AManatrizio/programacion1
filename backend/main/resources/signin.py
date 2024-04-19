@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request
 from main.models import UsuarioModel
-from usuario import Usuarios
+from .usuario import Usuarios
 from .. import db
 
 class SignIn(Resource):
