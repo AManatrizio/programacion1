@@ -1,21 +1,13 @@
 from flask_restful import Resource
 from flask import request
+from main.models import UsuarioModel
+from .usuario import Usuarios
 from .. import db
 
-
-#-------------Sing In---------------- No seria lo mismo que un POST en Usuario? Crear un Usuario?
-
-SINGIN = {
-    1:{"nombre":"marta", "contrasena":"!23", "email":"marta@yahoo.com"}
-
-}
-
-class SingIn(Resource):
-    def get(self):
-        return SINGIN
-        
-    def post(self): #Crear un Usuario
-        singin = request.get_json()
-        id = int(max(SINGIN.keys())) + 1
-        SINGIN[id] = singin
-        return SINGIN[id], 201
+class SignIn(Resource):
+    def post(self, id):
+        usuario = db.session.query(UsuarioModel).get(id)
+        if usuario:
+            return 'El usuario ya existe', 404
+        else:
+            Usuarios.post()

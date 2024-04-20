@@ -1,7 +1,9 @@
 from .. import db
 
 class Autor(db.Model):
+    #Primaria
     id = db.Column(db.Integer, primary_key = True)
+    #Atributos
     nombre = db.Column(db.String(100), nullable = False)
 
     def __repr__(self):
