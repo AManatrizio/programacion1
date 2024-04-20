@@ -1,7 +1,7 @@
 from .. import db
 
 class Notificacion(db.Model):
-    #Primaria
+    #Clave Primaria
     id = db.Column(db.Integer, primary_key = True)
     #Atributos
     notificacion = db.Column(db.String(300), nullable = False)
