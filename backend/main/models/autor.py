@@ -1,7 +1,9 @@
 from .. import db
 
 class Autor(db.Model):
+    #Primaria
     id = db.Column(db.Integer, primary_key = True)
+    #Atributo
     nombre = db.Column(db.String(100), nullable = False)
 
     def __repr__(self):
@@ -19,11 +21,4 @@ class Autor(db.Model):
         id = autor_json.get('id')
         autor = autor_json.get('autor')
         return Autor(id = id,
-                    autor = autor,)
-
-autor_libro = db.Table(
-    'autor_libro',
-    db.Column('autor', db.Integer, db.ForeignKey("autor.id"), nullable = False),
-    db.Column('libro', db.Integer, db.ForeignKey("libro.id"), nullable = False)
-
-)
+                          autor = autor,)

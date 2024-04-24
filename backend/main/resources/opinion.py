@@ -13,7 +13,7 @@ class Opinion(Resource):
         db.session.delete(opinion)
         db.session.commit()
         return '', 201
-    
+
     def put(self, id):
         opinion = db.session.query(OpinionModel).get_or_404(id)
         data = request.get_json().items()
@@ -23,12 +23,13 @@ class Opinion(Resource):
         db.session.commit()
         return opinion.to_json(), 201
 
+
 class Opiniones(Resource):
     def get(self):
         opiniones = db.session.query(OpinionModel).all()
         opiniones_json = [(opinion.to_json()) for opinion in opiniones]
         return jsonify(opiniones_json)
-        
+
     def post(self):
         opinion = OpinionModel.from_json(request.get_json())
         db.session.add(opinion)

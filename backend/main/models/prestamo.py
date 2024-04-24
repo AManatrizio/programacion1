@@ -1,6 +1,7 @@
 from .. import db
 
 class Prestamo(db.Model):
+    #Primaria
     id = db.Column(db.Integer, primary_key = True)
     prestamo = db.Column(db.String(20), nullable = False) ###Estado, activo, inactivo, vencido --> enviar notificacion
     fecha_inicio = db.Column(db.String(100), nullable = False)
@@ -11,6 +12,7 @@ class Prestamo(db.Model):
     usuario = db.relationship("Usuario", back_populates = "prestamo", uselist = False, single_parent = True)
     libro = db.relationship("Libro", back_populates = "prestamo", uselist = False, single_parent = True)
     opinion = db.relationship("Opinion", uselist = False, back_populates = "prestamo", cascade="all, delete-orphan", single_parent = True)
+
 
     def __repr__(self):
         return ('<Prestamo: %r >' % (self.prestamo) )
@@ -23,6 +25,7 @@ class Prestamo(db.Model):
             'fecha_vencimiento': str(self.fecha_vencimiento),
             'usuario_id': int(self.usuario_id),
             'libro_id': int(self.libro_id),
+
             }
         return prestamo_json
     

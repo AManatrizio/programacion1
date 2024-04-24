@@ -32,7 +32,7 @@ def create_app():
     api.add_resource(resources.LogInResources, '/login/<int:id>')
     api.add_resource(resources.LibrosResources, '/libros')
     api.add_resource(resources.LibroResources, '/libro/<int:id>')
-    api.add_resource(resources.ConfiguracionesResources, '/configuraciones')
+    api.add_resource(resources.ConfiguracionesResources, '/configuraciones'
     api.add_resource(resources.AutoresResource, '/autores')
     api.add_resource(resources.AutorResource, '/autor/<int:id>')
 

@@ -1,7 +1,9 @@
 from .. import db
 
 class Configuracion(db.Model):
+    #Primaria
     id = db.Column(db.Integer, primary_key = True)
+    #Atributos
     configuracion = db.Column(db.String(100), nullable = False)
 
     def __repr__(self):
@@ -18,5 +20,4 @@ class Configuracion(db.Model):
         id = configuracion_json.get('id')
         configuracion = configuracion_json.get('configuracion')
         return Configuracion(id = id,
-                             configuracion = configuracion,
-                             )
+                             configuracion = configuracion,)

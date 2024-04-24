@@ -1,5 +1,6 @@
 from .. import db
 
+
 class Opinion(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     comentario = db.Column(db.String(300), nullable = False)
@@ -7,6 +8,7 @@ class Opinion(db.Model):
     prestamo_id = db.Column(db.Integer, db.ForeignKey("prestamo.id"), nullable = False)
     
     prestamo = db.relationship("Prestamo", uselist = False, back_populates = "opinion", cascade="all, delete-orphan", single_parent = True)
+
 
     def __repr__(self):
         return ('<Comentario: %r >' % (self.comentario) )
