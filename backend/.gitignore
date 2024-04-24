@@ -8,3 +8,7 @@ venv
 /no_se_si_borrar
 */no_se_si_borrar
 */__pycache__*
+../no_se_si_borrar
+__pycache__
+no_se_si_borrar
+/__pycache__/
