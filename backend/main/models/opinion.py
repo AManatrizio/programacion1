@@ -2,13 +2,13 @@ from .. import db
 
 
 class Opinion(db.Model):
-    #Primaria
     id = db.Column(db.Integer, primary_key = True)
-    #Atributos
     comentario = db.Column(db.String(300), nullable = False)
-    valoracion = db.Column(db.Float(5), nullable = False)
-    # Relacion para ser foranea en PRESTAMO
-    opinion = db.relationship("Prestamo", uselist = False, back_populates = "prestamo_usu", cascade="all, delete-orphan", single_parent=True)
+    valoracion = db.Column(db.String(5), nullable = False)
+    prestamo_id = db.Column(db.Integer, db.ForeignKey("prestamo.id"), nullable = False)
+    
+    prestamo = db.relationship("Prestamo", uselist = False, back_populates = "opinion", cascade="all, delete-orphan", single_parent = True)
+
 
     def __repr__(self):
         return ('<Comentario: %r >' % (self.comentario) )
@@ -17,8 +17,8 @@ class Opinion(db.Model):
         opinion_json = {
             'id': self.id,
             'comentario': str(self.comentario),
-            'valoracion': float(self.valoracion),
-
+            'valoracion': str(self.valoracion),
+            'prestamo_id': str(self.prestamo_id)
         }
         return opinion_json
     
@@ -27,6 +27,9 @@ class Opinion(db.Model):
         id = opinion_json.get('id')
         comentario = opinion_json.get('comentario')
         valoracion = opinion_json.get("valoracion")
+        prestamo_id = opinion_json.get('prestamo_id')
         return Opinion(id = id,
-                          comentario = comentario,
-                          valoracion = valoracion)
+                       comentario = comentario,
+                       valoracion = valoracion,
+                       prestamo_id = prestamo_id,
+                       )

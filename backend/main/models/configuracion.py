@@ -16,7 +16,6 @@ class Configuracion(db.Model):
             }
         return configuracion_json
     
-    @staticmethod
     def from_json(configuracion_json):
         id = configuracion_json.get('id')
         configuracion = configuracion_json.get('configuracion')

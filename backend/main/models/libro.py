@@ -10,6 +10,7 @@ class Libro(db.Model):
     #Foranea PRESTAMO - LIBRO (N:1)
     libro = db.relationship("Prestamo", uselist = False, back_populates = "prestamo", cascade="all, delete-orphan", single_parent=True)
 
+    prestamo = db.relationship("Prestamo", back_populates = "libro", cascade = "all, delete-orphan")
 
 
 
@@ -27,7 +28,6 @@ class Libro(db.Model):
         }
         return libro_json
     
-    @staticmethod
     def from_json(libro_json):
         id = libro_json.get('id')
         nombre = libro_json.get('nombre')
@@ -40,9 +40,6 @@ class Libro(db.Model):
                     genero = genero,
                     estado = estado,)
 
-#Tabla de union Lib - Aut
-libro_autor = db.Table (
-    "libro_autor",
-    db.Column("libro_id", db.Integer, db.ForeignKey("libro.id")),
-    db.Column("autor_id", db.Integer, db.ForeignKey("autor.id"))
-)
+      
+###comentarios = db.relationship("Comentario", back_populates = "libro", cascade = "all, delete-orphan")
+###valoraciones = db.relationship("ValUsLib", back_populates = "libro", cascade = "all, delete-orphan")
