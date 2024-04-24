@@ -1,14 +1,12 @@
 from .. import db
 
-
-class Opinion(db.Model):
+class Opiniones(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     comentario = db.Column(db.String(300), nullable = False)
     valoracion = db.Column(db.String(5), nullable = False)
-    prestamo_id = db.Column(db.Integer, db.ForeignKey("prestamo.id"), nullable = False)
+    prestamo_id = db.Column(db.Integer, db.ForeignKey("prestamos.id"), nullable = False)
     
-    prestamo = db.relationship("Prestamo", uselist = False, back_populates = "opinion", cascade="all, delete-orphan", single_parent = True)
-
+    prestamo = db.relationship("Prestamos", uselist = False, back_populates = "opinion", cascade="all, delete-orphan", single_parent = True)
 
     def __repr__(self):
         return ('<Comentario: %r >' % (self.comentario) )
@@ -28,7 +26,7 @@ class Opinion(db.Model):
         comentario = opinion_json.get('comentario')
         valoracion = opinion_json.get("valoracion")
         prestamo_id = opinion_json.get('prestamo_id')
-        return Opinion(id = id,
+        return Opiniones(id = id,
                        comentario = comentario,
                        valoracion = valoracion,
                        prestamo_id = prestamo_id,
