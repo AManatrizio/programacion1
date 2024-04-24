@@ -25,3 +25,4 @@ autor_libro = db.Table(
     db.Column('autor', db.Integer, db.ForeignKey("autores.id"), nullable = False),
     db.Column('libro', db.Integer, db.ForeignKey("libros.id"), nullable = False)
     )
+
