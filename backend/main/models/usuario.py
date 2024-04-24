@@ -7,10 +7,9 @@ class Usuario(db.Model):
     telefono = db.Column(db.String(14), nullable = False)
     email = db.Column(db.String(100), nullable = False)
 
-    comentarios = db.relationship("Comentario", back_populates = "usuario", cascade = "all, delete-orphan")
+
     prestamo = db.relationship("Prestamo", back_populates = "usuario", cascade = "all, delete-orphan")
     notificacion = db.relationship("Notificacion", back_populates = "usuario", cascade = "all, delete-orphan")
-    valoraciones = db.relationship("ValUsLib", back_populates = "usuario", cascade = "all, delete-orphan")
 
 
     def __repr__(self):
@@ -26,7 +25,6 @@ class Usuario(db.Model):
         }
         return usuario_json
     
-    @staticmethod
     def from_json(usuario_json):
         id = usuario_json.get('id')
         nombre = usuario_json.get('nombre')
@@ -38,3 +36,7 @@ class Usuario(db.Model):
                        clave = clave,
                        telefono = telefono,
                        email = email,)
+
+
+###comentarios = db.relationship("Comentario", back_populates = "usuario", cascade = "all, delete-orphan")
+###valoraciones = db.relationship("ValUsLib", back_populates = "usuario", cascade = "all, delete-orphan")

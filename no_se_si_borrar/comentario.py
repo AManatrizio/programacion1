@@ -1,4 +1,4 @@
-from .. import db
+from ..backend.main import db
 
 class Comentario(db.Model):
     id = db.Column(db.Integer, primary_key = True)

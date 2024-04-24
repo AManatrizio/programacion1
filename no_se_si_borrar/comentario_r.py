@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from main.models import ComentarioModel
-from .. import db
+from ..backend.main import db
 
 class Comentario(Resource):
     def get(self, id):
