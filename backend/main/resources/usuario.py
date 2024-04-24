@@ -35,3 +35,7 @@ class Usuarios(Resource):
         db.session.add(usuario)
         db.session.commit()
         return usuario.to_json(), 201
+        
+
+
+

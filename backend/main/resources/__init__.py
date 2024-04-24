@@ -1,9 +1,7 @@
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
-from .valoraciones import Valoraciones as ValoracionesResources
-from .valoraciones import Valoracion as ValoracionResources
-from .comentario import Comentario as ComentarioResources
-from .comentario import Comentarios as ComentariosResources
+from .opinion import Opinion as OpinionResources
+from .opinion import Opiniones as OpinionesResources
 from .configuracion import Configuraciones as ConfiguracionesResources
 from .libros import Libros as LibrosResources
 from .libros import Libro as LibroResources

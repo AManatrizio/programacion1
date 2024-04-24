@@ -23,8 +23,6 @@ def create_app():
     import main.resources as resources
     api.add_resource(resources.UsuariosResource, '/usuarios')
     api.add_resource(resources.UsuarioResource, '/usuario/<int:id>')
-    api.add_resource(resources.ValoracionesResources, '/valoraciones')
-    api.add_resource(resources.ValoracionResources, '/valoracion/<id_user>')
     api.add_resource(resources.SignInResources, '/signin/<id>')
     api.add_resource(resources.PrestamosResource, '/prestamos')
     api.add_resource(resources.PrestamoResource, '/prestamo/<id>')
@@ -33,8 +31,8 @@ def create_app():
     api.add_resource(resources.LibrosResources, '/libros')
     api.add_resource(resources.LibroResources, '/libro/<id>')
     api.add_resource(resources.ConfiguracionesResources, '/configuraciones')
-    api.add_resource(resources.ComentariosResources, '/comentarios')
-    api.add_resource(resources.ComentarioResources, '/comentario/<id>')
+    api.add_resource(resources.OpinionesResources, '/opiniones')
+    api.add_resource(resources.OpinionResources, '/opinion/<id>')
     api.add_resource(resources.AutoresResource, '/autores')
     api.add_resource(resources.AutorResource, '/autor/<int:id>')
 
