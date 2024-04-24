@@ -1,6 +1,6 @@
 from .. import db
 
-class Autor(db.Model):
+class Autores(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(100), nullable = False)
 
@@ -14,16 +14,15 @@ class Autor(db.Model):
         }
         return autor_json
     
-    @staticmethod
     def from_json(autor_json):
         id = autor_json.get('id')
         autor = autor_json.get('autor')
-        return Autor(id = id,
+        return Autores(id = id,
                     autor = autor,)
 
 autor_libro = db.Table(
     'autor_libro',
-    db.Column('autor', db.Integer, db.ForeignKey("autor.id"), nullable = False),
-    db.Column('libro', db.Integer, db.ForeignKey("libro.id"), nullable = False)
+    db.Column('autor', db.Integer, db.ForeignKey("autores.id"), nullable = False),
+    db.Column('libro', db.Integer, db.ForeignKey("libros.id"), nullable = False)
 
 )

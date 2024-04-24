@@ -1,16 +1,16 @@
 from .. import db
 
-class Prestamo(db.Model):
+class Prestamos(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     prestamo = db.Column(db.String(20), nullable = False) ###Estado, activo, inactivo, vencido --> enviar notificacion
     fecha_inicio = db.Column(db.String(100), nullable = False)
     fecha_vencimiento = db.Column(db.String(100), nullable = False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable = False)
-    libro_id = db.Column(db.Integer, db.ForeignKey("libro.id"), nullable = False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable = False)
+    libro_id = db.Column(db.Integer, db.ForeignKey("libros.id"), nullable = False)
 
-    usuario = db.relationship("Usuario", back_populates = "prestamo", uselist = False, single_parent = True)
-    libro = db.relationship("Libro", back_populates = "prestamo", uselist = False, single_parent = True)
-    opinion = db.relationship("Opinion", uselist = False, back_populates = "prestamo", cascade="all, delete-orphan", single_parent = True)
+    usuario = db.relationship("Usuarios", back_populates = "prestamo", uselist = False, single_parent = True)
+    libro = db.relationship("Libros", back_populates = "prestamo", uselist = False, single_parent = True)
+    opinion = db.relationship("Opiniones", uselist = False, back_populates = "prestamo", cascade="all, delete-orphan", single_parent = True)
 
     def __repr__(self):
         return ('<Prestamo: %r >' % (self.prestamo) )
@@ -33,7 +33,7 @@ class Prestamo(db.Model):
         fecha_vencimiento = prestamo_json.get('fecha_vencimiento')
         usuario_id = prestamo_json.get('usuario_id')
         libro_id = prestamo_json.get('libro_id')
-        return Prestamo(id = id,
+        return Prestamos(id = id,
                         prestamo = prestamo,
                         fecha_inicio = fecha_inicio,
                         fecha_vencimiento = fecha_vencimiento,

@@ -1,11 +1,11 @@
 from .. import db
 
-class Notificacion(db.Model):
+class Notificaciones(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     notificacion = db.Column(db.String(300), nullable = False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable = False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey("usuarios.id"), nullable = False)
 
-    usuario = db.relationship("Usuario", back_populates = "notificacion", uselist = False, single_parent = True)
+    usuario = db.relationship("Usuarios", back_populates = "notificacion", uselist = False, single_parent = True)
 
     def __repr__(self):
         return ('<notificacion: %r >' % (self.notificacion) )
@@ -22,6 +22,6 @@ class Notificacion(db.Model):
         id = notificacion_json.get('id')
         notificacion = notificacion_json.get('notificacion')
         usuario_id = notificacion_json.get('usuario_id')
-        return Notificacion(id = id,
+        return Notificaciones(id = id,
                             notificacion = notificacion,
                             usuario_id = usuario_id)

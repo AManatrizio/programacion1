@@ -1,6 +1,6 @@
 from .. import db
 
-class Usuario(db.Model):
+class Usuarios(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(100), nullable = False)
     clave = db.Column(db.String(14), nullable = False)
@@ -8,8 +8,8 @@ class Usuario(db.Model):
     email = db.Column(db.String(100), nullable = False)
 
 
-    prestamo = db.relationship("Prestamo", back_populates = "usuario", cascade = "all, delete-orphan")
-    notificacion = db.relationship("Notificacion", back_populates = "usuario", cascade = "all, delete-orphan")
+    prestamo = db.relationship("Prestamos", back_populates = "usuario", cascade = "all, delete-orphan")
+    notificacion = db.relationship("Notificaciones", back_populates = "usuario", cascade = "all, delete-orphan")
 
 
     def __repr__(self):
@@ -31,7 +31,7 @@ class Usuario(db.Model):
         clave = usuario_json.get('clave')
         telefono = usuario_json.get('telefono')
         email = usuario_json.get('email')
-        return Usuario(id = id,
+        return Usuarios(id = id,
                        nombre = nombre,
                        clave = clave,
                        telefono = telefono,

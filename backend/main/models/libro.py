@@ -1,12 +1,12 @@
 from .. import db
 
-class Libro(db.Model):
+class Libros(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(100), nullable = False)
     genero = db.Column(db.String(100), nullable = False)
     estado = db.Column(db.String(100), nullable = False)
 
-    prestamo = db.relationship("Prestamo", back_populates = "libro", cascade = "all, delete-orphan")
+    prestamo = db.relationship("Prestamos", back_populates = "libro", cascade = "all, delete-orphan")
     
 
 
@@ -27,7 +27,7 @@ class Libro(db.Model):
         nombre = libro_json.get('nombre')
         genero = libro_json.get('genero')
         estado = libro_json.get('estado')
-        return Libro(id = id,
+        return Libros(id = id,
                     nombre = nombre,
                     genero = genero,
                     estado = estado,)
