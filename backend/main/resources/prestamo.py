@@ -31,10 +31,16 @@ class Prestamos(Resource):
         
     def post(self):
         data = request.get_json()
+        if isinstance(data, dict):
+            data = [data]
         prestamos = []
         for prestamo_data in data:
             prestamo = PrestamoModel.from_json(prestamo_data)
-            db.session.add(prestamo)
-            prestamos.append(prestamo)
+#            try:
+#                db.session.add(prestamo)
+#                prestamos.append(prestamo)
+#            except:
+#                return "Error"
         db.session.commit()
-        return [prestamo.to_json() for prestamo in prestamos], 201
+        prestamos_json = [prestamo.to_json() for prestamo in prestamos]
+        return prestamos_json, 201

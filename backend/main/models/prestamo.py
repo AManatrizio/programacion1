@@ -17,7 +17,7 @@ class Prestamos(db.Model):
 
     def to_json(self):
         prestamo_json = {
-            'id': self.id,
+            'id': int(self.id),
             'prestamo': str(self.prestamo),
             'fecha_inicio': str(self.fecha_inicio),
             'fecha_vencimiento': str(self.fecha_vencimiento),
