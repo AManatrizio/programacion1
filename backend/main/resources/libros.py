@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from main.models import LibroModel
+from main.models import LibroModel, AutorModel
 from .. import db
 
 class Libro(Resource):
@@ -30,7 +30,14 @@ class Libros(Resource):
         return jsonify(libros_json)
         
     def post(self):
-        animal = LibroModel.from_json(request.get_json())
-        db.session.add(animal)
+        id_autores = request.get_json().get('autor')
+        libro = LibroModel.from_json(request.get_json())
+        
+        if id_autores:
+            autor = AutorModel.query.filter(AutorModel.id.in_(id_autores)).all()
+            libro.autor.extend(autor)
+            
+        db.session.add(libro)
         db.session.commit()
-        return animal.to_json(), 201
+        return libro.to_json(), 201
+    

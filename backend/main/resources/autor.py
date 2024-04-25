@@ -30,22 +30,16 @@ class Autores(Resource):
         autores_json = [(autor.to_json()) for autor in autores]
         return jsonify(autores_json)
         
+    
     def post(self):
         autor = AutorModel.from_json(request.get_json())
-        db.session.add(autor)
-        db.session.commit()
-        return autor.to_json(), 201
+        print(autor)
+        try:
+            db.session.add(autor)
+            db.session.commit()
+        except:
+            return 'Formato no correcto', 400
+        return autor.to_json(), 201   
     
-    # def post(self):
-    #     libro_ids = request.get_json().get('libro')
-    #     autor = AutorModel.from_json(request.get_json())
-        
-    #     if libro_ids:
-    #         # Obtener las instancias de Exhibicion basadas en las ids recibidas
-    #         libro = LibroModel.query.filter(LibroModel.id.in_(libro_ids)).all()
-    #         # Agregar las instancias de Exhibicion a la lista de libro del autor
-    #         autor.libro.extend(libro)
-            
-    #     db.session.add(autor)
-    #     db.session.commit()
-    #     return autor.to_json(), 201       
+    
+    

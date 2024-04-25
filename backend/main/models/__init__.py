@@ -6,3 +6,4 @@ from .configuracion import Configuraciones as ConfiguracionModel
 from .prestamo import Prestamos as PrestamoModel
 from .autor import Autores as AutorModel
 from .opinion import Opiniones as OpinionModel
+from .autor import autor_libro as AutoresLibrosModel

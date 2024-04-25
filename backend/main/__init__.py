@@ -35,6 +35,8 @@ def create_app():
     api.add_resource(resources.ConfiguracionesResources, '/configuraciones')
     api.add_resource(resources.AutoresResource, '/autores')
     api.add_resource(resources.AutorResource, '/autor/<int:id>')
+    # api.add_resource(resources.AutoriaResource, '/autoria')
+
 
     api.init_app(app)
     return app
