@@ -30,7 +30,11 @@ class Prestamos(Resource):
         return jsonify(prestamos_json)
         
     def post(self):
-        prestamo = PrestamoModel.from_json(request.get_json())
-        db.session.add(prestamo)
+        data = request.get_json()
+        prestamos = []
+        for prestamo_data in data:
+            prestamo = PrestamoModel.from_json(prestamo_data)
+            db.session.add(prestamo)
+            prestamos.append(prestamo)
         db.session.commit()
-        return prestamo.to_json(), 201
+        return [prestamo.to_json() for prestamo in prestamos], 201

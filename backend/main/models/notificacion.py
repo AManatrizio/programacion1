@@ -18,6 +18,7 @@ class Notificaciones(db.Model):
         }
         return notificacion_json
     
+    @staticmethod
     def from_json(notificacion_json):
         id = notificacion_json.get('id')
         notificacion = notificacion_json.get('notificacion')

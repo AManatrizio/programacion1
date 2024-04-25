@@ -2,12 +2,13 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import os
 
 
 api = Api()
-
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
@@ -19,6 +20,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
     db.init_app(app)
+    migrate.init_app(app, db)
 
     import main.resources as resources
     api.add_resource(resources.UsuariosResource, '/usuarios')
