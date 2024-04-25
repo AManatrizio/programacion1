@@ -2,7 +2,7 @@ from .. import db
 
 class Autores(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    nombre = db.Column(db.String(100), nullable = False)
+    autor = db.Column(db.String(100), nullable = False)
 
     def __repr__(self):
         return ('<Autor: %r >' % (self.autor) )
