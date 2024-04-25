@@ -10,7 +10,7 @@ class Usuarios(db.Model):
 
     prestamo = db.relationship("Prestamos", back_populates = "usuario", cascade = "all, delete-orphan")
     notificacion = db.relationship("Notificaciones", back_populates = "usuario", cascade = "all, delete-orphan")
-
+    rol = db.Column(db.String(10), nullable = False, server_default = "usuario")
 
     def __repr__(self):
         return ('<Usuario: %r >' % (self.nombre) )
@@ -24,7 +24,8 @@ class Usuarios(db.Model):
             'email': str(self.email),
         }
         return usuario_json
-    
+
+    @staticmethod
     def from_json(usuario_json):
         id = usuario_json.get('id')
         nombre = usuario_json.get('nombre')
