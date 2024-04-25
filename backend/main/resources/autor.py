@@ -1,8 +1,8 @@
 from flask_restful import Resource
-from flask import request
+from flask import request, jsonify
 from main.models import AutorModel
+from main.models import LibroModel
 from .. import db
-from flask import jsonify
 
 class Autor(Resource):
     def get(self, id):
@@ -13,7 +13,7 @@ class Autor(Resource):
         autor = db.session.query(AutorModel).get_or_404(id)
         db.session.delete(autor)
         db.session.commit()
-        return '', 201
+        return 'El autor fue borrado satisfactoriamente', 201
     
     def put(self, id):
         autor = db.session.query(AutorModel).get_or_404(id)
@@ -35,3 +35,17 @@ class Autores(Resource):
         db.session.add(autor)
         db.session.commit()
         return autor.to_json(), 201
+    
+    # def post(self):
+    #     libro_ids = request.get_json().get('libro')
+    #     autor = AutorModel.from_json(request.get_json())
+        
+    #     if libro_ids:
+    #         # Obtener las instancias de Exhibicion basadas en las ids recibidas
+    #         libro = LibroModel.query.filter(LibroModel.id.in_(libro_ids)).all()
+    #         # Agregar las instancias de Exhibicion a la lista de libro del autor
+    #         autor.libro.extend(libro)
+            
+    #     db.session.add(autor)
+    #     db.session.commit()
+    #     return autor.to_json(), 201       

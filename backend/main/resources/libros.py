@@ -12,7 +12,7 @@ class Libro(Resource):
         libro = db.session.query(LibroModel).get_or_404(id)
         db.session.delete(libro)
         db.session.commit()
-        return '', 201
+        return 'El libro fue borrado satisfactoriamente', 201
     
     def put(self, id):
         libro = db.session.query(LibroModel).get_or_404(id)
@@ -30,7 +30,7 @@ class Libros(Resource):
         return jsonify(libros_json)
         
     def post(self):
-        libro = LibroModel.from_json(request.get_json())
-        db.session.add(libro)
+        animal = LibroModel.from_json(request.get_json())
+        db.session.add(animal)
         db.session.commit()
-        return libro.to_json(), 201
+        return animal.to_json(), 201

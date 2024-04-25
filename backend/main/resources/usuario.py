@@ -13,7 +13,7 @@ class Usuario(Resource):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
         db.session.delete(usuario)
         db.session.commit()
-        return '', 201
+        return 'El usuario fue borrado satisfactoriamente', 201
     
     def put(self, id):
         usuario = db.session.query(UsuarioModel).get_or_404(id)
@@ -36,6 +36,3 @@ class Usuarios(Resource):
         db.session.commit()
         return usuario.to_json(), 201
         
-
-
-

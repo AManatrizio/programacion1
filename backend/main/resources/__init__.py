@@ -1,6 +1,6 @@
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
-from .opinion import Opinion as OpinionResources
+from .opinion import Opinion as OpinionResource
 from .opinion import Opiniones as OpinionesResources
 from .configuracion import Configuraciones as ConfiguracionesResources
 from .libros import Libros as LibrosResources

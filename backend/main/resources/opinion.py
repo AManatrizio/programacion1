@@ -3,7 +3,6 @@ from flask import request, jsonify
 from main.models import OpinionModel
 from .. import db
 
-
 class Opinion(Resource):
     def get(self, id):
         opinion = db.session.query(OpinionModel).get_or_404(id)
@@ -13,7 +12,7 @@ class Opinion(Resource):
         opinion = db.session.query(OpinionModel).get_or_404(id)
         db.session.delete(opinion)
         db.session.commit()
-        return '', 201
+        return 'La opinion fue borrada satisfactoriamente', 201
 
     def put(self, id):
         opinion = db.session.query(OpinionModel).get_or_404(id)

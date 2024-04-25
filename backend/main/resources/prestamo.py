@@ -12,7 +12,7 @@ class Prestamo(Resource):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
         db.session.delete(prestamo)
         db.session.commit()
-        return '', 201
+        return 'El prestamo fue borrado satisfactoriamente', 201    
     
     def put(self, id):
         prestamo = db.session.query(PrestamoModel).get_or_404(id)
