@@ -3,7 +3,6 @@ from flask import request, jsonify
 from main.models import OpinionModel
 from .. import db
 
-
 class Opinion(Resource):
     def get(self, id):
         opinion = db.session.query(OpinionModel).get_or_404(id)

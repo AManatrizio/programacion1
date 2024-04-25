@@ -1,8 +1,7 @@
-
-from .usuario import Usuario as UsuarioModel
-from .libro import Libro as LibroModel
-from .opinion import Opinion as OpinionModel
-from .notificacion import Notificacion as NotificacionModel
-from .configuracion import Configuracion as ConfiguracionModel
-from .prestamo import Prestamo as PrestamoModel
-from .autor import Autor as AutorModel
+from .usuario import Usuarios as UsuarioModel
+from .libro import Libros as LibroModel
+from .notificacion import Notificaciones as NotificacionModel
+from .configuracion import Configuraciones as ConfiguracionModel
+from .prestamo import Prestamos as PrestamoModel
+from .autor import Autores as AutorModel
+from .opinion import Opiniones as OpinionModel
