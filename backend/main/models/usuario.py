@@ -10,7 +10,7 @@ class Usuarios(db.Model):
 
     prestamo = db.relationship("Prestamos", back_populates = "usuario", cascade = "all, delete-orphan")
     notificacion = db.relationship("Notificaciones", back_populates = "usuario", cascade = "all, delete-orphan")
-    rol = db.Column(db.String(10), nullable = False, server_default = "usuario")
+#    rol = db.Column(db.String(10), nullable = False, server_default = "usuario")
 
     def __repr__(self):
         return ('<Usuario: %r >' % (self.nombre) )
