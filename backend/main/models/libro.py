@@ -22,6 +22,7 @@ class Libros(db.Model):
         }
         return libro_json
     
+    @staticmethod
     def from_json(libro_json):
         id = libro_json.get('id')
         nombre = libro_json.get('nombre')

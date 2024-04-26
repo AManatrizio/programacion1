@@ -9,3 +9,6 @@ venv
 __pycache__
 /__pycache__/
 pyenv.cfg
+migrations
+/migrations
+*/migrations/*

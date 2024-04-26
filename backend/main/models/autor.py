@@ -14,6 +14,7 @@ class Autores(db.Model):
         }
         return autor_json
     
+    @staticmethod
     def from_json(autor_json):
         id = autor_json.get('id')
         autor = autor_json.get('autor')
