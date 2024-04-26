@@ -3,6 +3,8 @@ from flask import request
 from main.models import UsuarioModel
 from .. import db
 from flask import jsonify
+class IdEnUso(Exception):
+    ...
 
 class Usuario(Resource):
     def get(self, id):
@@ -21,7 +23,7 @@ class Usuario(Resource):
             return '', 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str(e))
+            abort(500, message=str("404 Not FOund: No se encuentra el usuario para eliminar. El ID no existe"))
     
     def put(self, id):
         try:
@@ -34,7 +36,7 @@ class Usuario(Resource):
             return usuario.to_json(), 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str(e))
+            abort(500, message=str("Error 404 NOt Found: No se encuentra el usuario para modificar"))
 
 class Usuarios(Resource):
     def get(self):
@@ -42,11 +44,40 @@ class Usuarios(Resource):
         usuarios_json = [usuario.to_json() for usuario in usuarios]
         return jsonify(usuarios_json)
         
+    # def post(self):
+    #     usuario = UsuarioModel.from_json(request.get_json())
+    #     db.session.add(usuario)
+    #     db.session.commit()
+    #     return usuario.to_json(), 201
+    
+
     def post(self):
-        usuario = UsuarioModel.from_json(request.get_json())
-        db.session.add(usuario)
+        data = request.get_json()
+        if isinstance(data, dict):
+            data = [data]
+        usuarios = []
+        for usuario_data in data:
+            usuario = UsuarioModel.from_json(usuario_data)
+            try:
+                tabla = UsuarioModel.query.all()
+                self.verificacion(usuario_data, tabla)
+            except Exception as e:
+                return {'error': str(e)}, 403
+            db.session.add(usuario)
+            usuarios.append(usuario)
         db.session.commit()
-        return usuario.to_json(), 201
+        usuario_json = [usuario.to_json() for usuario in usuarios]
+        return usuario_json, 201
+
+
+    def verificacion(self, usuario, tabla):
+        for i in tabla:
+            id = i.id
+            id_nuevo = usuario['id']
+            if id == id_nuevo:
+                raise IdEnUso('El ID esta en uso')
+            else:
+                return None
         
 
 
