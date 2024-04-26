@@ -3,8 +3,7 @@ from flask import request
 from main.models import UsuarioModel
 from .. import db
 from flask import jsonify
-class IdEnUso(Exception):
-    ...
+from .exception import IdEnUso
 
 class Usuario(Resource):
     def get(self, id):
@@ -12,7 +11,7 @@ class Usuario(Resource):
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             return usuario.to_json()
         except Exception:
-            abort(500, message=str("Error 404: el id del usuario no existe"))
+            abort(404, message=str("Error 404: el id del usuario no existe"))
 
 
     def delete(self, id):
@@ -23,7 +22,7 @@ class Usuario(Resource):
             return '', 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str("404 Not FOund: No se encuentra el usuario para eliminar. El ID no existe"))
+            abort(404, message=str("404 Not Found: No se encuentra el usuario para eliminar. El ID no existe"))
     
     def put(self, id):
         try:
@@ -36,7 +35,7 @@ class Usuario(Resource):
             return usuario.to_json(), 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str("Error 404 NOt Found: No se encuentra el usuario para modificar"))
+            abort(404, message=str("Error 404 NOt Found: No se encuentra el usuario para modificar"))
 
 class Usuarios(Resource):
     def get(self):

@@ -1,33 +1,46 @@
-from flask_restful import Resource
+from flask_restful import Resource, abort
 from flask import request, jsonify
 from main.models import PrestamoModel
 from .. import db
-
 class IdEnUso(Exception):
     ...
 
 class LibroNoDisponible(Exception):
     ...
 
+
 class Prestamo(Resource):
     def get(self, id):
-        prestamo = db.session.query(PrestamoModel).get_or_404(id)
-        return prestamo.to_json()
+        try:
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+            return prestamo.to_json()
+        except Exception:
+            abort(500, message=str("Error 404: el id del prestamo no existe"))
+
     
     def delete(self, id):
-        prestamo = db.session.query(PrestamoModel).get_or_404(id)
-        db.session.delete(prestamo)
-        db.session.commit()
-        return '', 201
-    
+        try:
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+            db.session.delete(prestamo)
+            db.session.commit()
+            return '', 201
+        except Exception as e:
+            db.session.rollback()
+            abort(500, message=str("404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
+        
     def put(self, id):
-        prestamo = db.session.query(PrestamoModel).get_or_404(id)
-        data = request.get_json().items()
-        for key , value in data:
-            setattr(prestamo, key, value)
-        db.session.add(prestamo)
-        db.session.commit()
-        return prestamo.to_json(), 201
+        try:
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+            data = request.get_json().items()
+            for key , value in data:
+                setattr(prestamo, key, value)
+            db.session.add(prestamo)
+            db.session.commit()
+            return prestamo.to_json(), 201
+        except Exception as e:
+            db.session.rollback()
+            abort(500, message=str("Error 404 Not Found: No se encuentra el prestamo para modificar"))
+
 
 class Prestamos(Resource):
     def get(self):
