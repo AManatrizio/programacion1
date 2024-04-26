@@ -4,6 +4,9 @@ from main.models import AutorModel
 from main.models import LibroModel
 from .. import db
 
+
+
+
 class Autor(Resource):
     def get(self, id):
         try:
