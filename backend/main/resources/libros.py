@@ -1,27 +1,46 @@
-from flask_restful import Resource
+from flask_restful import Resource, abort
 from flask import request, jsonify
 from main.models import LibroModel, AutorModel
 from .. import db
+from .exception import IdEnUso
+
 
 class Libro(Resource):
     def get(self, id):
-        libro = db.session.query(LibroModel).get_or_404(id)
-        return libro.to_json()
+        try:
+            libro = db.session.query(LibroModel).get_or_404(id)
+            return libro.to_json()
+        except Exception as e:
+            abort(404, message=str("Error 404 Not Found: No se encuentra el ID del libro."))
     
     def delete(self, id):
-        libro = db.session.query(LibroModel).get_or_404(id)
-        db.session.delete(libro)
-        db.session.commit()
-        return 'El libro fue borrado satisfactoriamente', 201
+        try:
+            libro = db.session.query(LibroModel).get_or_404(id)
+            db.session.delete(libro)
+            db.session.commit()
+            return 'El libro fue borrado satisfactoriamente', 201
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=str("404 Not Found: No se encuentra el libro para eliminar. El ID no existe"))
+    
+      
     
     def put(self, id):
-        libro = db.session.query(LibroModel).get_or_404(id)
-        data = request.get_json().items()
-        for key , value in data:
-            setattr(libro, key, value)
-        db.session.add(libro)
-        db.session.commit()
-        return libro.to_json(), 201
+        try:
+            libro = db.session.query(LibroModel).get_or_404(id)
+            data = request.get_json().items()
+            for key , value in data:
+                setattr(libro, key, value)
+            db.session.add(libro)
+            db.session.commit()
+            return libro.to_json(), 201
+        except Exception as e:
+            db.session.rollback()
+            abort(404, message=str("Error 404 Not Found: No se encuentra el libro para modificar"))
+   
+
+
+
 
 class Libros(Resource):
     def get(self):
@@ -29,15 +48,38 @@ class Libros(Resource):
         libros_json = [(libro.to_json()) for libro in libros]
         return jsonify(libros_json)
         
+
     def post(self):
-        id_autores = request.get_json().get('autor')
         libro = LibroModel.from_json(request.get_json())
-        
-        if id_autores:
-            autor = AutorModel.query.filter(AutorModel.id.in_(id_autores)).all()
-            libro.autor.extend(autor)
-            
-        db.session.add(libro)
-        db.session.commit()
-        return libro.to_json(), 201
-    
+        print(libro)
+        try:
+            db.session.add(libro)
+            db.session.commit()
+        except:
+            return 'Formato no correcto', 400
+        return libro.to_json(), 201   
+
+    # def post(self):
+    #     data = request.get_json()
+    #     if isinstance(data, dict):
+    #         data = [data]
+    #     libros = []
+    #     for libro_data in data:
+    #         libros = LibroModel.from_json(libro_data)
+    #         try:
+    #             tabla = LibroModel.query.all()
+    #             self.verificacion(libro_data, tabla)
+    #         except Exception as e:
+    #             return {'error': str(e)}, 403
+    #         db.session.add(libros)
+    #         libros.append(libros)
+    #     db.session.commit()
+    #     libros_json = [libro.to_json() for libro in libros]
+    #     return libros_json, 201
+
+    # def verificacion(self, libro, tabla):
+    #     for i in tabla:
+    #         id_libro = i.id
+    #         id_libro_nuevo = libro['id']
+    #         if id_libro == id_libro_nuevo:
+    #             raise IdEnUso('El ID esta en uso')
