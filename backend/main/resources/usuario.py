@@ -19,7 +19,7 @@ class Usuario(Resource):
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             db.session.delete(usuario)
             db.session.commit()
-            return '', 201
+            return 'El usuario fue borrado de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
             abort(404, message=str("404 Not Found: No se encuentra el usuario para eliminar. El ID no existe"))
@@ -43,12 +43,6 @@ class Usuarios(Resource):
         usuarios_json = [usuario.to_json() for usuario in usuarios]
         return jsonify(usuarios_json)
         
-    # def post(self):
-    #     usuario = UsuarioModel.from_json(request.get_json())
-    #     db.session.add(usuario)
-    #     db.session.commit()
-    #     return usuario.to_json(), 201
-    
 
     def post(self):
         data = request.get_json()
@@ -78,6 +72,3 @@ class Usuarios(Resource):
             else:
                 return None
         
-
-
-

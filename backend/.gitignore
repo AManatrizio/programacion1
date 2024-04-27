@@ -3,6 +3,7 @@
 /lib
 /lib64
 .env
+<<<<<<< HEAD
 pyvenv.cfg
 venv
 */__pycache__*
@@ -12,3 +13,7 @@ pyenv.cfg
 migrations
 /migrations
 */migrations/*
+=======
+pyenv.cfg
+__pycache__
+>>>>>>> 21510cc9fdfdea0e549b6654e084c4678ee41eef

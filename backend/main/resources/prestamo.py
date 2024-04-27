@@ -23,7 +23,7 @@ class Prestamo(Resource):
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
             db.session.delete(prestamo)
             db.session.commit()
-            return '', 201
+            return 'El prestamo fue borrado de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
             abort(500, message=str("404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
