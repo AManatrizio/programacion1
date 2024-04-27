@@ -53,7 +53,6 @@ class Opiniones(Resource):
         except Exception:
             abort(404, message=str("404 Not Found: No se encuentran opiniones"))
 
-class Opiniones(Resource):
     def post(self):
         data = request.get_json()
         prestamo_id = data.get('prestamo_id')
