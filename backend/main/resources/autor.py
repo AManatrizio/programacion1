@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restful import Resource, abort
 from flask import request
 from main.models import AutorModel
 from .. import db
@@ -6,8 +6,11 @@ from flask import jsonify
 
 class Autor(Resource):
     def get(self, id):
-        autor = db.session.query(AutorModel).get_or_404(id)
-        return autor.to_json()
+        try:
+            autor = db.session.query(AutorModel).get_or_404(id)
+            return autor.to_json()
+        except Exception as e:
+            abort(404, message=str("Error 404 Not Found: No se encuentra el ID del autor."))
     
     def delete(self, id):
         autor = db.session.query(AutorModel).get_or_404(id)
