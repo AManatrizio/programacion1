@@ -45,9 +45,22 @@ class Opinion(Resource):
 
 class Opiniones(Resource):
     def get(self):
-        opiniones = db.session.query(OpinionModel).all()
-        opiniones_json = [(opinion.to_json()) for opinion in opiniones]
-        return jsonify(opiniones_json)
+        page = 1
+        per_page = 10
+        opiniones = db.session.query(OpinionModel)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))   
+        
+        opiniones = opiniones.paginate(page=page, per_page=per_page, error_out=True)
+        
+        return jsonify({'opiniones': [opinion.to_json() for opinion in opiniones],
+                  'total': opiniones.total,
+                  'pages': opiniones.pages,
+                  'page': page
+                })
 
     def post(self):
         opinion = OpinionModel.from_json(request.get_json())
