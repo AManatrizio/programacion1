@@ -3,7 +3,8 @@ from flask import request
 from main.models import UsuarioModel
 from .. import db
 from flask import jsonify
-from .exception import IdEnUso
+class IdEnUso(Exception):
+    ...
 
 class Usuario(Resource):
     def get(self, id):
@@ -61,18 +62,18 @@ class Usuarios(Resource):
         data = request.get_json()
         if isinstance(data, dict):
             data = [data]
-        usuarios = []
+        usuarios_list = []
         for usuario_data in data:
-            usuario = UsuarioModel.from_json(usuario_data)
+            usuarios = UsuarioModel.from_json(usuario_data)
             try:
                 tabla = UsuarioModel.query.all()
                 self.verificacion(usuario_data, tabla)
             except Exception as e:
                 return {'error': str(e)}, 403
-            db.session.add(usuario)
-            usuarios.append(usuario)
+            db.session.add(usuarios)
+            usuarios_list.append(usuarios)
         db.session.commit()
-        usuario_json = [usuario.to_json() for usuario in usuarios]
+        usuario_json = [usuario.to_json() for usuario in usuarios_list]
         return usuario_json, 201
 
 

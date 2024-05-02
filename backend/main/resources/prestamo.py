@@ -65,7 +65,7 @@ class Prestamos(Resource):
         data = request.get_json()
         if isinstance(data, dict):
             data = [data]
-        prestamos = []
+        prestamos_list = []
         for prestamo_data in data:
             prestamo = PrestamoModel.from_json(prestamo_data)
             try:
@@ -74,9 +74,9 @@ class Prestamos(Resource):
             except Exception as e:
                 return {'error': str(e)}, 403
             db.session.add(prestamo)
-            prestamos.append(prestamo)
+            prestamos_list.append(prestamo)
         db.session.commit()
-        prestamos_json = [prestamo.to_json() for prestamo in prestamos]
+        prestamos_json = [prestamo.to_json() for prestamo in prestamos_list]
         return prestamos_json, 201
 
     def verificacion(self, prestamo, tabla):

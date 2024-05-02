@@ -8,5 +8,5 @@ class LogIn(Resource):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             return 'Sesion iniciada', 201
-        except Exception: #Si la URL tiene un id para iniciar sesion que no existe, entonces da error
+        except Exception: 
             abort(500, message=str("Error 404: el id del usuario no existe, cree una cuenta"))

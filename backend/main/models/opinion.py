@@ -37,9 +37,4 @@ class Opiniones(db.Model):
         return Opiniones(id = id,
                        comentario = comentario,
                        valoracion = valoracion,
-                       prestamo_id = prestamo_id,
-<<<<<<< HEAD
-                       )
-=======
-                       )
->>>>>>> aeffb85165c148236c584a6f32d0048ac0469d07
+                       prestamo_id = prestamo_id,)
