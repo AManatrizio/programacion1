@@ -21,6 +21,8 @@ class SignIn(Resource):
             db.session.commit()
             return nuevo_usuario.to_json(), 201
 
+
+
 #Asi era con el id en la URL
     # def post(self,id):
     #     usuario = db.session.query(UsuarioModel).get(id)

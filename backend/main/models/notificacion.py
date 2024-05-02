@@ -26,3 +26,8 @@ class Notificaciones(db.Model):
         return Notificaciones(id = id,
                             notificacion = notificacion,
                             usuario_id = usuario_id)
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> aeffb85165c148236c584a6f32d0048ac0469d07

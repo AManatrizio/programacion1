@@ -23,7 +23,7 @@ class Prestamo(Resource):
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
             db.session.delete(prestamo)
             db.session.commit()
-            return '', 201
+            return 'El prestamo fue borrado de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
             abort(500, message=str("404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
@@ -44,9 +44,22 @@ class Prestamo(Resource):
 
 class Prestamos(Resource):
     def get(self):
-        prestamos = db.session.query(PrestamoModel).all()
-        prestamos_json = [(prestamo.to_json()) for prestamo in prestamos]
-        return jsonify(prestamos_json)
+        page = 1
+        per_page = 10
+        prestamos = db.session.query(PrestamoModel)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))   
+        
+        prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
+        
+        return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos],
+                  'total': prestamos.total,
+                  'pages': prestamos.pages,
+                  'page': page
+                })
         
     def post(self):
         data = request.get_json()
