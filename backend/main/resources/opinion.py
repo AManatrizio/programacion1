@@ -14,7 +14,7 @@ class Opinion(Resource):
             opinion = db.session.query(OpinionModel).get_or_404(id)
             return opinion.to_json()
         except Exception:
-            abort(500, message=str("Error 404: el id de la opinion no existe"))
+            abort(500, message=str("Error 404: el ID de la opinion no existe"))
     
     def delete(self, id):
         try:

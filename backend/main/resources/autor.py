@@ -42,12 +42,8 @@ class Autor(Resource):
 
 class Autores(Resource):
     def get(self):
-        #Página inicial por defecto
         page = 1
-        #Cantidad de elementos por página por defecto
         per_page = 10
-        
-        #no ejecuto el .all()
         autores = db.session.query(AutorModel)
         
         if request.args.get('page'):
@@ -55,10 +51,7 @@ class Autores(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
-        
-        #Obtener valor paginado
         autores = autores.paginate(page=page, per_page=per_page, error_out=True)
-
         return jsonify({'autores': [autor.to_json() for autor in autores],
                   'total': autores.total,
                   'pages': autores.pages,
