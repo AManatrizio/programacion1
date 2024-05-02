@@ -8,7 +8,6 @@ class IdEnUso(Exception):
 class LibroNoDisponible(Exception):
     ...
 
-
 class Opinion(Resource):
     def get(self, id):
         try:

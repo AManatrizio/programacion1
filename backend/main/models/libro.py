@@ -6,7 +6,7 @@ autor_libro = db.Table(
     db.Column('libro', db.Integer, db.ForeignKey("libros.id"), primary_key = True)
     )
 
-class Libros(db.Model): #A
+class Libros(db.Model): 
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(100), nullable = False)
     genero = db.Column(db.String(100), nullable = False)

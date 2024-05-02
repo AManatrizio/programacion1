@@ -41,3 +41,4 @@ class Usuarios(db.Model):
 
 ###comentarios = db.relationship("Comentario", back_populates = "usuario", cascade = "all, delete-orphan")
 ###valoraciones = db.relationship("ValUsLib", back_populates = "usuario", cascade = "all, delete-orphan")
+###valoraciones = db.relationship("ValUsLib", back_populates = "usuario", cascade = "all, delete-orphan")
