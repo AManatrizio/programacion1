@@ -44,9 +44,22 @@ class Prestamo(Resource):
 
 class Prestamos(Resource):
     def get(self):
-        prestamos = db.session.query(PrestamoModel).all()
-        prestamos_json = [(prestamo.to_json()) for prestamo in prestamos]
-        return jsonify(prestamos_json)
+        page = 1
+        per_page = 10
+        prestamos = db.session.query(PrestamoModel)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))   
+        
+        prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
+        
+        return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos],
+                  'total': prestamos.total,
+                  'pages': prestamos.pages,
+                  'page': page
+                })
         
     def post(self):
         data = request.get_json()

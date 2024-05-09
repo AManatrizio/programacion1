@@ -4,9 +4,6 @@ from main.models import AutorModel
 from main.models import LibroModel
 from .. import db
 
-
-
-
 class Autor(Resource):
     def get(self, id):
         try:
@@ -45,10 +42,28 @@ class Autor(Resource):
 
 class Autores(Resource):
     def get(self):
-        autores = db.session.query(AutorModel).all()
-        autores_json = [(autor.to_json()) for autor in autores]
-        return jsonify(autores_json)
-    
+        #Página inicial por defecto
+        page = 1
+        #Cantidad de elementos por página por defecto
+        per_page = 10
+        
+        #no ejecuto el .all()
+        autores = db.session.query(AutorModel)
+        
+        if request.args.get('page'):
+            page = int(request.args.get('page'))
+        if request.args.get('per_page'):
+            per_page = int(request.args.get('per_page'))
+
+        
+        #Obtener valor paginado
+        autores = autores.paginate(page=page, per_page=per_page, error_out=True)
+
+        return jsonify({'autores': [autor.to_json() for autor in autores],
+                  'total': autores.total,
+                  'pages': autores.pages,
+                  'page': page
+                })
     
     def post(self):
         id_libro = request.get_json().get('libro')

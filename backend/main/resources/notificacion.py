@@ -5,12 +5,23 @@ from main.models import NotificacionModel
 
 class Notificaciones(Resource):
     def get(self):
-        try:
-            notificaciones = db.session.query(NotificacionModel).all()
-            notificaciones_json = [(notificacion.to_json()) for notificacion in notificaciones]
-            return jsonify(notificaciones_json)
-        except Exception as e:
-            abort(404, message=str("Error 404 Not Found: No se encuentra el ID de la notificacion."))
+            page = 1
+            per_page = 10
+            notificaciones = db.session.query(NotificacionModel)
+            
+            if request.args.get('page'):
+                page = int(request.args.get('page'))
+            if request.args.get('per_page'):
+                per_page = int(request.args.get('per_page'))   
+            
+            notificaciones = notificaciones.paginate(page=page, per_page=per_page, error_out=True)
+            
+            return jsonify({'notificaciones': [notificacion.to_json() for notificacion in notificaciones],
+                    'total': notificaciones.total,
+                    'pages': notificaciones.pages,
+                    'page': page
+                    })
+
                 
                 
     def post(self):
