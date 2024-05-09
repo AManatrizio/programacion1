@@ -47,7 +47,22 @@ class Usuarios(Resource):
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))   
+            per_page = int(request.args.get('per_page'))
+
+        # Filtrar por ID
+        if request.args.get('id'):
+            usuario_id = request.args.get('id')
+            usuarios = usuarios.filter(UsuarioModel.id == usuario_id)
+        
+        # Filtrar por email
+        if request.args.get('email'):
+            email = request.args.get('email')
+            usuarios = usuarios.filter(UsuarioModel.email == email)
+        
+        # Filtrar por teléfono
+        if request.args.get('telefono'):
+            telefono = request.args.get('telefono')
+            usuarios = usuarios.filter(UsuarioModel.telefono == telefono)
         
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=True)
         

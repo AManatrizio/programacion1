@@ -35,47 +35,4 @@ class Libros(db.Model):
             'autores' : [autor.to_json() for autor in self.autores]
             
   }
-<<<<<<< HEAD
         return libro_json
-
-#-------------------------------------------------------------------------------------------------------------
-# from .. import db
-
-# class Libros(db.Model):
-#     id = db.Column(db.Integer, primary_key = True)
-#     nombre = db.Column(db.String(100), nullable = False)
-#     genero = db.Column(db.String(100), nullable = False)
-#     estado = db.Column(db.String(100), nullable = False)
-
-#     prestamo = db.relationship("Prestamos", back_populates = "libro", cascade = "all, delete-orphan")
-    
-
-
-#     def __repr__(self):
-#         return ('<Libro: %r >' % (self.nombre) )
-
-#     def to_json(self):
-#         libro_json = {
-#             'id': self.id,
-#             'nombre': str(self.nombre),
-#             'genero': str(self.genero),
-#             'estado': str(self.estado),
-#         }
-#         return libro_json
-    
-#     @staticmethod
-#     def from_json(libro_json):
-#         id = libro_json.get('id')
-#         nombre = libro_json.get('nombre')
-#         genero = libro_json.get('genero')
-#         estado = libro_json.get('estado')
-#         return Libros(id = id,
-#                     nombre = nombre,
-#                     genero = genero,
-#                     estado = estado,)
-
-# ###comentarios = db.relationship("Comentario", back_populates = "libro", cascade = "all, delete-orphan")
-# ###valoraciones = db.relationship("ValUsLib", back_populates = "libro", cascade = "all, delete-orphan")
-=======
-        return libro_json
->>>>>>> 104ad670bb82c21f0c81a6b10a0f683cbd7ea39b

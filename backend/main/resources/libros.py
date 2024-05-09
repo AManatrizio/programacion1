@@ -2,9 +2,10 @@ from flask_restful import Resource, abort
 from flask import request, jsonify
 from main.models import LibroModel, AutorModel
 from .. import db
+from .exception import IdEnUso
 from sqlalchemy import func, desc, asc
-class IdEnUso(Exception):
-    ...
+
+
 
 class Libro(Resource):
     def get(self, id):
@@ -75,7 +76,7 @@ class Libros(Resource):
         if isinstance(data, dict):
             data = [data]
         for libro_data in data:
-            libro = LibroModel.from_json(libro_data)
+            libros = LibroModel.from_json(libro_data)
             try:
                 tabla = LibroModel.query.all()
                 self.verificacion(libro_data, tabla)
