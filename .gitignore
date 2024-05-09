@@ -1,0 +1,10 @@
+*/bin
+*/include
+*/lib
+*/lib64
+*.env
+*pyvenv.cfg
+*venv
+env
+
+*/__pycache__*
