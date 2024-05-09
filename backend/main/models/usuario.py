@@ -37,7 +37,3 @@ class Usuarios(db.Model):
                        clave = clave,
                        telefono = telefono,
                        email = email,)
-
-
-###comentarios = db.relationship("Comentario", back_populates = "usuario", cascade = "all, delete-orphan")
-###valoraciones = db.relationship("ValUsLib", back_populates = "usuario", cascade = "all, delete-orphan")

@@ -10,7 +10,7 @@
 			"name": "Usuarios",
 			"item": [
 				{
-					"name": "usuarios",
+					"name": "todos los usuarios",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -32,10 +32,19 @@
 					"response": []
 				},
 				{
-					"name": "usuarios",
+					"name": "agregar usuarios",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"3\",\n    \"nombre\": \"John\",\n    \"clave\": \"holahola\",\n    \"telefono\": \"2612345678\" ,\n    \"email\": \"john.doe@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/usuarios",
 							"protocol": "http",
@@ -59,12 +68,12 @@
 			"name": "Libros",
 			"item": [
 				{
-					"name": "usuarios",
+					"name": "todos los libros",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/libros",
+							"raw": "http://127.0.0.1:5000/libros?page=2&sortby_autor=2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -75,16 +84,45 @@
 							"port": "5000",
 							"path": [
 								"libros"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "genero",
+									"value": "Novela",
+									"disabled": true
+								},
+								{
+									"key": "autores",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sortby_autor",
+									"value": "2"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "usuarios",
+					"name": "agregar libros",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"nombre\": \"Harry Potter y la Piedra Filosofal\",\n    \"autor\": \"JK. Rowling\",\n    \"genero\": \"Fantasia\",\n    \"estado\": \"disponible\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/libros",
 							"protocol": "http",
@@ -97,34 +135,6 @@
 							"port": "5000",
 							"path": [
 								"libros"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Valoracion",
-			"item": [
-				{
-					"name": "valoracion",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/valoracion/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"valoracion",
-								"1"
 							]
 						}
 					},
@@ -136,7 +146,7 @@
 			"name": "Usuario",
 			"item": [
 				{
-					"name": "usuario",
+					"name": "un usuario",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -159,7 +169,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "eliminar usuario",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -182,7 +192,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "modificar usuario",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -210,7 +220,7 @@
 			"name": "Libro",
 			"item": [
 				{
-					"name": "libro",
+					"name": "un libro",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -233,7 +243,7 @@
 					"response": []
 				},
 				{
-					"name": "libros",
+					"name": "eliminar libro",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -256,7 +266,7 @@
 					"response": []
 				},
 				{
-					"name": "libro",
+					"name": "modificar libro",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -281,108 +291,10 @@
 			]
 		},
 		{
-			"name": "Valoraciones",
-			"item": [
-				{
-					"name": "valoraciones",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/valoraciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"valoraciones"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "valoraciones",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/valoraciones",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"valoraciones"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Comentarios",
-			"item": [
-				{
-					"name": "comentarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/comentarios",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"comentarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "comentarios",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/comentarios",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"comentarios"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Prestamo",
 			"item": [
 				{
-					"name": "prestamo",
+					"name": "un prestamo",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -405,7 +317,7 @@
 					"response": []
 				},
 				{
-					"name": "prestamo Copy",
+					"name": "eliminar prestamo",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -428,7 +340,7 @@
 					"response": []
 				},
 				{
-					"name": "prestamo Copy 2",
+					"name": "modificar prestamo",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -453,61 +365,10 @@
 			]
 		},
 		{
-			"name": "Comentario",
-			"item": [
-				{
-					"name": "comentario",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/comentario/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"comentario",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "comentario",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/comentario/2",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"comentario",
-								"2"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Prestamos",
 			"item": [
 				{
-					"name": "prestamos",
+					"name": "todos los prestamos",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -529,10 +390,19 @@
 					"response": []
 				},
 				{
-					"name": "prestamos Copy",
+					"name": "agregar prestamo",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5,\n    \"prestamo\": \"vencido\",\n    \"fecha_inicio\": \"17/02\",\n    \"fecha_vencimiento\": \"17/03\",\n    \"usuario_id\": 5,\n    \"libro_id\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/prestamos",
 							"protocol": "http",
@@ -556,7 +426,7 @@
 			"name": "Notificaciones",
 			"item": [
 				{
-					"name": "notificaciones",
+					"name": "obtener notificaciones",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -578,7 +448,7 @@
 					"response": []
 				},
 				{
-					"name": "prestamos Copy",
+					"name": "agregar notificaciones",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -604,6 +474,288 @@
 		{
 			"name": "Configuraciones",
 			"item": []
+		},
+		{
+			"name": "Opinion",
+			"item": [
+				{
+					"name": "obtener opinion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/opinion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"opinion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar opinion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/opinion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"opinion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificar opinion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"valoracion\": \"***\",\n    \"prestamo_id\": 2,\n    \"comentario\": \"medio bueno\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/opinion/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"opinion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Opiniones",
+			"item": [
+				{
+					"name": "agregar opiniones",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"valoracion\": \"***\",\n    \"prestamo_id\": 1,\n    \"comentario\": \"medio bueno\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/opiniones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"opiniones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener opiniones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/opiniones",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"opiniones"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autor",
+			"item": [
+				{
+					"name": "obtener autor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/autor/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar autor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/autor/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificar autor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/autor/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Autores",
+			"item": [
+				{
+					"name": "obtener autores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/autores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregar autor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"autor\": \"John Green\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/autores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"autores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

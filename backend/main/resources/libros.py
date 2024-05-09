@@ -2,10 +2,9 @@ from flask_restful import Resource, abort
 from flask import request, jsonify
 from main.models import LibroModel, AutorModel
 from .. import db
-from .exception import IdEnUso
 from sqlalchemy import func, desc, asc
-
-
+class IdEnUso(Exception):
+    ...
 
 class Libro(Resource):
     def get(self, id):
@@ -24,6 +23,7 @@ class Libro(Resource):
         except Exception as e:
             db.session.rollback()
             abort(404, message=str("404 Not Found: No se encuentra el libro para eliminar. El ID no existe"))
+      
 
     def put(self, id):
         try:
@@ -37,12 +37,11 @@ class Libro(Resource):
         except Exception as e:
             db.session.rollback()
             abort(404, message=str("Error 404 Not Found: No se encuentra el libro para modificar"))
-   
 
 class Libros(Resource):
     def get(self):
         page = 1
-        per_page = 10
+        per_page = 5
         libros = db.session.query(LibroModel)
         
         if request.args.get('page'):
@@ -50,22 +49,31 @@ class Libros(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
             
+        if request.args.get('genero'):
+            libros=libros.filter(LibroModel.genero.like("%"+request.args.get('genero')+"%"))
 
-        
+        if request.args.get('sortby_autor'):
+            libros = libros.join(LibroModel.autores).\
+            group_by(LibroModel.id).\
+            order_by(func.group_concat(AutorModel.autor).desc())
+
+        if request.args.get('autores'):
+            autor_id = request.args.get('autores')
+            libros = libros.filter(LibroModel.autores.any(AutorModel.id == autor_id))
+            
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
         
         return jsonify({'libros': [libro.to_json() for libro in libros],
                   'total': libros.total,
                   'pages': libros.pages,
                   'page': page
-                })
-
-    
+                })    
+        
     def post(self):
         data = request.get_json()
+        libros_list = []
         if isinstance(data, dict):
             data = [data]
-        libros = []
         for libro_data in data:
             libro = LibroModel.from_json(libro_data)
             try:
@@ -73,12 +81,11 @@ class Libros(Resource):
                 self.verificacion(libro_data, tabla)
             except Exception as e:
                 return {'error': str(e)}, 403
-            db.session.add(libro)
-            libros.append(libro)
+            db.session.add(libros)
+            libros_list.append(libros)
         db.session.commit()
-        libro_json = [libro.to_json() for libro in libros]
-        return libro_json, 201
-
+        libros_json = [libro.to_json() for libro in libros_list]
+        return libros_json, 201
 
     def verificacion(self, libro, tabla):
         for i in tabla:
@@ -86,4 +93,3 @@ class Libros(Resource):
             id_libro_nuevo = libro['id']
             if id_libro == id_libro_nuevo:
                 raise IdEnUso('El ID esta en uso')
-
