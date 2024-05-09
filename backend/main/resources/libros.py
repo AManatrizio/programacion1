@@ -49,8 +49,18 @@ class Libros(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
             
+        if request.args.get('genero'):
+            libros=libros.filter(LibroModel.genero.like("%"+request.args.get('genero')+"%"))
 
-        
+        if request.args.get('sortby_autor'):
+            libros = libros.join(LibroModel.autores).\
+            group_by(LibroModel.id).\
+            order_by(func.group_concat(AutorModel.autor).desc())
+
+        if request.args.get('autores'):
+            autor_id = request.args.get('autores')
+            libros = libros.filter(LibroModel.autores.any(AutorModel.id == autor_id))
+            
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
         
         return jsonify({'libros': [libro.to_json() for libro in libros],

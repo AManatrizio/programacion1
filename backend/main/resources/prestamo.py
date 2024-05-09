@@ -51,7 +51,10 @@ class Prestamos(Resource):
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))   
+            per_page = int(request.args.get('per_page'))
+
+        if request.args.get('estado'):
+            prestamo=prestamo.filter(PrestamoModel.estado.like("%"+request.args.get('estado')+"%"))           
         
         prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
         
