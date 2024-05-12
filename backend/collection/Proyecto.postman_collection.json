@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuarios",
+							"raw": "http://127.0.0.1:5000/usuarios?telefono=2611975648",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -26,6 +26,22 @@
 							"port": "5000",
 							"path": [
 								"usuarios"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "pedritorr@example.com",
+									"disabled": true
+								},
+								{
+									"key": "telefono",
+									"value": "2611975648"
+								}
 							]
 						}
 					},
@@ -38,7 +54,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"3\",\n    \"nombre\": \"John\",\n    \"clave\": \"holahola\",\n    \"telefono\": \"2612345678\" ,\n    \"email\": \"john.doe@example.com\"\n}",
+							"raw": "{\n    \"id\": \"7\",\n    \"nombre\": \"Ana\",\n    \"clave\": \"mayonesa\",\n    \"telefono\": \"2621458848\" ,\n    \"email\": \"ana@example.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -73,7 +89,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/libros?page=2&sortby_autor=2",
+							"raw": "http://127.0.0.1:5000/libros?page=2",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -102,7 +118,8 @@
 								},
 								{
 									"key": "sortby_autor",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								}
 							]
 						}
@@ -369,9 +386,21 @@
 			"item": [
 				{
 					"name": "todos los prestamos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/prestamos",
 							"protocol": "http",
@@ -609,6 +638,13 @@
 							"port": "5000",
 							"path": [
 								"opiniones"
+							],
+							"query": [
+								{
+									"key": "valoracion",
+									"value": "5",
+									"disabled": true
+								}
 							]
 						}
 					},
