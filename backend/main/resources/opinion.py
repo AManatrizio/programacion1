@@ -1,6 +1,7 @@
 from flask_restful import Resource, abort
 from flask import request, jsonify
 from main.models import OpinionModel
+from sqlalchemy import func, desc, asc 
 from .. import db
 class IdEnUso(Exception):
     ...
