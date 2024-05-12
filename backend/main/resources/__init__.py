@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-from .libro import Libro as LibroResource
-from .libro import Libros as LibrosResource
-=======
+
+from .libros import Libro as LibroResource
+from .libros import Libros as LibrosResource
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
 from .opinion import Opinion as OpinionResource
@@ -16,4 +15,4 @@ from .prestamo import Prestamos as PrestamosResource
 from .signin import SignIn as SignInResources
 from .autor import Autor as AutorResource
 from .autor import Autores as AutoresResource
->>>>>>> 104ad670bb82c21f0c81a6b10a0f683cbd7ea39b
+
