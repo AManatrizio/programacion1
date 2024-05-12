@@ -5,8 +5,6 @@ from .. import db
 from .exception import IdEnUso
 from sqlalchemy import func, desc, asc
 
-
-
 class Libro(Resource):
     def get(self, id):
         try:

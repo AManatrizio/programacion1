@@ -26,7 +26,6 @@ class Libros(db.Model):
                     genero = genero,
                     )
 
-
     def to_json(self):
         libro_json = {
             'id': self.id,
