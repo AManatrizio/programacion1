@@ -11,3 +11,5 @@ pyenv.cfg
 migrations
 /migrations
 */migrations/*
+pyenv.cfg
+__pycache__
