@@ -67,7 +67,3 @@ class Opiniones(Resource):
         db.session.add(opinion)
         db.session.commit()
         return opinion.to_json(), 201
-    
-    
-    
-        
