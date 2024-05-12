@@ -1,13 +1,8 @@
 from flask_restful import Resource, abort
 from flask import request, jsonify
-from main.models import OpinionModel
-from sqlalchemy import func, desc, asc 
+from main.models import OpinionModel, PrestamoModel
+from .exception import IdEnUso
 from .. import db
-class IdEnUso(Exception):
-    ...
-
-class LibroNoDisponible(Exception):
-    ...
 
 class Opinion(Resource):
     def get(self, id):
@@ -15,7 +10,7 @@ class Opinion(Resource):
             opinion = db.session.query(OpinionModel).get_or_404(id)
             return opinion.to_json()
         except Exception:
-            abort(500, message=str("Error 404: el ID de la opinion no existe"))
+            abort(500, message=str("Error 404: el id de la opinion no existe"))
     
     def delete(self, id):
         try:
@@ -52,7 +47,12 @@ class Opiniones(Resource):
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))   
+            per_page = int(request.args.get('per_page'))
+
+        if request.args.get('id'):
+            opinion_valoracion = request.args.get('valoracion')
+            opiniones = opiniones.filter(OpinionModel.id == opinion_valoracion)
+        
         
         opiniones = opiniones.paginate(page=page, per_page=per_page, error_out=True)
         
@@ -61,9 +61,26 @@ class Opiniones(Resource):
                   'pages': opiniones.pages,
                   'page': page
                 })
+    
+    def get(self):
+        try: 
+            opiniones = db.session.query(OpinionModel).all()
+            opiniones_json = [(opinion.to_json()) for opinion in opiniones]
+            return jsonify(opiniones_json)
+        except Exception:
+            abort(404, message=str("404 Not Found: No se encuentran opiniones"))
+
+
 
     def post(self):
-        opinion = OpinionModel.from_json(request.get_json())
+        data = request.get_json()
+        prestamo_id = data.get('prestamo_id')
+
+        prestamo_existente = db.session.query(PrestamoModel).filter_by(id=prestamo_id).first()
+        if not prestamo_existente:
+            return {'error': 'No se puede crear la opinión, el prestamo con ese id no existe'}, 404
+
+        opinion = OpinionModel.from_json(data)
         db.session.add(opinion)
         db.session.commit()
         return opinion.to_json(), 201

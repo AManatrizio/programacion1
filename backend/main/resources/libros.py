@@ -2,9 +2,10 @@ from flask_restful import Resource, abort
 from flask import request, jsonify
 from main.models import LibroModel, AutorModel
 from .. import db
+from .exception import IdEnUso
 from sqlalchemy import func, desc, asc
-class IdEnUso(Exception):
-    ...
+
+
 
 class Libro(Resource):
     def get(self, id):
