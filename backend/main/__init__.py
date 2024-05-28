@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-#Importar Flask JWT
 from flask_jwt_extended import JWTManager
 
 import os

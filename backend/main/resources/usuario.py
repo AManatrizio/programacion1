@@ -5,12 +5,9 @@ from .. import db
 from flask import jsonify
 class IdEnUso(Exception):
     ...
-<<<<<<< HEAD
-=======
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 from sqlalchemy import func, desc
->>>>>>> bdcb2262b87e8f51a38f0f0d03a80f73aa8eda23
 
 class Usuario(Resource):
     @jwt_required(optional=True) #USUARIO ACCEDE AL GET, ADMINISTRADOR TAMBIEN PERO INFO MAS REDUCIDA
@@ -21,9 +18,9 @@ class Usuario(Resource):
            
             #Si el token existe, implica que el rol es usuario, asi que mostrar todos sus datos
             if current_identity:                    
-                return usuario.to_json_complete()
+                return usuario.to_json()
             else:
-                return usuario.to_json() #Si no existe token, mostrar solo datos relevantes
+                return usuario.to_json_short() #Si no existe token, mostrar solo datos relevantes
         except Exception:
             abort(404, message=str("Error 404: el id del usuario no existe"))
     
@@ -90,4 +87,3 @@ class Usuarios(Resource):
                   'pages': usuarios.pages,
                   'page': page
                 })
-             

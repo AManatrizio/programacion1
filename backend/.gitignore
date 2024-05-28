@@ -8,6 +8,7 @@ venv
 */__pycache__*
 __pycache__
 /__pycache__/
-pyenv.cfg
+/pyenv.cfg
 __pycache__
 /env
+*pyvenv.cfg

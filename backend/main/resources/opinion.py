@@ -3,6 +3,8 @@ from flask import request, jsonify
 from main.models import OpinionModel, PrestamoModel
 from .exception import IdEnUso
 from .. import db
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
 
 class Opinion(Resource):
     def get(self, id):
@@ -12,6 +14,7 @@ class Opinion(Resource):
         except Exception:
             abort(500, message=str("Error 404: el id de la opinion no existe"))
     
+    @role_required(roles = ["admin","users"])
     def delete(self, id):
         try:
             opinion = db.session.query(OpinionModel).get_or_404(id)
@@ -39,6 +42,8 @@ class Opinion(Resource):
 
 
 class Opiniones(Resource):
+    
+    @jwt_required(optional=True)
     def get(self):
         page = 1
         per_page = 5
@@ -62,7 +67,7 @@ class Opiniones(Resource):
                   'page': page
                 })
         
-
+    @role_required(roles = ["users"])
     def post(self):
         data = request.get_json()
         if isinstance(data, dict):
