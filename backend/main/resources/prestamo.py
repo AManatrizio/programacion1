@@ -17,7 +17,7 @@ class Prestamo(Resource):
         except Exception:
             abort(500, message=str("Error 404: el id del prestamo no existe"))
 
-    
+
     def delete(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -51,8 +51,16 @@ class Prestamos(Resource):
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))   
+            per_page = int(request.args.get('per_page'))
+
+        # if request.args.get('estado'):
+        #     prestamo=prestamo.filter(PrestamoModel.estado.like("%"+request.args.get('estado')+"%"))           
         
+        # Filtrar por estado prestamo
+        if request.args.get('prestamo'):
+            prestamo = request.args.get('prestamo')
+            prestamos = prestamos.filter(PrestamoModel.prestamo == prestamo)
+
         prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
         
         return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos],
@@ -65,7 +73,7 @@ class Prestamos(Resource):
         data = request.get_json()
         if isinstance(data, dict):
             data = [data]
-        prestamos = []
+        prestamos_list = []
         for prestamo_data in data:
             prestamo = PrestamoModel.from_json(prestamo_data)
             try:
@@ -74,9 +82,9 @@ class Prestamos(Resource):
             except Exception as e:
                 return {'error': str(e)}, 403
             db.session.add(prestamo)
-            prestamos.append(prestamo)
+            prestamos_list.append(prestamo)
         db.session.commit()
-        prestamos_json = [prestamo.to_json() for prestamo in prestamos]
+        prestamos_json = [prestamo.to_json() for prestamo in prestamos_list]
         return prestamos_json, 201
 
     def verificacion(self, prestamo, tabla):

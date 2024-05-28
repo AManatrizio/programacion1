@@ -26,5 +26,3 @@ class Notificaciones(db.Model):
         return Notificaciones(id = id,
                             notificacion = notificacion,
                             usuario_id = usuario_id)
-        
-        

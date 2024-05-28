@@ -28,8 +28,8 @@ class Prestamos(db.Model):
 
     def to_json_short(self):
         prestamo_json = {
-            'usuario_id': int(self.usuario_id),
-            'libro_id': int(self.libro_id),
+            'usuario_id': self.usuario.nombre,
+            'libro_id': self.libro.nombre,
             }
         return prestamo_json
     

@@ -37,5 +37,4 @@ class Opiniones(db.Model):
         return Opiniones(id = id,
                        comentario = comentario,
                        valoracion = valoracion,
-                       prestamo_id = prestamo_id,
-                       )
+                       prestamo_id = prestamo_id,)

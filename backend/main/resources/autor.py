@@ -12,7 +12,6 @@ class Autor(Resource):
         except Exception as e:
             abort(404, message=str("Error 404 Not Found: No se encuentra el ID del autor."))
     
-    
     def delete(self, id):
         try:
             autor = db.session.query(AutorModel).get_or_404(id)
@@ -21,9 +20,7 @@ class Autor(Resource):
             return 'El autor fue borrado satisfactoriamente', 201
         except Exception as e:
             db.session.rollback()
-            abort(404, message=str("404 Not Found: No se encuentra el autor para eliminar. El ID no existe"))
-    
-      
+            abort(404, message=str("404 Not Found: No se encuentra el autor para eliminar. El ID no existe"))    
     
     def put(self, id):
         try:
@@ -38,16 +35,10 @@ class Autor(Resource):
             db.session.rollback()
             abort(404, message=str("Error 404 Not Found: No se encuentra el autor para modificar"))
    
-
-
 class Autores(Resource):
     def get(self):
-        #Página inicial por defecto
         page = 1
-        #Cantidad de elementos por página por defecto
         per_page = 10
-        
-        #no ejecuto el .all()
         autores = db.session.query(AutorModel)
         
         if request.args.get('page'):
@@ -55,10 +46,7 @@ class Autores(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
-        
-        #Obtener valor paginado
         autores = autores.paginate(page=page, per_page=per_page, error_out=True)
-
         return jsonify({'autores': [autor.to_json() for autor in autores],
                   'total': autores.total,
                   'pages': autores.pages,
