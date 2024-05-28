@@ -2,6 +2,7 @@
 /include
 /lib
 /lib64
+/env
 .env
 pyenv.cfg
 __pycache__
