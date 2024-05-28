@@ -17,7 +17,7 @@ class Prestamo(Resource):
         except Exception:
             abort(500, message=str("Error 404: el id del prestamo no existe"))
 
-    
+
     def delete(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
