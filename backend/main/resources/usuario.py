@@ -12,12 +12,13 @@ from sqlalchemy import func, desc
 class Usuario(Resource):
     @jwt_required(optional=True) #USUARIO ACCEDE AL GET, ADMINISTRADOR TAMBIEN PERO INFO MAS REDUCIDA
     def get(self, id):
+        self.id = id
         try:          
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             current_identity = get_jwt_identity() #get_jwt_identity() es el id del token que sera el del usuario
            
             #Si el token existe, implica que el rol es usuario, asi que mostrar todos sus datos
-            if current_identity:                    
+            if current_identity == id:                    
                 return usuario.to_json()
             else:
                 return usuario.to_json_short() #Si no existe token, mostrar solo datos relevantes
