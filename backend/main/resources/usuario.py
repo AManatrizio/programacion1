@@ -17,7 +17,7 @@ class Usuario(Resource):
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             current_identity = get_jwt_identity() #get_jwt_identity() es el id del token que sera el del usuario
            
-            #Si el token existe, implica que el rol es usuario, asi que mostrar todos sus datos
+            #Comparo el id que se pide con el id perteneciente al token
             if current_identity == id:                    
                 return usuario.to_json()
             else:
