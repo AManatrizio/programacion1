@@ -3,16 +3,20 @@ from flask import request, jsonify
 from main.models import LibroModel, AutorModel
 from .. import db
 from .exception import IdEnUso
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
 from sqlalchemy import func, desc, asc
 
 class Libro(Resource):
+    @role_required(roles = ['admin', 'user'])
     def get(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
             return libro.to_json()
         except Exception as e:
             abort(404, message=str("Error 404 Not Found: No se encuentra el ID del libro."))
-    
+        
+    @role_required(roles = ['admin'])
     def delete(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
@@ -22,8 +26,8 @@ class Libro(Resource):
         except Exception as e:
             db.session.rollback()
             abort(404, message=str("404 Not Found: No se encuentra el libro para eliminar. El ID no existe"))
-      
-
+    
+    @role_required(roles = ['admin'])
     def put(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
@@ -38,6 +42,7 @@ class Libro(Resource):
             abort(404, message=str("Error 404 Not Found: No se encuentra el libro para modificar"))
 
 class Libros(Resource):
+    @jwt_required(optional=True)
     def get(self):
         page = 1
         per_page = 5
@@ -67,7 +72,8 @@ class Libros(Resource):
                   'pages': libros.pages,
                   'page': page
                 })    
-        
+    
+    @role_required(['admin'])
     def post(self):
         data = request.get_json()
         libros_list = []

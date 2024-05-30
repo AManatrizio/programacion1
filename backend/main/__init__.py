@@ -42,7 +42,6 @@ def create_app():
     api.add_resource(resources.UsuarioResource, '/usuario/<int:id>')
     api.add_resource(resources.OpinionesResources, '/opiniones')
     api.add_resource(resources.OpinionResource, '/opinion/<int:id>')
-    api.add_resource(resources.SignInResources, '/signin')
     api.add_resource(resources.PrestamosResource, '/prestamos')
     api.add_resource(resources.PrestamoResource, '/prestamo/<int:id>')
     api.add_resource(resources.NotificacionesResources, '/notificaciones')
