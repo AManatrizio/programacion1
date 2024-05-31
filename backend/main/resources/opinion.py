@@ -29,7 +29,7 @@ class Opinion(Resource):
             db.session.rollback()
             abort(500, message=str("404 Not Found: No se encuentra la opinion para eliminar. El ID no existe"))
     
-    @role_required(['users'])
+    @role_required(['user'])
     def put(self, id):
         try:
             opinion = db.session.query(OpinionModel).get_or_404(id)
@@ -70,7 +70,7 @@ class Opiniones(Resource):
                   'page': page
                 })
         
-    @role_required(["users"])
+    @role_required(["user"])
     def post(self):
         data = request.get_json()
         if isinstance(data, dict):

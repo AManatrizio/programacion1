@@ -356,10 +356,20 @@
 				{
 					"name": "un prestamo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAyNDQ0NCwianRpIjoiZTQ5OGZjM2MtN2U3NC00NWQ2LTg5MGUtZjU5MWNjMzJjNDUwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEwLCJuYmYiOjE3MTcwMjQ0NDQsImNzcmYiOiJiZTljNDRiYi0xYzc0LTRiN2EtYmE3OC1iYzg2ZWRkYTVmOTUiLCJyb2wiOiJ1c2VyIiwiaWQiOjExMCwiZW1haWwiOiJ1c2VyIn0.c21ku-m_Ds1JfR1jS4OEcNFk8sRFb0FTIuwahcgS6SA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/1",
+							"raw": "http://127.0.0.1:5000/prestamo/9",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -370,7 +380,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"1"
+								"9"
 							]
 						}
 					},

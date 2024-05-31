@@ -28,7 +28,7 @@ class Usuario(Resource):
             abort(404, message=str("Error 404: el id del usuario no existe"))
     
     
-    @role_required(roles = ["users", "admin"]) #En token viene un rol que debe ser alguno de los dos, para poder borrar
+    @role_required(roles = ["user", "admin"]) #En token viene un rol que debe ser alguno de los dos, para poder borrar
     def delete(self, id):
         self.id = id 
         try: 
@@ -47,7 +47,7 @@ class Usuario(Resource):
             abort(404, message=str("404 Not Found: No se encuentra el usuario para eliminar. El ID no existe"))
     
     
-    @jwt_required()    
+    @jwt_required(optional=True)    
     def put(self, id):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)

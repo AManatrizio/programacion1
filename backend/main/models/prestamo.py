@@ -1,4 +1,5 @@
 from .. import db
+from main.models import UsuarioModel, LibroModel
 
 class Prestamos(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -28,8 +29,8 @@ class Prestamos(db.Model):
 
     def to_json_short(self):
         prestamo_json = {
-            'usuario_id': self.usuario.nombre,
-            'libro_id': self.libro.nombre,
+            'usuario_id': self.usuario_id,
+            'libro_id': self.libro_id,
             }
         return prestamo_json
     
