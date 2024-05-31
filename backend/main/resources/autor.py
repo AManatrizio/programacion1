@@ -3,8 +3,12 @@ from flask import request, jsonify
 from main.models import AutorModel
 from main.models import LibroModel
 from .. import db
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
+
 
 class Autor(Resource):
+    @jwt_required(optional=True)
     def get(self, id):
         try:
             autor = db.session.query(AutorModel).get_or_404(id)
@@ -12,6 +16,7 @@ class Autor(Resource):
         except Exception as e:
             abort(404, message=str("Error 404 Not Found: No se encuentra el ID del autor."))
     
+    @role_required(['admin'])        
     def delete(self, id):
         try:
             autor = db.session.query(AutorModel).get_or_404(id)
@@ -22,6 +27,7 @@ class Autor(Resource):
             db.session.rollback()
             abort(404, message=str("404 Not Found: No se encuentra el autor para eliminar. El ID no existe"))    
     
+    @role_required(['admin'])        
     def put(self, id):
         try:
             autor = db.session.query(AutorModel).get_or_404(id)
@@ -36,6 +42,7 @@ class Autor(Resource):
             abort(404, message=str("Error 404 Not Found: No se encuentra el autor para modificar"))
    
 class Autores(Resource):
+    @jwt_required(optional=True)
     def get(self):
         page = 1
         per_page = 10
@@ -53,6 +60,7 @@ class Autores(Resource):
                   'page': page
                 })
     
+    @role_required(['admin'])        
     def post(self):
         id_libro = request.get_json().get('libro')
         autor = AutorModel.from_json(request.get_json())

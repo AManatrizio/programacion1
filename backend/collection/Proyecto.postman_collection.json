@@ -12,10 +12,20 @@
 				{
 					"name": "todos los usuarios",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNjkxOTczMCwianRpIjoiNGMyYjg1ZDYtYzAyNi00YWNkLWIyYjMtMjcwNzI5ODBjMzQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAxLCJuYmYiOjE3MTY5MTk3MzAsImNzcmYiOiI1YzIxNzc1Ni1hZmNlLTQwYTktYjhlNC00NmM5NjY1NDE0YzIiLCJyb2wiOiJhZG1pbiIsImlkIjoxMDEsImVtYWlsIjoibWFndWlAZXhhbXBsZS5jb20ifQ.Ao9SqjQsjx3vDmVKgNek6FtNbAdKplNtVV9gSD_tmnE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuarios?telefono=2611975648",
+							"raw": "http://127.0.0.1:5000/usuarios",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -40,7 +50,8 @@
 								},
 								{
 									"key": "telefono",
-									"value": "2611975648"
+									"value": "2611975648",
+									"disabled": true
 								}
 							]
 						}
@@ -54,7 +65,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"7\",\n    \"nombre\": \"Ana\",\n    \"clave\": \"mayonesa\",\n    \"telefono\": \"2621458848\" ,\n    \"email\": \"ana@example.com\"\n}",
+							"raw": "{\n    \"id\": \"110\",\n    \"nombre\": \"User\",\n    \"password\": \"user\",\n    \"telefono\": \"2621458848\" ,\n    \"email\": \"user\",\n    \"rol\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -62,7 +73,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/usuarios",
+							"raw": "http://127.0.0.1:5000/auth/register",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -72,7 +83,8 @@
 							],
 							"port": "5000",
 							"path": [
-								"usuarios"
+								"auth",
+								"register"
 							]
 						}
 					},
@@ -86,10 +98,20 @@
 				{
 					"name": "todos los libros",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNjkxOTczMCwianRpIjoiNGMyYjg1ZDYtYzAyNi00YWNkLWIyYjMtMjcwNzI5ODBjMzQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAxLCJuYmYiOjE3MTY5MTk3MzAsImNzcmYiOiI1YzIxNzc1Ni1hZmNlLTQwYTktYjhlNC00NmM5NjY1NDE0YzIiLCJyb2wiOiJhZG1pbiIsImlkIjoxMDEsImVtYWlsIjoibWFndWlAZXhhbXBsZS5jb20ifQ.Ao9SqjQsjx3vDmVKgNek6FtNbAdKplNtVV9gSD_tmnE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/libros?page=2",
+							"raw": "http://127.0.0.1:5000/libros",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -104,7 +126,8 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								},
 								{
 									"key": "genero",
@@ -129,11 +152,21 @@
 				{
 					"name": "agregar libros",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNjkxOTczMCwianRpIjoiNGMyYjg1ZDYtYzAyNi00YWNkLWIyYjMtMjcwNzI5ODBjMzQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAxLCJuYmYiOjE3MTY5MTk3MzAsImNzcmYiOiI1YzIxNzc1Ni1hZmNlLTQwYTktYjhlNC00NmM5NjY1NDE0YzIiLCJyb2wiOiJhZG1pbiIsImlkIjoxMDEsImVtYWlsIjoibWFndWlAZXhhbXBsZS5jb20ifQ.Ao9SqjQsjx3vDmVKgNek6FtNbAdKplNtVV9gSD_tmnE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"1\",\n    \"nombre\": \"Harry Potter y la Piedra Filosofal\",\n    \"autor\": \"JK. Rowling\",\n    \"genero\": \"Fantasia\",\n    \"estado\": \"disponible\"\n}",
+							"raw": "[\n    {\n        \"estado\": \"disponible\",\n        \"genero\": \"Fantasia\",\n        \"id\": 6,\n        \"nombre\": \"Harry Potter y el Caliz de Fuego\"\n    },\n    {\n        \"estado\": \"en prestamo\",\n        \"genero\": \"Fantasia\",\n        \"id\": 7,\n        \"nombre\": \"Harry Potter y la Orden del Fenix\"\n    },\n    {\n        \"estado\": \"en prestamo\",\n        \"genero\": \"Fantasia\",\n        \"id\": 8,\n        \"nombre\": \"Harry Potter y el Misterio del Fenix\"\n    },\n    {\n        \"estado\": \"en prestamo\",\n        \"genero\": \"Fantasia\",\n        \"id\": 9,\n        \"nombre\": \"Harry Potter y las Reliquias de la Muerte\"\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -165,6 +198,16 @@
 				{
 					"name": "un usuario",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNjkxOTczMCwianRpIjoiNGMyYjg1ZDYtYzAyNi00YWNkLWIyYjMtMjcwNzI5ODBjMzQ2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTAxLCJuYmYiOjE3MTY5MTk3MzAsImNzcmYiOiI1YzIxNzc1Ni1hZmNlLTQwYTktYjhlNC00NmM5NjY1NDE0YzIiLCJyb2wiOiJhZG1pbiIsImlkIjoxMDEsImVtYWlsIjoibWFndWlAZXhhbXBsZS5jb20ifQ.Ao9SqjQsjx3vDmVKgNek6FtNbAdKplNtVV9gSD_tmnE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -313,10 +356,20 @@
 				{
 					"name": "un prestamo",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNzAyNDQ0NCwianRpIjoiZTQ5OGZjM2MtN2U3NC00NWQ2LTg5MGUtZjU5MWNjMzJjNDUwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTEwLCJuYmYiOjE3MTcwMjQ0NDQsImNzcmYiOiJiZTljNDRiYi0xYzc0LTRiN2EtYmE3OC1iYzg2ZWRkYTVmOTUiLCJyb2wiOiJ1c2VyIiwiaWQiOjExMCwiZW1haWwiOiJ1c2VyIn0.c21ku-m_Ds1JfR1jS4OEcNFk8sRFb0FTIuwahcgS6SA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:5000/prestamo/1",
+							"raw": "http://127.0.0.1:5000/prestamo/9",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -327,7 +380,7 @@
 							"port": "5000",
 							"path": [
 								"prestamo",
-								"1"
+								"9"
 							]
 						}
 					},
@@ -792,6 +845,14 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
