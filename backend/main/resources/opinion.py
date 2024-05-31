@@ -7,6 +7,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 
 class Opinion(Resource):
+    
     @jwt_required(optional=True)
     def get(self, id):
         try:
@@ -19,14 +20,16 @@ class Opinion(Resource):
     def delete(self, id):
         try:
             opinion = db.session.query(OpinionModel).get_or_404(id)
-            db.session.delete(opinion)
-            db.session.commit()
-            return 'La opinion fue borrada de manera satisfactoria', 201
+            current_identity = get_jwt_identity()
+            if current_identity == id:
+                db.session.delete(opinion)
+                db.session.commit()
+                return 'La opinion fue borrada de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
             abort(500, message=str("404 Not Found: No se encuentra la opinion para eliminar. El ID no existe"))
     
-    @role_required(['admin'])
+    @role_required(['users'])
     def put(self, id):
         try:
             opinion = db.session.query(OpinionModel).get_or_404(id)
@@ -67,7 +70,7 @@ class Opiniones(Resource):
                   'page': page
                 })
         
-    @role_required(["admin"])
+    @role_required(["users"])
     def post(self):
         data = request.get_json()
         if isinstance(data, dict):
