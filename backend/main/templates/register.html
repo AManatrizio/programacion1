@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida a la Biblioteca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgray;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            color: #001d62;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bienvenido, {{user.name}} {{user.lastname}}</h1>
+        </div>
+        <div class="content">
+            <p>Gracias por registrarte en nuestra biblioteca.</p>
+            <p>Con nuestro servicio podrás:</p>
+            <ul>
+                <li>Ver tu historial de préstamos</li>
+                <li>Reservar libros en línea</li>
+                <li>Acceder a recursos digitales</li>
+            </ul>
+            <p>¡Gracias por unirte a nosotros!</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Biblioteca. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>
