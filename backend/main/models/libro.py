@@ -32,6 +32,5 @@ class Libros(db.Model):
             'nombre': str(self.nombre),
             'genero': str(self.genero),
             'autores' : [autor.to_json() for autor in self.autores]
-            
-  }
+            }
         return libro_json

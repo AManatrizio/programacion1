@@ -73,4 +73,3 @@ class Autores(Resource):
         db.session.commit()
         return autor.to_json(), 201
     
-    
