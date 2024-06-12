@@ -13,21 +13,18 @@ from main.auth.decorators import role_required
 
 
 class Prestamo(Resource):
-    #Ver los prestamos puede hacerlo administrador y los usuarios solo logueados 
-    #pueden ver todos los prestamos, pero con info menos detallada  
-    @role_required(roles = ["admin","user"])  
+    #Ver los prestamos puede hacerlo administrador y los usuarios solo logueados pueden ver todos los prestamos, pero con info menos detallada  
+    @role_required(roles = ["admin","users"])  
     def get(self, id):
         try:
-            prestamo_data = db.session.query(PrestamoModel).get_or_404(int(id))
-            prestamo_json = prestamo_data.to_json()
-            id_usuario = int(prestamo_json['usuario_id'])                            #Aca agarro columna de id usuario en tabla prestamo
-            current_identity = get_jwt_identity()                #get_jwt_identity() es el id del token que sera el del usuario
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+            id_usuario = prestamo.usuario_id  #Aca agarro columna de id usuario en tabla prestamo
+            current_identity = get_jwt_identity() #get_jwt_identity() es el id del token que sera el del usuario
             if current_identity == id_usuario:                    
-                return prestamo_json                             #Si es el propio usuario muestra completa la info
+                return prestamo.to_json() #Si es el propio usuario muestra completa la info
             else:
-                return prestamo_data.to_json_short()                         #Si no existe token, mostrar solo datos de usuario id y libro id
-        except Exception as e:
-            return str(e)
+                return prestamo.to_json_short() #Si no existe token, mostrar solo datos de usuario id y libro id
+        except Exception:
             abort(500, message=str("Error 404: el id del prestamo no existe"))
     
     
@@ -60,7 +57,7 @@ class Prestamo(Resource):
 
 
 class Prestamos(Resource):
-    @role_required(['admin', 'user'])    
+    @role_required(['admin'])    
     def get(self):
         page = 1
         per_page = 10

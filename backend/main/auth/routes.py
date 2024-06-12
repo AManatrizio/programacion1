@@ -2,7 +2,7 @@ from flask import request, jsonify, Blueprint
 from .. import db
 from main.models import UsuarioModel
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
-# from main.mail.functions import sendMail
+from main.mail.functions import sendMail
 
 
 #Blueprint para acceder a los métodos de autenticación
@@ -24,7 +24,8 @@ def login():
             'email': usuario.email,
             'access_token': access_token
         }
-
+                    #Mail de bienvenida TO,       SUBJECT     TEMPLATE    ARGUMENTO
+        send = sendMail([usuario.email], "Inicio de sesion", "sesion", usuario=usuario)
         return data, 200
     else:
         return 'La contraseña ingresada es incorrecta', 401
@@ -45,7 +46,7 @@ def register():
             db.session.add(usuario)
             db.session.commit()
             #Mail de bienvenida TO,             SUBJECT     TEMPLATE    ARGUMENTO
-            # send = sendMail([usuario.email], "Bienvenido", usuario=usuario)
+            send = sendMail([usuario.email], "Mensaje de bienvenida", "register", usuario=usuario)
         except Exception as error:
             db.session.rollback()
             return str(error), 409

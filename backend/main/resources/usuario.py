@@ -10,6 +10,8 @@ from main.auth.decorators import role_required
 from sqlalchemy import func, desc
 from .. import jwt
 from flask_jwt_extended import verify_jwt_in_request, get_jwt
+from main.mail.functions import sendMail
+
 
 class Usuario(Resource):
     @jwt_required(optional=True) #USUARIO ACCEDE AL GET, ADMINISTRADOR TAMBIEN PERO INFO MAS REDUCIDA. Pero opcional porque no logueado tambien puede ver
@@ -28,7 +30,7 @@ class Usuario(Resource):
             abort(404, message=str("Error 404: el id del usuario no existe"))
     
     
-    @role_required(roles = ["user", "admin"]) #En token viene un rol que debe ser alguno de los dos, para poder borrar
+    @role_required(roles = ["users", "admin"]) #En token viene un rol que debe ser alguno de los dos, para poder borrar
     def delete(self, id):
         self.id = id 
         try: 
@@ -39,7 +41,9 @@ class Usuario(Resource):
             if claims["rol"]== "admin" or current_identity == id:
                 db.session.delete(usuario)
                 db.session.commit()
+                send = sendMail([usuario.email], "Usuario borrado", "usuario_borrado", usuario=usuario)
                 return 'El usuario fue borrado de manera satisfactoria', 201
+
             else: 
                 return "Usted no posee la cuenta que quiere borrar", 404
         except Exception as e:
@@ -47,7 +51,7 @@ class Usuario(Resource):
             abort(404, message=str("404 Not Found: No se encuentra el usuario para eliminar. El ID no existe"))
     
     
-    @jwt_required(optional=True)    
+    @jwt_required()    
     def put(self, id):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
@@ -60,6 +64,8 @@ class Usuario(Resource):
         except Exception as e:
             db.session.rollback()
             abort(404, message=str("Error 404 NOt Found: No se encuentra el usuario para modificar"))
+
+
 
 
 
