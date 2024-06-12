@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Usuarios(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(100), nullable = False)
+    clave = db.Column(db.String(14), nullable = False)
     telefono = db.Column(db.String(14), nullable = False)
     email = db.Column(db.String(64), unique=True, index=True, nullable=False)
   
@@ -27,10 +28,11 @@ class Usuarios(db.Model):
     @plain_password.setter
     def plain_password(self, password):
         self.password = generate_password_hash(password)
+    #compara una contraseña en texto plano con la hasheada para ver si son iguales
+    
     
     def validate_pass(self,password):
         return check_password_hash(self.password, password)
-        #compara una contraseña en texto plano con la hasheada para ver si son iguales
     
     
     def __repr__(self):
@@ -40,13 +42,14 @@ class Usuarios(db.Model):
         usuario_json = {
             'id': self.id,
             'nombre': str(self.nombre),
+            'clave': str(self.clave),
             'telefono': str(self.telefono),
             'email': str(self.email),
         }
         return usuario_json
     
     
-    def to_json_short(self):
+    def to_json_complete(self):
         usuario_json = {
             'id': self.id,
             'nombre': str(self.nombre),
@@ -59,6 +62,7 @@ class Usuarios(db.Model):
     def from_json(usuario_json):
         id = usuario_json.get('id')
         nombre = usuario_json.get('nombre')
+        clave = usuario_json.get('clave')
         telefono = usuario_json.get('telefono')
         email = usuario_json.get('email')
         password = usuario_json.get('password')
@@ -66,7 +70,8 @@ class Usuarios(db.Model):
 
         return Usuarios(id = id,
                        nombre = nombre,
+                       clave = clave,
                        telefono = telefono,
                        email = email,
-                       plain_password = password,
-                       rol = rol)
+                       plain_password= password,
+                       rol=rol)
