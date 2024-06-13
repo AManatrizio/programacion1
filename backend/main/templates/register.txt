@@ -1,0 +1,13 @@
+Bienvenido {{usuario.nombre}} {{usuario.email}}!
+
+Gracias por registrarte en nuestro sistema.
+
+
+En nuestro sistema vas a poder:
+
+Explorar nuestra colección de libros:
+
+Descubrir miles de títulos en diversos géneros y categorías.
+Visualizar tus préstamos
+Seguir a tus autores y libros favoritos
+Valorar los libros que has leido
