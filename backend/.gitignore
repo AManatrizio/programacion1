@@ -4,6 +4,11 @@
 /lib64
 /env
 .env
-pyenv.cfg
+venv
+*/__pycache__*
+__pycache__
+/__pycache__/
+/pyenv.cfg
 __pycache__
 /env
+*pyvenv.cfg
