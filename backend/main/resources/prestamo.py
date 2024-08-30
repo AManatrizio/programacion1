@@ -1,20 +1,28 @@
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
+from flask import request, jsonify, Blueprint
+from main.models import UsuarioModel
+from main.mail.functions import sendMail
+from main.auth.decorators import role_required
 from flask_restful import Resource, abort
 from flask import request, jsonify
-from main.models import PrestamoModel
+from main.models import PrestamoModel, UsuarioModel
 from .. import db
+
+
 class IdEnUso(Exception):
     ...
 
+
 class LibroNoDisponible(Exception):
     ...
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from main.auth.decorators import role_required
-
 
 
 class Prestamo(Resource):
-    #Ver los prestamos puede hacerlo administrador y los usuarios solo logueados pueden ver todos los prestamos, pero con info menos detallada  
-    @role_required(roles = ["admin","users"])  
+<<<<<<< Updated upstream
+    #Ver los prestamos puede hacerlo administrador y los usuarios solo logueados 
+    #pueden ver todos los prestamos, pero con info menos detallada  
+    @role_required(roles = ["admin","user"])  
     def get(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -23,13 +31,29 @@ class Prestamo(Resource):
             if current_identity == id_usuario:                    
                 return prestamo.to_json() #Si es el propio usuario muestra completa la info
             else:
-                return prestamo.to_json_short() #Si no existe token, mostrar solo datos de usuario id y libro id
+                return prestamo_data.to_json_short()                         #Si no existe token, mostrar solo datos de usuario id y libro id
+        except Exception as e:
+            return str(e)
+=======
+    # Ver los prestamos puede hacerlo administrador y los usuarios solo logueados pueden ver todos los prestamos, pero con info menos detallada
+    @role_required(roles=["admin", "users"])
+    def get(self, id):
+        try:
+            prestamo = db.session.query(PrestamoModel).get_or_404(id)
+            # Aca agarro columna de id usuario en tabla prestamo
+            id_usuario = prestamo.usuario_id
+            # get_jwt_identity() es el id del token que sera el del usuario
+            current_identity = get_jwt_identity()
+            if current_identity == id_usuario:
+                return prestamo.to_json()  # Si es el propio usuario muestra completa la info
+            else:
+                # Si no existe token, mostrar solo datos de usuario id y libro id
+                return prestamo.to_json_short()
         except Exception:
+>>>>>>> Stashed changes
             abort(500, message=str("Error 404: el id del prestamo no existe"))
-    
-    
-    
-    @role_required(['admin'])    
+
+    @role_required(['admin'])
     def delete(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -38,54 +62,56 @@ class Prestamo(Resource):
             return 'El prestamo fue borrado de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str("404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
-        
-        
-    @role_required(['admin'])        
+            abort(500, message=str(
+                "404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
+
+    @role_required(['admin'])
     def put(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
             data = request.get_json().items()
-            for key , value in data:
+            for key, value in data:
                 setattr(prestamo, key, value)
             db.session.add(prestamo)
             db.session.commit()
             return prestamo.to_json(), 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str("Error 404 Not Found: No se encuentra el prestamo para modificar"))
+            abort(500, message=str(
+                "Error 404 Not Found: No se encuentra el prestamo para modificar"))
 
 
 class Prestamos(Resource):
-    @role_required(['admin'])    
+    @role_required(['admin'])
+
     def get(self):
         page = 1
         per_page = 10
         prestamos = db.session.query(PrestamoModel)
-        
+
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
         # if request.args.get('estado'):
-        #     prestamo=prestamo.filter(PrestamoModel.estado.like("%"+request.args.get('estado')+"%"))           
-        
+        #     prestamo=prestamo.filter(PrestamoModel.estado.like("%"+request.args.get('estado')+"%"))
+
         # Filtrar por estado prestamo
         if request.args.get('prestamo'):
             prestamo = request.args.get('prestamo')
             prestamos = prestamos.filter(PrestamoModel.prestamo == prestamo)
 
-        prestamos = prestamos.paginate(page=page, per_page=per_page, error_out=True)
-        
+        prestamos = prestamos.paginate(
+            page=page, per_page=per_page, error_out=True)
+
         return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos],
-                  'total': prestamos.total,
-                  'pages': prestamos.pages,
-                  'page': page
-                })
-  
- 
-    @role_required(['admin'])    
+                        'total': prestamos.total,
+                        'pages': prestamos.pages,
+                        'page': page
+                        })
+
+    @role_required(['admin'])
     def post(self):
         data = request.get_json()
         if isinstance(data, dict):
