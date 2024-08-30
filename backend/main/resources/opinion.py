@@ -7,7 +7,6 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 
 class Opinion(Resource):
-    
     @jwt_required(optional=True)
     def get(self, id):
         try:
