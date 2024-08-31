@@ -96,7 +96,7 @@ body, html {
   background-color: #9DD9D2;
 }
 
-.options-btn {
+.options-btn, .font-index {
   border-radius: 100px;
   padding: 15px;
   font-size: 1.70rem;
@@ -106,3 +106,63 @@ body, html {
   color: black;
   background-color: #DDF8FA;
 }
+
+.menu-btn{
+  border-radius: 100px;
+  height: 37px;
+  font-size: 1.70rem;
+  font-weight: bold;
+  font-family: 'Jockey One', sans-serif;
+  color: white;
+}
+
+
+body, html {
+  height: 30%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+footer {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.background-image-index {
+  background-image: url('fondo_biblioteca.jpg'); /* Reemplaza con la ruta de tu imagen de fondo */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  min-height: 30vh;
+  padding: 80px 0; /* Agregar un espacio arriba y abajo */
+}
+
+.card-img-top {
+  width: 20%;
+  max-height: 30px;
+  object-fit: cover;
+}
+
+
+.rounded-rectangle {
+  background: linear-gradient(180deg, #9DD9D2 -31.8%, #98A0CE 100%);
+  width: 600px; 
+  height: 800px;
+  border-radius: 20px; 
+  margin: 20px auto; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+}
+
+.montserrat{
+font-family: Montserrat;
+color: "white";
+}
+
