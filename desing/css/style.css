@@ -95,3 +95,39 @@ body, html {
   width: 100%;
   background-color: #9DD9D2;
 }
+
+.carousel-container, .carousel-container2 {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.carousel-title {
+  text-align: left;
+  font-size: 2.7rem;
+  font-family: "Jockey One", sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.carousel-subtitle {
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: weight;
+  font-style: normal;
+  color: #172533;
+  margin-bottom: 0.1px;
+}
+
+.carousel-item img {
+  max-height: 250px;
+  object-fit: contain;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(100%);
+}
+
+footer {
+  background-color: #f8f9fa;
+}
