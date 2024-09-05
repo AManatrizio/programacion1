@@ -96,73 +96,38 @@ body, html {
   background-color: #9DD9D2;
 }
 
-.options-btn, .font-index {
-  border-radius: 100px;
-  padding: 15px;
-  font-size: 1.70rem;
+.carousel-container, .carousel-container2 {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.carousel-title {
+  text-align: left;
+  font-size: 2.7rem;
+  font-family: "Jockey One", sans-serif;
   font-weight: bold;
-  width: 100%;
-  font-family: 'Jockey One', sans-serif;
-  color: black;
-  background-color: #DDF8FA;
+  margin-bottom: 5px;
 }
 
-.menu-btn{
-  border-radius: 100px;
-  height: 37px;
-  font-size: 1.70rem;
-  font-weight: bold;
-  font-family: 'Jockey One', sans-serif;
-  color: white;
+.carousel-subtitle {
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: weight;
+  font-style: normal;
+  color: #172533;
+  margin-bottom: 0.1px;
 }
 
-
-body, html {
-  height: 30%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+.carousel-item img {
+  max-height: 250px;
+  object-fit: contain;
 }
 
-.content {
-  flex: 1;
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(100%);
 }
 
 footer {
   background-color: #f8f9fa;
-  border-top: 1px solid #e9ecef;
 }
-
-.background-image-index {
-  background-image: url('fondo_biblioteca.jpg'); /* Reemplaza con la ruta de tu imagen de fondo */
-  background-size: cover;
-  background-position: top;
-  background-repeat: no-repeat;
-  min-height: 30vh;
-  padding: 80px 0; /* Agregar un espacio arriba y abajo */
-}
-
-.card-img-top {
-  width: 20%;
-  max-height: 30px;
-  object-fit: cover;
-}
-
-
-.rounded-rectangle {
-  background: linear-gradient(180deg, #9DD9D2 -31.8%, #98A0CE 100%);
-  width: 600px; 
-  height: 800px;
-  border-radius: 20px; 
-  margin: 20px auto; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  text-align: center; 
-}
-
-.montserrat{
-font-family: Montserrat;
-color: "white";
-}
-
