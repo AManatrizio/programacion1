@@ -4,4 +4,20 @@ body, html {
     margin: 0;
     background-color: #ddf8fa;
   }
-  
+
+  .background-image {
+    position: relative;
+    overflow: hidden;
+    background-image: url('../src/assets/fondo_biblioteca.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    height: 95%; 
+    width: 90%;
+    display: flex;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    z-index: 1;
+  }
