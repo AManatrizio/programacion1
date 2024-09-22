@@ -1,5 +1,41 @@
 
 
+.container {
+    background-color: #ddf8fa;
+    
+    border-radius: 10px;
+  }
+  
+  .card {
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius:  20px;
+    overflow: hidden;
+    max-width: 300px
+  }
+
+  
+  .card2 {
+    border-radius: 20px;
+  }
+  
+
+  .img-fluid {
+    max-width: 100%; /* Asegura que la imagen no se salga del contenedor */
+    height:auto; /* Mantén la proporción de la imagen */
+
+}
+
+  .review-item {
+    background-color: #e0f7fa;
+  }
+  
+  .star-rating i {
+    font-size: 1.5rem;
+  }
+  
 
   .square {
     position: absolute;
@@ -33,18 +69,13 @@
     background-image: linear-gradient(to right, #708BD0, #98a0ce);
     border-radius: 100% 0% 0% 0%;
     z-index: 1;
+
   }
   
-  .card {
-    background-color: #ddf8fa;
-    height: 70%;
-    width: 100%;
-    border-radius: 20px;
-  }
   
   .background-square {
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
     align-items: center;
     justify-content: center;
     background-image: linear-gradient(to bottom, #9ACED2, #708bd0);
@@ -53,6 +84,7 @@
     display: flex;
     border-radius: 50px;
     z-index: 1;
+    padding: 20px;
   }
   
   .bg-succes {
@@ -107,3 +139,42 @@
   .carousel-control-next {
     filter: invert(100%);
   }
+
+  @media (max-width: 768px) {
+
+
+    .background-square {
+        position: relative;
+        overflow-y: auto;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(to bottom, #9ACED2, #708bd0);
+        height: 95%; 
+        width: 80%;
+        display: flex;
+        border-radius: 50px;
+        z-index: 1;
+        padding: 10px;
+      }
+
+
+    .card-img {
+        max-width: 100%;  /* Asegura que la imagen ocupe todo el ancho disponible */
+        height: auto;     /* Mantén la proporción de la imagen */
+        object-fit: contain; /* Ajusta la imagen para que siempre se ajuste dentro del contenedor */
+        
+    }
+
+    .card {
+        max-width: none;  /* Elimina cualquier límite de ancho para pantallas pequeñas */
+        width: 100%;      /* La tarjeta ocupará todo el ancho disponible */
+        margin-top: 60px;
+    }
+
+    .col-md-auto {
+        flex: 0 0 100%; /* Asegura que las columnas tomen todo el ancho en pantallas pequeñas */
+        max-width: 100%;
+    }
+}
+
+  

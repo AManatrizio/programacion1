@@ -1,6 +1,4 @@
 
-
-
   .square {
     position: absolute;
     align-items: center;
@@ -107,3 +105,4 @@
   .carousel-control-next {
     filter: invert(100%);
   }
+  
