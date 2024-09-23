@@ -17,6 +17,7 @@ import { MyloansComponent } from './page/myloans/myloans.component';
 import { AllloansComponent } from './page/allloans/allloans.component';
 import { AllemployeesComponent } from './page/allemployees/allemployees.component';
 import { AllusersComponent } from './page/allusers/allusers.component';
+import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-back-home.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AllusersComponent } from './page/allusers/allusers.component';
     AllloansComponent,
     AllemployeesComponent,
     AllusersComponent,
+    NavbarBackHomeComponent,
 
   ],
   imports: [
