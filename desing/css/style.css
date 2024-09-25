@@ -131,3 +131,23 @@ body, html {
 footer {
   background-color: #f8f9fa;
 }
+
+.foto-perfil {
+  width: 150px;
+  height: 150px;
+  background-color: grey;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+.info-user {
+  width: 100%;
+  padding: 10px;
+  background-color: #e9ecef;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.info-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
