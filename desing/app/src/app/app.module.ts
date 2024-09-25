@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './page/home/home.component';
 import { LoansComponent } from './page/loans/loans.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
 import { LoginComponent } from './page/login/login.component';
 import { SinginComponent } from './page/singin/singin.component';
 import { WelcomeComponent } from './page/welcome/welcome.component';
@@ -18,6 +20,9 @@ import { AllloansComponent } from './page/allloans/allloans.component';
 import { AllemployeesComponent } from './page/allemployees/allemployees.component';
 import { AllusersComponent } from './page/allusers/allusers.component';
 import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-back-home.component';
+import { AllbooksComponent } from './page/allbooks/allbooks.component';
+import { NabbarPerfilUserComponent } from './components/nabbar-perfil-user/nabbar-perfil-user.component';
+import { PerfiluserComponent } from './page/perfiluser/perfiluser.component';
 
 
 @NgModule({
@@ -26,8 +31,10 @@ import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-ba
     HomeComponent,
     LoansComponent,
     ErrorPageComponent,
+
     FooterComponent,
     NavbarComponent,
+    
     LoginComponent,
     SinginComponent,
     WelcomeComponent,
@@ -38,6 +45,9 @@ import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-ba
     AllemployeesComponent,
     AllusersComponent,
     NavbarBackHomeComponent,
+    AllbooksComponent,
+    NabbarPerfilUserComponent,
+    PerfiluserComponent,
 
   ],
   imports: [

@@ -12,6 +12,9 @@ import { MyloansComponent } from './page/myloans/myloans.component';
 import { AllloansComponent } from './page/allloans/allloans.component';
 import { AllemployeesComponent } from './page/allemployees/allemployees.component';
 import { AllusersComponent } from './page/allusers/allusers.component';
+import { AllbooksComponent } from './page/allbooks/allbooks.component';
+import { PerfiluserComponent } from './page/perfiluser/perfiluser.component';
+
 
 const routes: Routes = [
   { path: 'home' , component: HomeComponent},
@@ -36,6 +39,10 @@ const routes: Routes = [
   { path: 'allemployees', component: AllemployeesComponent},
 
   { path: 'allusers', component: AllusersComponent},
+
+  { path: 'allbooks', component: AllbooksComponent},
+
+  { path: 'perfil', component: PerfiluserComponent},
 
   { path: '**', redirectTo: 'error_page'},
   { path: 'error_page', component: ErrorPageComponent}

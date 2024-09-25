@@ -1,80 +1,109 @@
 
 <app-navbar></app-navbar>
 
-<div class="row justify-content-center align-items-end vh-100">
-    <div class="background-image">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2 class="text-center mb-4 text">Lista de Prestamos</h2>
-            <div class="d-flex mb-3">  
-                <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar Prestamos...">
-                <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoPrestamoModal">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Prestamo 1
-                    <div>
-                        <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Prestamo 2
-                    <div>
-                        <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Prestamo 3
-                    <div>
-                        <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <!-- Agrega más Planificacións aquí -->
-            </ul>
-        </div>
-    </div>
-</div>
+<div class="container-flex">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="background-square">
+            <div class="square2">
 
-<!-- Modal para agregar nuevo Planificación -->
-<div class="modal fade" id="nuevoPrestamoModal" tabindex="-1" aria-labelledby="nuevoPrestamoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="nuevoPrestamoModalLabel">Agregar Nuevo Prestamo</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="title">All Loans</h1>
             </div>
-            <div class="modal-body">
-                <!-- Formulario para cargar un nuevo Planificación -->
-                <form>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Día inicio</label>
-                        <input type="text" class="form-control" id="nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Día fin</label>
-                        <input type="text" class="form-control" id="nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Tipo</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Titulo Libro</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <!-- Agrega más campos del formulario aquí -->
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+
+            <!-- <div class="row justify-content-center flex-grow-1">
+                    <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar Empleado...">
+                    <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoPrestamoModal">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+            </div> -->
+
+            <!-- Lista con todos los empleados -->
+            <div class="row justify-content-center flex-grow-1">
+                <div class="col-md-8">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="user-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID User: 123</span>
+                                <span>ID Book: 456</span>
+                                <span>ID Loan: 789</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="user-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID User: 123</span>
+                                <span>ID Book: 455</span>
+                                <span>ID Loan: 788</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="user-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID User: 123</span>
+                                <span>ID Book: 456</span>
+                                <span>ID Loan: 789</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="user-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID User: 123</span>
+                                <span>ID Book: 456</span>
+                                <span>ID Loan: 789</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="user-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID User: 123</span>
+                                <span>ID Book: 456</span>
+                                <span>ID Loan: 789</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </li>
+                        <!-- Repite para cada Usuario -->
+                    </ul>
+                    <!-- Termina lista Usuarios -->
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<app-footer></app-footer>
+
