@@ -41,12 +41,11 @@
     z-index: 2;
     object-fit: cover;
     flex-direction: column;
-    border-radius: 50px;
+    border-radius: 50px, 50px, 0px, 0px;
   }  
 
-  .header-image {
-    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
+  .block {
+    margin-top: 500px;
   }
   
   .title {
@@ -64,9 +63,6 @@
   }
   
 
-  .block {
-    top: 500px;
-  }
   .text {
     color: white;
     font-size: 45px;
@@ -95,7 +91,9 @@
     width: 100%;
     border-radius: 20px;
   }
-  
+  .col justify-content-center aling-items-center {
+    margin-top: 100px;
+}
   .background-square {
     position: relative;
     overflow: hidden;

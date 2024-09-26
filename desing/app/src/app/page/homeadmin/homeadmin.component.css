@@ -1,4 +1,42 @@
 
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #ddf8fa;
+  }
+
+  .background-image {
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../../assets/fondo_biblioteca.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    height: 95%; 
+    width: 90%;
+    display: flex;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    z-index: 1;
+  }
+
+/* .img-harry-potter-1 {
+    width: 300px;
+    height: auto;
+    border: 2px solid #000;
+    border-radius: 10px;
+    image: url('../../../assets/hp1.jpg');
+}
+
+  .img-harry-potter-2 {
+    width: 300px;
+    height: auto;
+    border: 2px solid #000;
+    border-radius: 10px;
+    image: url('../../../assets/hp2.jpg');
+    } */
 
   .square {
     position: absolute;
@@ -11,24 +49,6 @@
     background-image: linear-gradient(to right, #708BD0, #98a0ce);
     z-index: 2;
   } 
-
-  .square2 {
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    bottom: 80%;
-    width: 100%;
-    height: 30%;
-    display: flex;
-    background-image: linear-gradient(to right, #708BD0, #98a0ce); /* Cambia a tu ruta de imagen */
-    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-    background-position: center; /* Centra la imagen */
-    z-index: 2;
-    object-fit: cover;
-    flex-direction: column;
-    border-radius: 50px, 50px, 0px, 0px;
-  }  
-
   
   .text {
     color: white;
@@ -123,5 +143,11 @@
   .carousel-control-prev,
   .carousel-control-next {
     filter: invert(100%);
+  }
+  
+
+  .edit-button {
+    background-color: var(--primary-color); /* Color verde para el botón de editar */
+    color: white; /* Texto blanco */
   }
   

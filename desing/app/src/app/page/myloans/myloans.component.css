@@ -1,157 +1,293 @@
-.header-background {
-    background-image: url('../../../assets/fondo_biblioteca.jpg'); /* Imagen de fondo */
-    background-size: cover;
-    background-position: center;
-    height: 250px;
-    position: relative;
-    text-align: center;
-  }
-  .header-background h1 {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: white;
-  }
-  .user-info {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    text-align: center;
-  }
-  .user-info img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  .loans-table {
-    background-color: white;
-    color: black;
-    width: 80%;
-    margin-top: 20px auto;
-  }
-  .loans-table th, .loans-table td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 20px;
-    border: 1px solid black;
-  }
-  .book-cover {
-    width: 100px;
-    height: auto;
-  }
+body {
+  background-color: #f8f9fa;
+}
 
-  .title-container {
-    text-align: center; 
-    margin-top: 20px;
-  }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-image {
+  width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-size: 2.7rem;
+  font-family: "Jockey One", sans-serif;
+  font-weight: bold;
+  margin-top: 40px;
+  z-index: 3;
+}
+
+.list-group {
+  margin-top: 0px; /* Asegura que el contenido tenga algo de separación respecto a la imagen */
+}
 
 
-  .square {
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    bottom: 80%;
-    width: 100%;
-    height: 30%;
-    display: flex;
-    background-image: linear-gradient(to right, #708BD0, #98a0ce);
-    z-index: 2;
-  } 
+.row.justify-content-center.flex-grow-1 {
+  margin-top: 100px; 
+}
+
+.list-group-item {
+  background-color: var(--senary-color);
+  border-color: var(--senary-color);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.loan-details {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Ajusta este valor para más o menos separación */
+  color: #333;
+  align-items: center; /* Alinea verticalmente los textos */
+  font-weight: bold;
+}
+
+.loan-details span {
+  margin-right: 60px; /* Espacio a la derecha de cada span */
+}
+
+.loan-details span:last-child {
+  margin-right: 0; /* Elimina el margen derecho del último span */
+}
+
+.loan-details span:first-child {
+  margin-left: 20px; /* Elimina el margen derecho del último span */
+}
+
+.user-img {
+  width: 50px; 
+  height: 50px; 
+
+}
+
+.user-icon {
+  font-size: 50px; /* Tamaño del ícono */
+  color: #333; /* Color del ícono */
+}
+
+.square3 {
+  font-size: 50px; /* Tamaño del ícono */
+  color: #333; /* Color del ícono */
+}
+
+.loan-details {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Espacio entre los spans */
+  align-items: center; /* Alineación vertical */
+}
+
+
+.square {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  bottom: 80%;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  background-image: linear-gradient(to right, #708BD0, #98a0ce);
+  z-index: 2;
+  object-fit: cover;
+} 
+
+.square2 {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  bottom: 80%;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  background-image: url('../../../assets/header.jpg'); /* Cambia a tu ruta de imagen */
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen */
+  z-index: 2;
+  object-fit: cover;
+  flex-direction: column;
+  border-radius: 50px;
+}  
+
+.background-square_top {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, #8aaf4d, #708bd0);
+  height: 90%; 
+  width: 70%;
+  display: flex;
+  border-radius: 50px;
+  z-index: 1;
+  padding: 0px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.text {
+  color: white;
+  font-size: 45px;
+  margin-top: 115px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 3;
+}
+
+.ellipse {
+  position: absolute;
+  align-items: center;
+  justify-content:center;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  background-image: linear-gradient(to right, #708BD0, #98a0ce);
+  border-radius: 100% 0% 0% 0%;
+  z-index: 1;
+}
+
+/* .card {
+  background-color: #ddf8fa;
+  height: 70%;
+  width: 100%;
+  border-radius: 20px;
+} */
+
   
-  .text {
-    color: white;
-    font-size: 45px;
-    margin-top: 115px;
-    font-weight: bold;
-    text-align: center;
-    z-index: 3;
+.card {
+  border-radius: 20px;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
+  width: 80px;
+}
+
+.card img {
+  max-width: 100%; /* La imagen ocupará el 100% del ancho del contenedor, pero no más */
+  height: auto;    /* Mantiene la proporción de la imagen */
+  border-radius: 10px; /* Si deseas un borde redondeado, ajusta este valor o elimínalo si no es necesario */
+  width: 150px;
+}
+  
+.background-square {
+  position: relative;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, #9ACED2, #708bd0);
+  height: 90%; 
+  width: 80%;
+  display: flex;
+  border-radius: 50px;
+  z-index: 1;
+  padding: 0px;
+}
+
+.background-square .row {
+  margin-top: 300px;
+}
+.bg-succes {
+  background-image: linear-gradient(to top, #98a0ce, #708bd0);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 250px;
+}
+
+.login-btn, .signin-btn {
+  border-radius: 20px;
+  padding: 15px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  width: 100%;
+  background-color: #9DD9D2;
+}
+
+.carousel-container, .carousel-container2 {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.carousel-title {
+  text-align: left;
+  font-size: 2.7rem;
+  font-family: "Jockey One", sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.carousel-subtitle {
+  font-size: 0.8rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: weight;
+  font-style: normal;
+  color: #172533;
+  margin-bottom: 0.1px;
+}
+
+.carousel-item img {
+  max-height: 250px;
+  object-fit: contain;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(100%);
+}
+
+.edit-button {
+  background-color: var(--primary-color); /* Color verde para el botón de editar */
+  color: white; /* Texto blanco */
+}
+
+.delete-button {
+  background-color: var(--secondary-color); /* Color rojo para el botón de borrar */
+  color: white; /* Texto blanco */
+}
+
+
+@media (max-width: 768px) {
+  
+  .list-group-item {
+    padding: 10px; /* Reducir el padding para móviles */
+    font-size: 0.9rem; /* Reducir el tamaño del texto */
+  }
+
+  .user-icon {
+    font-size: 30px; /* Reducir el tamaño del ícono */
+  }
+
+  .loan-details span {
+    margin-right: 20px; /* Ajustar el espacio entre los spans */
+    font-size: 0.8rem; /* Reducir el tamaño del texto */
+  }
+
+  .loan-details {
+    gap: 10px; /* Reducir el espacio entre los detalles del préstamo */
+  }
+
+  .btn {
+    font-size: 0.8rem; /* Reducir el tamaño de los botones */
+    padding: 5px 10px; /* Ajustar el padding de los botones */
   }
   
-  .ellipse {
-    position: absolute;
-    align-items: center;
-    justify-content:center;
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-    display: flex;
-    background-image: linear-gradient(to right, #708BD0, #98a0ce);
-    border-radius: 100% 0% 0% 0%;
-    z-index: 1;
+  .background-square .row{
+      margin-top: 250px;
+      height: 90%;
   }
-  
-  .card {
-    background-color: #ddf8fa;
-    height: 70%;
-    width: 100%;
-    border-radius: 20px;
-  }
-  
-  .background-square {
-    position: relative;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(to bottom, #9ACED2, #708bd0);
-    height: 90%; 
-    width: 80%;
-    display: flex;
-    border-radius: 50px;
-    z-index: 1;
-  }
-  
-  .bg-succes {
-    background-image: linear-gradient(to top, #98a0ce, #708bd0);
-  }
-  
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 250px;
-  }
-  
-  .login-btn, .signin-btn {
-    border-radius: 20px;
-    padding: 15px;
-    font-size: 1.25rem;
-    font-weight: bold;
-    width: 100%;
-    background-color: #9DD9D2;
-  }
-  
-  .carousel-container, .carousel-container2 {
-    max-width: 900px;
-    margin: 20px auto;
-  }
-  
-  .carousel-title {
-    text-align: left;
-    font-size: 2.7rem;
-    font-family: "Jockey One", sans-serif;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .carousel-subtitle {
-    font-size: 0.8rem;
-    font-family: "Montserrat", sans-serif;
-    font-weight: weight;
-    font-style: normal;
-    color: #172533;
-    margin-bottom: 0.1px;
-  }
-  
-  .carousel-item img {
-    max-height: 250px;
-    object-fit: contain;
-  }
-  
-  .carousel-control-prev,
-  .carousel-control-next {
-    filter: invert(100%);
-  }
-  
+}

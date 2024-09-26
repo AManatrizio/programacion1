@@ -260,7 +260,6 @@ body {
   color: white; /* Texto blanco */
 }
 
-
 @media (max-width: 768px) {
   
   .list-group-item {

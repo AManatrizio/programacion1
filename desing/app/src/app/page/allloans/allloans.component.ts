@@ -14,8 +14,6 @@ export class AllloansComponent {
     { id: 4, book: 'The Great Gatsby', IDUser: 4},
     { id: 5, book: 'Harry Potter y la piedra filosofal', IDUser: 5},
     { id: 6, book: 'Harry Potter  y la camara secreta', IDUser: 6},
-    { id: 7, book: 'EL principito', IDUser: 7},
-    { id: 8, book: 'Juego de tronos', IDUser: 9},
   ];
 
   // Variable para almacenar el ID de búsqueda

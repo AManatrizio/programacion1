@@ -5,7 +5,6 @@ import{ FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './page/home/home.component';
-import { LoansComponent } from './page/loans/loans.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
 
 import { FooterComponent } from './components/footer/footer.component';
@@ -22,15 +21,21 @@ import { AllemployeesComponent } from './page/allemployees/allemployees.componen
 import { AllusersComponent } from './page/allusers/allusers.component';
 import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-back-home.component';
 import { AllbooksComponent } from './page/allbooks/allbooks.component';
-import { NabbarPerfilUserComponent } from './components/nabbar-perfil-user/nabbar-perfil-user.component';
 import { PerfiluserComponent } from './page/perfiluser/perfiluser.component';
+import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
+import { HomeadminComponent } from './page/homeadmin/homeadmin.component';
+import { MenuusuarioComponent } from './page/menuusuario/menuusuario.component';
+import { NavbaradminComponent } from './components/navbaradmin/navbaradmin.component';
+import { MybooksComponent } from './page/mybooks/mybooks.component';
+import { PerfiladminComponent } from './page/perfiladmin/perfiladmin.component';
+import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
+import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admin/navbar-back-home-admin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoansComponent,
     ErrorPageComponent,
 
     FooterComponent,
@@ -47,8 +52,15 @@ import { PerfiluserComponent } from './page/perfiluser/perfiluser.component';
     AllusersComponent,
     NavbarBackHomeComponent,
     AllbooksComponent,
-    NabbarPerfilUserComponent,
     PerfiluserComponent,
+    LoginadminComponent,
+    HomeadminComponent,
+    MenuusuarioComponent,
+    NavbaradminComponent,
+    MybooksComponent,
+    PerfiladminComponent,
+    ResenaadminComponent,
+    NavbarBackHomeAdminComponent,
 
   ],
   imports: [
