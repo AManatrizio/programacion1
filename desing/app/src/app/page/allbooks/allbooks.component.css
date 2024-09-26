@@ -35,12 +35,13 @@ body {
   }
   
   .list-group-item {
-    background-color: #fff;
-    border: 1px solid #000000;
+    background-color: var(--senary-color);
+    border-color: var(--senary-color);
     border-radius: 20px;
     margin-bottom: 10px;
     padding: 15px;
   }
+  
   
   .loan-details {
     display: flex;
@@ -247,6 +248,16 @@ body {
   .carousel-control-prev,
   .carousel-control-next {
     filter: invert(100%);
+  }
+
+  .edit-button {
+    background-color: var(--primary-color); /* Color verde para el botón de editar */
+    color: white; /* Texto blanco */
+  }
+  
+  .delete-button {
+    background-color: var(--secondary-color); /* Color rojo para el botón de borrar */
+    color: white; /* Texto blanco */
   }
   
   @media (max-width: 768px) {

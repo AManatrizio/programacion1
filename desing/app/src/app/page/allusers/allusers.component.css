@@ -23,21 +23,25 @@ body {
   font-family: "Jockey One", sans-serif;
   font-weight: bold;
   margin-top: 40px;
-  z-index: 1;
+  z-index: 3;
 }
+
+.list-group {
+  margin-top: 0px; /* Asegura que el contenido tenga algo de separación respecto a la imagen */
+}
+
 
 .row.justify-content-center.flex-grow-1 {
   margin-top: 100px; 
 }
 
 .list-group-item {
-  background-color: #fff;
-  border: 1px solid #000000;
+  background-color: var(--senary-color);
+  border-color: var(--senary-color);
   border-radius: 20px;
   margin-bottom: 10px;
   padding: 15px;
 }
-
 .loan-details {
   display: flex;
   flex-direction: row;
@@ -66,9 +70,15 @@ body {
 }
 
 .user-icon {
-  font-size: 60px; /* Tamaño del ícono */
+  font-size: 50px; /* Tamaño del ícono */
   color: #333; /* Color del ícono */
 }
+
+.square3 {
+  font-size: 50px; /* Tamaño del ícono */
+  color: #333; /* Color del ícono */
+}
+
 .loan-details {
   display: flex;
   flex-direction: row;
@@ -103,9 +113,22 @@ body {
   background-position: center; /* Centra la imagen */
   z-index: 2;
   object-fit: cover;
-
-  margin-bottom: 20px;
+  flex-direction: column;
+  border-radius: 50px;
 }  
+
+.background-square_top {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, #8aaf4d, #708bd0);
+  height: 90%; 
+  width: 70%;
+  display: flex;
+  border-radius: 50px;
+  z-index: 1;
+  padding: 0px;
+}
 
 .position-relative {
   position: relative;
@@ -133,16 +156,32 @@ body {
   z-index: 1;
 }
 
-.card {
+/* .card {
   background-color: #ddf8fa;
   height: 70%;
   width: 100%;
   border-radius: 20px;
+} */
+
+  
+.card {
+  border-radius: 20px;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
+  width: 80px;
 }
 
+.card img {
+  max-width: 100%; /* La imagen ocupará el 100% del ancho del contenedor, pero no más */
+  height: auto;    /* Mantiene la proporción de la imagen */
+  border-radius: 10px; /* Si deseas un borde redondeado, ajusta este valor o elimínalo si no es necesario */
+  width: 150px;
+}
+  
 .background-square {
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(to bottom, #9ACED2, #708bd0);
@@ -151,8 +190,12 @@ body {
   display: flex;
   border-radius: 50px;
   z-index: 1;
+  padding: 0px;
 }
 
+.background-square .row {
+  margin-top: 300px;
+}
 .bg-succes {
   background-image: linear-gradient(to top, #98a0ce, #708bd0);
 }
@@ -204,4 +247,45 @@ body {
 .carousel-control-prev,
 .carousel-control-next {
   filter: invert(100%);
+}
+
+.edit-button {
+  background-color: var(--primary-color); /* Color verde para el botón de editar */
+  color: white; /* Texto blanco */
+}
+
+.delete-button {
+  background-color: var(--secondary-color); /* Color rojo para el botón de borrar */
+  color: white; /* Texto blanco */
+}
+
+@media (max-width: 768px) {
+  
+  .list-group-item {
+    padding: 10px; /* Reducir el padding para móviles */
+    font-size: 0.9rem; /* Reducir el tamaño del texto */
+  }
+
+  .user-icon {
+    font-size: 30px; /* Reducir el tamaño del ícono */
+  }
+
+  .loan-details span {
+    margin-right: 20px; /* Ajustar el espacio entre los spans */
+    font-size: 0.8rem; /* Reducir el tamaño del texto */
+  }
+
+  .loan-details {
+    gap: 10px; /* Reducir el espacio entre los detalles del préstamo */
+  }
+
+  .btn {
+    font-size: 0.8rem; /* Reducir el tamaño de los botones */
+    padding: 5px 10px; /* Ajustar el padding de los botones */
+  }
+  
+  .background-square .row{
+      margin-top: 250px;
+      height: 90%;
+  }
 }

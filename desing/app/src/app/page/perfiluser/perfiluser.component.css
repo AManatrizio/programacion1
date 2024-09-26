@@ -4,7 +4,6 @@
 .user-img {
     width: 50px; 
     height: 50px; 
-  
   }
 
 .info-user-bg {
@@ -18,7 +17,7 @@
   
   .user-icon {
     font-size: 200px; /* Tamaño del ícono */
-    color: #43635b; /* Color del ícono */
+    color: var(--quaternary-color); /* Color del ícono */
   }
   .loan-details {
     display: flex;
@@ -161,4 +160,14 @@
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
+  }
+
+  .bg-success {
+    background-image: linear-gradient(to right, #708BD0, #98a0ce) !important;
+}
+
+  .card-body {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 100px;
   }

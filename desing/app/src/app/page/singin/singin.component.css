@@ -12,7 +12,61 @@
     background-image: linear-gradient(to right, #708BD0, #98a0ce);
     z-index: 2;
   } 
+
   
+  .square {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    bottom: 80%;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    background-image: linear-gradient(to right, #708BD0, #98a0ce);
+    z-index: 2;
+    object-fit: cover;
+  } 
+  
+  .square2 {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    bottom: 80%;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    background-image: linear-gradient(to right, #708BD0, #98a0ce); /* Cambia a tu ruta de imagen */
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    z-index: 2;
+    object-fit: cover;
+    flex-direction: column;
+    border-radius: 50px;
+  }  
+
+  .header-image {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
+  
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 2.7rem;
+    font-family: "Jockey One", sans-serif;
+    font-weight: bold;
+    margin-top: 40px;
+    z-index: 3;
+  }
+  
+
+  .block {
+    top: 500px;
+  }
   .text {
     color: white;
     font-size: 45px;
