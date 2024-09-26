@@ -21,3 +21,12 @@ body, html {
     border-top-right-radius: 100px;
     z-index: 1;
   }
+
+  :root {
+    --primary-color: #4b8185;
+    --secondary-color: #708BD0;
+    --tertiary-color: #98a0ce;
+    --quaternary-color: #9ACED2;
+    --quinary-color: #708bd0;
+    --senary-color: #9DD9D2;
+  }
