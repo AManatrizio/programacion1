@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import{ FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +30,8 @@ import { PerfiladminComponent } from './page/perfiladmin/perfiladmin.component';
 import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
 import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admin/navbar-back-home-admin.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admi
 
     FooterComponent,
     NavbarComponent,
-    
+
     LoginComponent,
     SinginComponent,
     WelcomeComponent,
@@ -61,14 +62,16 @@ import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admi
     PerfiladminComponent,
     ResenaadminComponent,
     NavbarBackHomeAdminComponent,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

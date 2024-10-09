@@ -19,23 +19,27 @@ class LibroNoDisponible(Exception):
 
 
 class Prestamo(Resource):
-<<<<<<< Updated upstream
-    #Ver los prestamos puede hacerlo administrador y los usuarios solo logueados 
-    #pueden ver todos los prestamos, pero con info menos detallada  
-    @role_required(roles = ["admin","user"])  
-    def get(self, id):
-        try:
-            prestamo = db.session.query(PrestamoModel).get_or_404(id)
-            id_usuario = prestamo.usuario_id  #Aca agarro columna de id usuario en tabla prestamo
-            current_identity = get_jwt_identity() #get_jwt_identity() es el id del token que sera el del usuario
-            if current_identity == id_usuario:                    
-                return prestamo.to_json() #Si es el propio usuario muestra completa la info
-            else:
-                return prestamo_data.to_json_short()                         #Si no existe token, mostrar solo datos de usuario id y libro id
-        except Exception as e:
-            return str(e)
-=======
+    # << << << < Updated upstream
+    # # Ver los prestamos puede hacerlo administrador y los usuarios solo logueados
+    # # pueden ver todos los prestamos, pero con info menos detallada
+    #  @role_required(roles=["admin", "user"])
+    #   def get(self, id):
+    #        try:
+    #             prestamo = db.session.query(PrestamoModel).get_or_404(id)
+    #             # Aca agarro columna de id usuario en tabla prestamo
+    #             id_usuario = prestamo.usuario_id
+    #             # get_jwt_identity() es el id del token que sera el del usuario
+    #             current_identity = get_jwt_identity()
+    #             if current_identity == id_usuario:
+    #                 return prestamo.to_json()  # Si es el propio usuario muestra completa la info
+    #             else:
+    #                 # Si no existe token, mostrar solo datos de usuario id y libro id
+    #                 return prestamo_data.to_json_short()
+    #         except Exception as e:
+    #             return str(e)
+    # == == == =
     # Ver los prestamos puede hacerlo administrador y los usuarios solo logueados pueden ver todos los prestamos, pero con info menos detallada
+
     @role_required(roles=["admin", "users"])
     def get(self, id):
         try:
@@ -50,7 +54,7 @@ class Prestamo(Resource):
                 # Si no existe token, mostrar solo datos de usuario id y libro id
                 return prestamo.to_json_short()
         except Exception:
->>>>>>> Stashed changes
+            # >>>>>>> Stashed changes
             abort(500, message=str("Error 404: el id del prestamo no existe"))
 
     @role_required(['admin'])
@@ -83,7 +87,6 @@ class Prestamo(Resource):
 
 class Prestamos(Resource):
     @role_required(['admin'])
-
     def get(self):
         page = 1
         per_page = 10
