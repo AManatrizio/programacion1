@@ -1,70 +1,59 @@
 
-<div class="row justify-content-center align-items-end vh-100">
-    <div class="background-image">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <h2 class="text-center mb-4 text">Lista de Prestamos</h2>
-            <!-- Header con imagen y nombre de usuario -->
-            <div class="header-background">
-                <div class="user-info">
-                    <img src="https://via.placeholder.com/50" alt="User avatar">
-                    <p>Name</p>
-                </div>
-                </div>
 
-                <!-- Tabla de préstamos -->
-                <div class="container-fluid mt-4">
-                    <table class="table loans-table">
-                        <thead>
-                        <tr>
-                            <th>Book</th>
-                            <th>Title</th>
-                            <th>State</th>
-                            <th>Date</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><img src="css/hp1.jpg" class="book-cover" alt="Book Cover"></td>
-                            <td>Harry Potter 1</td>
-                            <td>Available</td>
-                            <td>01/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td><img src="css/hp2.jpg" class="book-cover" alt="Book Cover"></td>
-                            <td>Harry Potter 2</td>
-                            <td>On Loan</td>
-                            <td>10/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td><img src="css/hp3.jpg" class="book-cover" alt="Book Cover"></td>
-                            <td>Harry Potter 3</td>
-                            <td>Available</td>
-                            <td>15/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td><img src="css/principito.jpg" class="book-cover" alt="Book Cover"></td>
-                            <td>El Principito</td>
-                            <td>On Loan</td>
-                            <td>05/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td><img src="css/j_d_tronos.jpg" class="book-cover" alt="Book Cover"></td>
-                            <td>Game of Thrones</td>
-                            <td>Available</td>
-                            <td>20/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td><img src="css/narnia.jpg" class="book-cover" alt="Book Cover"></td>
-                            <td>Narnia</td>
-                            <td>On loan</td>
-                            <td>25/01/2024</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+<app-navbar></app-navbar>
+
+<div class="container-flex">
+    <div class="row justify-content-center align-items-center vh-100">
+        
+        
+        <div class="background-square">
+            <div class="square2">
+                <h1 class="title">All Loans</h1>
             </div>
+
+            <!-- Lista con todos los libros -->
+            <div class="row justify-content-center flex-grow-1">
+                <div class="col-md-8 col-sm-12">
+                    <ul class="list-group">
+
+                        <li class="list-group align-items-center mb-2 mt-3">
+                            <!-- Formulario de búsqueda y botones -->
+                            <!-- EL d-flex pone todos esos elementos en fila -->
+                            <div class="col-9 col-sm-10 d-flex">  
+                                <input type="text" class="form-control w-100 me-2 flex-grow-1" placeholder="Buscar Loans(ID)..." [(ngModel)]="searchID">
+                                <button class="btn btn-outline-secondary" type="button" (click)="searchLoan()">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoPrestamoModal">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                         
+                        </li>
+                        <li class="list-group-item d-flex align-items-center" *ngFor="let loan of filteredLoan">
+                            <div class="user-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID Loan: {{ loan.id }}</span>
+                                <span>book: {{ loan.book }}</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
+                            </div>
+                        </li>
+
+                        <!-- Repite para cada empleado -->
+                    </ul>
+                    <!-- Termina lista empleados -->
+                </div>
             </div>
         </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+

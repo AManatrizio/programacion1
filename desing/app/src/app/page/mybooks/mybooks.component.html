@@ -1,0 +1,104 @@
+
+<app-navbar></app-navbar>
+
+<div class="container-flex">
+    <div class="row justify-content-center align-items-center vh-100">
+        
+        
+        <div class="background-square">
+            <div class="square2">
+                <h1 class="title">All Books</h1>
+            </div>
+
+            <!-- Lista con todos los libros -->
+            <div class="row justify-content-center flex-grow-1">
+                <div class="col-md-8 col-sm-12">
+                    <ul class="list-group">
+
+                        <li class="list-group align-items-center mb-2">
+                            <!-- Formulario de búsqueda y botones -->
+                            <div class="d-flex">  
+                                <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar Libros...">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoPrestamoModal">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="card img">
+                                <img src="assets/hp1.jpg" class="img-fluid" alt="Imagen de usuario">
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID Employe: 1</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="card img">
+                                <img src="assets/hp2.jpg" class="img-fluid" alt="Imagen de usuario">
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID Employe: 2</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="card img">
+                                <img src="assets/hp3.jpg" class="img-fluid" alt="Imagen de usuario">
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID Employe: 3</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="card img">
+                                <img src="assets/thegreatgatsby.jpg" class="img-fluid" alt="Imagen de usuario">
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID Employe: 4</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center">
+                            <div class="card img">
+                                <img src="assets/j_d_tronos.jpg" class="img-fluid" alt="Imagen de usuario">
+                            </div>
+                            <div class="loan-details ms-3 flex-grow-1">
+                                <span>ID Employe: 5</span>
+                            </div>
+                            <div class="ms-auto">
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
+                            </div>
+                        </li>
+                        <!-- Repite para cada empleado -->
+                    </ul>
+                    <!-- Termina lista empleados -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+

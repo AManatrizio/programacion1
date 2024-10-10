@@ -1,5 +1,5 @@
 
-<app-navbar></app-navbar>
+<app-navbaradmin></app-navbaradmin>
 
 <div class="container-flex">
     <div class="row justify-content-center align-items-center vh-100">
@@ -8,96 +8,44 @@
 
                 <h1 class="title">All Loans</h1>
             </div>
-
-            <!-- <div class="row justify-content-center flex-grow-1">
-                    <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar Empleado...">
-                    <button class="btn btn-outline-secondary" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoPrestamoModal">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-            </div> -->
-
             <!-- Lista con todos los empleados -->
             <div class="row justify-content-center flex-grow-1">
                 <div class="col-md-8">
                     <ul class="list-group">
-                        <li class="list-group-item d-flex align-items-center">
+
+                        <li class="list-group align-items-center mb-2 mt-3">
+                            <!-- Formulario de búsqueda y botones -->
+                            <!-- EL d-flex pone todos esos elementos en fila -->
+                            <div class="col-9 col-sm-10 d-flex">  
+                                <input type="text" class="form-control w-100 me-2 flex-grow-1" placeholder="Buscar Empleado..." [(ngModel)]="searchID">
+                                <button class="btn btn-outline-secondary" type="button" (click)="searchLoan()">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoPrestamoModal">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                         
+                        </li>
+
+                        <li class="list-group-item d-flex align-items-center" *ngFor="let loan of filteredLoan">
                             <div class="user-icon">
                                 <i class="fas fa-user-circle"></i>
                             </div>
                             <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID User: 123</span>
-                                <span>ID Book: 456</span>
-                                <span>ID Loan: 789</span>
+                                <span>ID Prestamo: {{ loan.id }}</span>
+                                <span>Nombre: {{ loan.book }}</span>
                             </div>
                             <div class="ms-auto">
-                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="delete-button btn btn-sm"><i class="fa-solid fa-trash"></i></button>               
                             </div>
                         </li>
 
-                        <li class="list-group-item d-flex align-items-center">
-                            <div class="user-icon">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
-                            <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID User: 123</span>
-                                <span>ID Book: 455</span>
-                                <span>ID Loan: 788</span>
-                            </div>
-                            <div class="ms-auto">
-                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </li>
 
-                        <li class="list-group-item d-flex align-items-center">
-                            <div class="user-icon">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
-                            <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID User: 123</span>
-                                <span>ID Book: 456</span>
-                                <span>ID Loan: 789</span>
-                            </div>
-                            <div class="ms-auto">
-                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item d-flex align-items-center">
-                            <div class="user-icon">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
-                            <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID User: 123</span>
-                                <span>ID Book: 456</span>
-                                <span>ID Loan: 789</span>
-                            </div>
-                            <div class="ms-auto">
-                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item d-flex align-items-center">
-                            <div class="user-icon">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
-                            <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID User: 123</span>
-                                <span>ID Book: 456</span>
-                                <span>ID Loan: 789</span>
-                            </div>
-                            <div class="ms-auto">
-                                <button class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                        </li>
-                        <!-- Repite para cada Usuario -->
+                        <!-- Repite para cada empleado -->
                     </ul>
-                    <!-- Termina lista Usuarios -->
+                    <!-- Termina lista empleados -->
                 </div>
             </div>
         </div>
@@ -106,4 +54,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <app-footer></app-footer>
-
