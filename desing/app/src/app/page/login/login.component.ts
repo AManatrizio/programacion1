@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import jwt_decode from 'jwt-decode';
+import 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +35,13 @@ export class LoginComponent {
         console.log('Exito: ', rta);
         // Agrega el token al Local Storage
         localStorage.setItem('token', rta.access_token);
+
+        // Decodifica el token para obtener el valor de la clave "rol"
+        const decodedToken: any = jwt_decode(rta.access_token);
+        const rol = decodedToken.rol;
+
+        // Guarda el valor de la clave "rol" en el Local Storage
+        localStorage.setItem('rol', rol);
         this.router.navigateByUrl('home');
       },
       error: (err: any) => {
