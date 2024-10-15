@@ -51,6 +51,8 @@ class Usuario(Resource):
             abort(404, message=str("404 Not Found: No se encuentra el usuario para eliminar. El ID no existe"))
     
     
+    
+    
     @jwt_required()    
     def put(self, id):
         try:
