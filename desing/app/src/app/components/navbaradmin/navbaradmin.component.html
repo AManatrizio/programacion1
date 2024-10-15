@@ -1,22 +1,26 @@
+
 <nav class="navbar navbar-expand-lg " style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-      <a class="navbar-brand active" routerLink="/home" href="#">
-        <i class="fa-solid fa-book"></i> Biblioteca
+  <div class="container-fluid">
+    <a class="navbar-brand active" routerLink="/home" href="#">
+      <i class="fa-solid fa-book"></i> Biblioteca
+    </a>
+      <form *ngIf="ver" class="d-flex">
+        <a *ngIf="!isToken" class="nav-link" routerLink="/login" href="#">
+          <i class="bi bi-person-circle" style="font-size: 1.5rem; font-family: Monsterrat, sans-serif;"> Login</i>
       </a>
-        <form class="d-flex">
-          <a class="nav-link" routerLink="/login" href="#">
-            <i class="bi bi-person-circle" style="font-size: 1.5rem; font-family: Monsterrat, sans-serif;"> Login</i>
+        <a *ngIf="isToken" class="nav-link" (click)="cerrarSesion()" href="#">
+            <i class="bi bi-person-circle" style="font-size: 1.5rem; font-family: Monsterrat, sans-serif;"> Cerrar sesión </i> 
         </a>
-        </form>
-        </div>
-  </nav>
-  
-  
-  <nav class="navbar navbar-expand-lg " style="background-color: #92bdda;">
-    <div class="container-fluid">
-  
-        <a class="nav-link d-inline-block" type="button" routerLink="/menu" href="#">
-          <i class="fa-solid fa-bars" ></i> MENU
-        </a>
-    </div>
-  </nav>
+      </form>
+      </div>
+</nav>
+
+
+<nav class="navbar navbar-expand-lg " style="background-color: #92bdda;">
+  <div class="container-fluid">
+
+      <a class="nav-link d-inline-block" type="button" routerLink="/menu" href="#">
+        <i class="fa-solid fa-bars" ></i> MENU
+      </a>
+  </div>
+</nav>

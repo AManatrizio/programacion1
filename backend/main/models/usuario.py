@@ -41,7 +41,6 @@ class Usuarios(db.Model):
         usuario_json = {
             'id': self.id,
             'nombre': str(self.nombre),
-            'clave': str(self.clave),
             'telefono': str(self.telefono),
             'email': str(self.email),
         }
@@ -59,7 +58,6 @@ class Usuarios(db.Model):
     def from_json(usuario_json):
         id = usuario_json.get('id')
         nombre = usuario_json.get('nombre')
-        clave = usuario_json.get('clave')
         telefono = usuario_json.get('telefono')
         email = usuario_json.get('email')
         password = usuario_json.get('password')
@@ -67,7 +65,6 @@ class Usuarios(db.Model):
 
         return Usuarios(id=id,
                         nombre=nombre,
-                        clave=clave,
                         telefono=telefono,
                         email=email,
                         plain_password=password,
