@@ -40,9 +40,9 @@ export class LoginComponent {
 
         // Guarda el valor de la clave "rol" en el Local Storage
         localStorage.setItem('rol', rol);
-        this.router.navigateByUrl('home');
         // Agrega el token al Local Storage
         localStorage.setItem('token', rta.access_token);
+        this.router.navigateByUrl('home');
       },
       error: (err: any) => {
         alert('Usuario o contraseña incorrecta.');

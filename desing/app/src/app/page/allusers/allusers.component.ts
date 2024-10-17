@@ -39,9 +39,21 @@ export class AllusersComponent {
   }
 
   buscar() {
-    console.log('buscar: ', this.searchQuery);
+    const searchQueryLowerCase = this.searchQuery.trim().toLowerCase();
+    console.log('buscar: ', searchQueryLowerCase);
     this.filteredUsers = this.arrayUsuarios.filter((user) =>
-      user.name.includes(this.searchQuery)
+      user.nombre.toLowerCase().includes(searchQueryLowerCase)
     );
+  }
+
+  get admin_and_bibliotecary() {
+    return (
+      localStorage.getItem('rol') === 'admin' ||
+      localStorage.getItem('rol') === 'bibliotecario'
+    );
+  }
+
+  get is_admin() {
+    return localStorage.getItem('rol') === 'admin';
   }
 }
