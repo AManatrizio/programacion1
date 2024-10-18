@@ -41,8 +41,9 @@ class Usuarios(db.Model):
         usuario_json = {
             'id': self.id,
             'nombre': str(self.nombre),
-            'telefono': str(self.telefono),
             'email': str(self.email),
+            'rol': str(self.rol),
+
         }
         return usuario_json
 
@@ -51,6 +52,8 @@ class Usuarios(db.Model):
             'id': self.id,
             'nombre': str(self.nombre),
             'email': str(self.email),
+            'telefono': str(self.telefono),
+            'rol': str(self.rol),
         }
         return usuario_json
 

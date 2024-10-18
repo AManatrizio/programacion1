@@ -11,61 +11,75 @@ import { AllloansComponent } from './page/allloans/allloans.component';
 import { AllemployeesComponent } from './page/allemployees/allemployees.component';
 import { AllusersComponent } from './page/allusers/allusers.component';
 import { AllbooksComponent } from './page/allbooks/allbooks.component';
-import { PerfiluserComponent } from './page/perfiluser/perfiluser.component';
+import { PerfilComponent } from './page/perfil/perfil.component';
 import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
-import { HomeadminComponent } from './page/homeadmin/homeadmin.component';
-import { MenuusuarioComponent } from './page/menuusuario/menuusuario.component';
 import { MybooksComponent } from './page/mybooks/mybooks.component';
-import { PerfiladminComponent } from './page/perfiladmin/perfiladmin.component';
 import { MyloansComponent } from './page/myloans/myloans.component';
 import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
-
+import { authsessionGuard } from './guards/authsession.guard';
 
 const routes: Routes = [
-  { path: 'home' , component: HomeComponent},
+  { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
 
+  { path: 'login', component: LoginComponent },
 
-  { path: 'login', component: LoginComponent},
+  { path: 'singin', component: SinginComponent },
 
-  { path: 'singin', component: SinginComponent},
+  { path: 'welcome', component: WelcomeComponent },
 
-  { path: 'welcome', component: WelcomeComponent},
+  { path: 'resena', component: ResenaComponent },
 
-  { path: 'resena', component:  ResenaComponent},
+  { path: 'menu', component: MenuComponent },
 
-  { path: 'menu', component: MenuComponent},
+  {
+    path: 'allloans',
+    component: AllloansComponent,
+    canActivate: [authsessionGuard],
+  },
 
-  { path: 'allloans', component: AllloansComponent},
+  {
+    path: 'allemployees',
+    component: AllemployeesComponent,
+    canActivate: [authsessionGuard],
+  },
 
-  { path: 'allemployees', component: AllemployeesComponent},
+  {
+    path: 'allusers',
+    component: AllusersComponent,
+    canActivate: [authsessionGuard],
+  },
 
-  { path: 'allusers', component: AllusersComponent},
+  {
+    path: 'allbooks',
+    component: AllbooksComponent,
+    canActivate: [authsessionGuard],
+  },
 
-  { path: 'allbooks', component: AllbooksComponent},
+  { path: 'perfil', component: PerfilComponent },
 
-  { path: 'perfil', component: PerfiluserComponent},
+  { path: 'loginadmin', component: LoginadminComponent },
 
-  { path: 'loginadmin', component: LoginadminComponent},
+  {
+    path: 'mybooks',
+    component: MybooksComponent,
+    canActivate: [authsessionGuard],
+  },
 
-  { path: 'homeadmin', component: HomeadminComponent},
+  {
+    path: 'myloans',
+    component: MyloansComponent,
+    canActivate: [authsessionGuard],
+  },
 
-  { path: 'menuusuario', component: MenuusuarioComponent},
+  { path: 'resenaadmin', component: ResenaadminComponent },
 
-  { path: 'mybooks', component: MybooksComponent},
-
-  { path: 'perfiladmin', component: PerfiladminComponent},
-
-  { path: 'myloans', component: MyloansComponent},
-
-  { path: 'resenaadmin', component: ResenaadminComponent},
-
-  { path: '**', redirectTo: 'error_page'},
-  { path: 'error_page', component: ErrorPageComponent}
+  { path: '**', redirectTo: 'error_page' },
+  { path: 'error_page', component: ErrorPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

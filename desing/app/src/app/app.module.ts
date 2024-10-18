@@ -20,13 +20,10 @@ import { AllemployeesComponent } from './page/allemployees/allemployees.componen
 import { AllusersComponent } from './page/allusers/allusers.component';
 import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-back-home.component';
 import { AllbooksComponent } from './page/allbooks/allbooks.component';
-import { PerfiluserComponent } from './page/perfiluser/perfiluser.component';
+import { PerfilComponent } from './page/perfil/perfil.component';
 import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
-import { HomeadminComponent } from './page/homeadmin/homeadmin.component';
-import { MenuusuarioComponent } from './page/menuusuario/menuusuario.component';
 import { NavbaradminComponent } from './components/navbaradmin/navbaradmin.component';
 import { MybooksComponent } from './page/mybooks/mybooks.component';
-import { PerfiladminComponent } from './page/perfiladmin/perfiladmin.component';
 import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
 import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admin/navbar-back-home-admin.component';
 
@@ -53,13 +50,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AllusersComponent,
     NavbarBackHomeComponent,
     AllbooksComponent,
-    PerfiluserComponent,
+    PerfilComponent,
     LoginadminComponent,
-    HomeadminComponent,
-    MenuusuarioComponent,
     NavbaradminComponent,
     MybooksComponent,
-    PerfiladminComponent,
     ResenaadminComponent,
     NavbarBackHomeAdminComponent,
   ],

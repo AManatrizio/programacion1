@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuariosService } from '../../services/usuarios.service'; // Asegúrate de tener el servicio adecuado
 
 @Component({
   selector: 'app-allemployees',
@@ -6,40 +8,51 @@ import { Component } from '@angular/core';
   styleUrl: './allemployees.component.css',
 })
 export class AllemployeesComponent {
-  // Lista de empleados simulada (en tu caso, puede venir de un servicio o base de datos)
-  employees = [
-    { id: 1, name: 'Juan' },
-    { id: 2, name: 'Maria' },
-    { id: 3, name: 'Roberto' },
-    { id: 4, name: 'Sofia' },
-    { id: 5, name: 'Mario' },
-  ];
+  searchQuery = '';
+  users: any[] = [];
 
-  // Variable para almacenar el ID de búsqueda
-  searchID: string = '';
+  arrayUsuarios: any[] = [];
 
-  // Variable para almacenar los empleados filtrados
-  filteredEmployees = [...this.employees];
+  filteredUsers: any[] = [];
 
-  // Función de búsqueda
-  searchEmployee() {
-    const id = parseInt(this.searchID);
+  constructor(
+    private router: Router,
+    private empleadosService: UsuariosService
+  ) {}
 
-    if (!isNaN(id)) {
-      // Filtra la lista de empleados por el ID
-      this.filteredEmployees = this.employees.filter(
-        (employee) => employee.id === id
-      );
-    } else {
-      // Si no hay un ID válido, muestra todos los empleados
-      this.filteredEmployees = [...this.employees];
-    }
+  ngOnInit() {
+    this.empleadosService.getUsers().subscribe(
+      (rta: any) => {
+        console.log('Respuesta del API:', rta);
+        // Filtrar los usuarios cuyo rol sea "bibliotecary"
+        this.arrayUsuarios = rta.usuarios.filter(
+          (usuario: any) => usuario.rol === 'bibliotecary'
+        );
+        this.filteredUsers = [...this.arrayUsuarios];
+      },
+      (error) => {
+        console.error('Error al obtener usuarios:', error);
+      }
+    );
+  }
+
+  editarusuario(user: any) {
+    console.log('Estoy editando', user);
+    this.router.navigate(['/usuario/' + user.id + '/Editar']);
+  }
+
+  buscar() {
+    const searchQueryLowerCase = this.searchQuery.trim().toLowerCase();
+    console.log('buscar: ', searchQueryLowerCase);
+    this.filteredUsers = this.arrayUsuarios.filter((user) =>
+      user.nombre.toLowerCase().includes(searchQueryLowerCase)
+    );
   }
 
   get admin_and_bibliotecary() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecario'
+      localStorage.getItem('rol') === 'bibliotecary'
     );
   }
 

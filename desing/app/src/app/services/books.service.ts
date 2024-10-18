@@ -4,11 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class UsuariosService {
+export class BooksService {
   url = '/api';
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(page: number = 1, perPage: number = 5) {
+  getBooks(page: number = 1, perPage: number = 5) {
     let auth_token = localStorage.getItem('token');
 
     let headers = new HttpHeaders({
@@ -19,21 +19,8 @@ export class UsuariosService {
     const requestOptions = { headers: headers };
 
     return this.httpClient.get(
-      `${this.url}/usuarios?page=${page}&per_page=${perPage}`,
+      `${this.url}/libros?page=${page}&per_page=${perPage}`,
       requestOptions
     );
-  }
-
-  getProfile() {
-    let auth_token = localStorage.getItem('token');
-
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth_token}`,
-    });
-
-    const requestOptions = { headers: headers };
-
-    return this.httpClient.get(`${this.url}/profile`, requestOptions);
   }
 }

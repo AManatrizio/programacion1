@@ -9,7 +9,7 @@ export class ResenaadminComponent {
   get admin_and_bibliotecary() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecario'
+      localStorage.getItem('rol') === 'bibliotecary'
     );
   }
 }

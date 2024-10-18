@@ -34,6 +34,7 @@ class Usuario(Resource):
             abort(404, message=str("Error 404: el id del usuario no existe"))
 
     # En token viene un rol que debe ser alguno de los dos, para poder borrar
+
     @role_required(roles=["users", "admin"])
     def delete(self, id):
         self.id = id
@@ -76,7 +77,7 @@ class Usuarios(Resource):
     @role_required(roles=["admin"])
     def get(self):
         page = 1
-        per_page = 6
+        per_page = 5
         usuarios = db.session.query(UsuarioModel)
 
         if request.args.get('page'):
