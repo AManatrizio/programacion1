@@ -7,39 +7,25 @@
       <div class="user-icon" style="height: 300px;">
         <i class="fas fa-user-circle"></i>
       </div>
-
-      <div class="info-user text-start bg-success p-3">
-        <div class="col">
-          <span class="info-label">Nombre</span>
-          <p>           
-            <span> {{ user.nombre }}</span>
-          </p>
-        </div>
       </div>
       <div class="info-user text-start bg-success p-3">
-        <div class="col">
-          <span class="info-label">Email</span>
-          <p>           
-            <span>{{ user.email }}</span>
-          </p>
-        </div>
+            <span class="info-label">Nombre</span>
+              <span>{{ user.nombre }}</span>
       </div>
 
       <div class="info-user text-start bg-success p-3">
-        <div class="col">
           <span class="info-label">Rol</span>
-          <p>           
             <span>{{ user.rol }}</span>
-          </p>
-        </div>
       </div>
-    </div>
+
+      <div class="info-user text-start bg-success p-3">
+        <span class="info-label">Email</span>
+          <span>{{ user.email }}</span>
+      </div>
   </div>
 </div>
 
 
-
-<app-footer></app-footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
