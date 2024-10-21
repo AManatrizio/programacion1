@@ -39,25 +39,52 @@ def login():
 # Método de registro
 
 #
+# @auth.route('/register', methods=['POST'])
+# def register():
+#     usuario = UsuarioModel.from_json(request.get_json())
+
+#     exists = db.session.query(UsuarioModel).filter(
+#         UsuarioModel.email == usuario.email).scalar() is not None
+#     if exists:
+#         return 'El mail ingresado, ya existe', 409
+#     else:
+#         try:
+#             db.session.add(usuario)
+#             db.session.commit()
+#             send = sendMail(
+#                 [usuario.email], "Mensaje de bienvenida", "register", usuario=usuario)
+#         except Exception as error:
+#             db.session.rollback()
+#             return str(error), 409
+#         return usuario.to_json(), 201
+
 @auth.route('/register', methods=['POST'])
 def register():
-    # Obtener el usuario
+    # Obtener el usuario del JSON del request
     usuario = UsuarioModel.from_json(request.get_json())
 
-    # Verificar si el mail ya existe en la db, scalar() para saber la cantidad de veces que aparece ese email
+    # Verificar si el email ya existe en la base de datos
     exists = db.session.query(UsuarioModel).filter(
         UsuarioModel.email == usuario.email).scalar() is not None
+
     if exists:
         return 'El mail ingresado, ya existe', 409
     else:
         try:
-            # Agregar Usuario a las tablas de DB
+            # Asignar el rol predeterminado (por ejemplo, 'user')
+            usuario.rol = 'user'
+
+            # Agregar Usuario a las tablas de la base de datos
             db.session.add(usuario)
             db.session.commit()
-            # Mail de bienvenida TO,             SUBJECT     TEMPLATE    ARGUMENTO
-            send = sendMail(
+
+            # Enviar mail de bienvenida
+            sendMail(
                 [usuario.email], "Mensaje de bienvenida", "register", usuario=usuario)
+
         except Exception as error:
-            db.session.rollback()
+            db.session.rollback()  # Revertir la transacción en caso de error
             return str(error), 409
+
+        # Retornar la información del usuario como respuesta
         return usuario.to_json(), 201

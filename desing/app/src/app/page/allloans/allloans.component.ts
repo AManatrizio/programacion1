@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoansService } from '../../services/loans.service'; // Asegúrate de tener el servicio adecuado
+import { LoansService } from '../../services/loans.service';
 
 @Component({
   selector: 'app-allloans',

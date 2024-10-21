@@ -13,11 +13,9 @@
               <a *ngIf="admin_and_bibliotecary" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allusers" href="#">All users</a>
               <a *ngIf="is_admin"  class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allemployees" href="#">All employees</a>
               <a class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allbooks" href="#">All Books</a>
-
               <a *ngIf="!isToken" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/welcome" href="#">Login / Sign In</a>
               <a *ngIf="is_user" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/myloans" href="#">My loans</a>
-              <a *ngIf="is_user" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/mybooks" href="#">My Books</a>              
-              <a class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/perfil" href="#">Perfil</a>
+              <a class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/usuarios/me" href="#">Perfil</a>
               <a class="btn btn-secondary btn-lg login-btn mt-5" type="button" routerLink="/home" href="#">
                 <i class="bi bi-arrow-90deg-left" style="font-size: 1.5rem;"> Back to Home </i>
               </a>

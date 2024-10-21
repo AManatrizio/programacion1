@@ -1,69 +1,45 @@
-<!-- <app-navbaradmin></app-navbaradmin>
 
-<div class="container-flex">
-    <div class="row justify-content-center align-items-center vh-100">
-        <div class="background-square">
-            <div class="square2">
-                <h1 class="title">All Users</h1>
-            </div>
-            <div class="row justify-content-center flex-grow-1">
-                <div class="col-md-8 col-sm-12">
-                    <ul class="list-group">
-                        <li class="list-group align-items-center mb-2 mt-3">
-    
-                            <div class="col-9 col-sm-10 d-flex">  
-                                <input 
-                                    type="text" 
-                                    class="form-control w-100 me-2 flex-grow-1" 
-                                    placeholder="Buscar Usuario..." 
-                                    [(ngModel)]="searchQuery"
-                                    (input)="buscar()"
-                                />
+<app-navbaradmin></app-navbaradmin>
 
-                                <button 
-                                    class="btn btn-outline-secondary" 
-                                    type="button" 
-                                    (click)="buscar()"
-                                >
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>   
-                                   
-                                <a 
-                                    class="btn btn-primary ms-2" 
-                                    routerLink="/perfil/null/Alta"
-                                >
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
-                            </div>
-                        </li>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 text-center card-body">
+      <div class="user-icon" style="height: 300px;">
+        <i class="fas fa-user-circle"></i>
+      </div>
 
-                        <!-- Lista de usuarios -->
-                        <li 
-                            class="list-group-item d-flex align-items-center" 
-                            *ngFor="let user of filteredUsers"
-                        >
-                            <div class="user-icon">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
-                            <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID: {{ user.id }}</span>
-                                <span>Nombre: {{ user.nombre }}</span>
-                            </div>
-                            <div class="ms-auto">
-                                <button 
-                                    class="edit-button btn btn-sm me-2" 
-                                    (click)="editarusuario(user)"
-                                >
-                                    <i *ngIf="admin_and_bibliotecary" class="fa-solid fa-pen-to-square"></i>
-                                </button>              
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
+      <div class="info-user text-start bg-success p-3">
+        <div class="col">
+          <span class="info-label">Nombre</span>
+          <p>           
+            <span> {{ user.nombre }}</span>
+          </p>
         </div>
+      </div>
+      <div class="info-user text-start bg-success p-3">
+        <div class="col">
+          <span class="info-label">Email</span>
+          <p>           
+            <span>{{ user.email }}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="info-user text-start bg-success p-3">
+        <div class="col">
+          <span class="info-label">Rol</span>
+          <p>           
+            <span>{{ user.rol }}</span>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<app-footer></app-footer> -->
+
+
+<app-footer></app-footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>

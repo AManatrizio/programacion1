@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuariosService } from '../../services/usuarios.service'; // Asegúrate de tener el servicio adecuado
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-allemployees',
@@ -24,9 +24,8 @@ export class AllemployeesComponent {
     this.empleadosService.getUsers().subscribe(
       (rta: any) => {
         console.log('Respuesta del API:', rta);
-        // Filtrar los usuarios cuyo rol sea "bibliotecary"
         this.arrayUsuarios = rta.usuarios.filter(
-          (usuario: any) => usuario.rol === 'bibliotecary'
+          (usuarios: any) => usuarios.rol === 'bibliotecary'
         );
         this.filteredUsers = [...this.arrayUsuarios];
       },

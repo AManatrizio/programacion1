@@ -24,7 +24,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
 
-  { path: 'singin', component: SinginComponent },
+  { path: 'register', component: SinginComponent },
 
   { path: 'welcome', component: WelcomeComponent },
 
@@ -73,6 +73,8 @@ const routes: Routes = [
   },
 
   { path: 'resenaadmin', component: ResenaadminComponent },
+
+  { path: 'usuarios/me', component: PerfilComponent },
 
   { path: '**', redirectTo: 'error_page' },
   { path: 'error_page', component: ErrorPageComponent },

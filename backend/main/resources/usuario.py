@@ -16,24 +16,26 @@ class IdEnUso(Exception):
 
 
 class Usuario(Resource):
-    # USUARIO ACCEDE AL GET, ADMINISTRADOR TAMBIEN PERO INFO MAS REDUCIDA. Pero opcional porque no logueado tambien puede ver
-    @jwt_required(optional=True)
-    def get(self, id):
-        self.id = id
+    @jwt_required()
+    def get(self, id=None):
+        if id is None:
+            # Si no se proporciona un ID, devolver el perfil del usuario actual
+            current_identity = get_jwt_identity()
+            usuario = db.session.query(
+                UsuarioModel).get_or_404(current_identity)
+            return usuario.to_json(), 200
+
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
-            # get_jwt_identity() es el id del token que sera el del usuario
             current_identity = get_jwt_identity()
 
-            # Comparo el id que se pide con el id perteneciente al token
+            # Si el usuario autenticado es el mismo que el solicitado
             if current_identity == id:
                 return usuario.to_json()
             else:
-                return usuario.to_json_short()  # Si no existe token, mostrar solo datos relevantes
+                return usuario.to_json_short()  # Si no es el mismo, mostrar solo info básica
         except Exception:
             abort(404, message=str("Error 404: el id del usuario no existe"))
-
-    # En token viene un rol que debe ser alguno de los dos, para poder borrar
 
     @role_required(roles=["users", "admin"])
     def delete(self, id):
@@ -73,38 +75,91 @@ class Usuario(Resource):
                 "Error 404 NOt Found: No se encuentra el usuario para modificar"))
 
 
+# class Usuarios(Resource):
+#     @role_required(roles=["admin", "bibliotecary"])
+#     def get(self):
+#         page = 1
+#         per_page = 5
+#         usuarios = db.session.query(UsuarioModel)
+
+#         current_identity = get_jwt_identity()
+#         user_rol = get_jwt()['rol']
+
+#         if request.args.get('page'):
+#             page = int(request.args.get('page'))
+#         if request.args.get('per_page'):
+#             per_page = int(request.args.get('per_page'))
+
+#         if request.args.get('id'):
+#             usuario_id = request.args.get('id')
+#             usuarios = usuarios.filter(UsuarioModel.id == usuario_id)
+
+#         if request.args.get('email'):
+#             email = request.args.get('email')
+#             usuarios = usuarios.filter(UsuarioModel.email.ilike(f"%{email}%"))
+
+#         if request.args.get('telefono'):
+#             telefono = request.args.get('telefono')
+#             usuarios = usuarios.filter(
+#                 UsuarioModel.telefono.ilike(f"%{telefono}%"))
+
+#         usuarios = usuarios.paginate(
+#             page=page, per_page=per_page, error_out=False)
+
+#         return jsonify({
+#             'usuarios': [usuario.to_json() for usuario in usuarios.items],
+#             'total': usuarios.total,
+#             'pages': usuarios.pages,
+#             'page': page
+#         })
+
 class Usuarios(Resource):
-    @role_required(roles=["admin"])
+    @role_required(roles=["admin", "bibliotecary"])
     def get(self):
         page = 1
         per_page = 5
         usuarios = db.session.query(UsuarioModel)
 
+        # Obtener el ID del usuario autenticado y su rol
+        current_identity = get_jwt_identity()
+        user_rol = get_jwt()['rol']
+
+        # Leer parámetros de paginado
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
-        # Filtrar por ID
+        # Aplicar filtros (ID, email, teléfono)
         if request.args.get('id'):
             usuario_id = request.args.get('id')
             usuarios = usuarios.filter(UsuarioModel.id == usuario_id)
 
-        # Filtrar por email
         if request.args.get('email'):
             email = request.args.get('email')
-            usuarios = usuarios.filter(UsuarioModel.email == email)
+            usuarios = usuarios.filter(UsuarioModel.email.ilike(f"%{email}%"))
 
-        # Filtrar por teléfono
         if request.args.get('telefono'):
             telefono = request.args.get('telefono')
-            usuarios = usuarios.filter(UsuarioModel.telefono == telefono)
+            usuarios = usuarios.filter(
+                UsuarioModel.telefono.ilike(f"%{telefono}%"))
 
-        usuarios = usuarios.paginate(
-            page=page, per_page=per_page, error_out=True)
+        # Check if there is a request to get all users
+        if request.args.get('all') == 'true':
+            # Return all users without pagination
+            usuarios = usuarios.all()
+            return jsonify({
+                'usuarios': [usuario.to_json() for usuario in usuarios],
+                'total': len(usuarios)
+            })
+        else:
+            # Paginación después de aplicar los filtros
+            usuarios = usuarios.paginate(
+                page=page, per_page=per_page, error_out=False)
 
-        return jsonify({'usuarios': [usuario.to_json() for usuario in usuarios],
-                        'total': usuarios.total,
-                        'pages': usuarios.pages,
-                        'page': page
-                        })
+            return jsonify({
+                'usuarios': [usuario.to_json() for usuario in usuarios.items],
+                'total': usuarios.total,
+                'pages': usuarios.pages,
+                'page': page
+            })

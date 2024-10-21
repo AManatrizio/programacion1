@@ -16,7 +16,7 @@ class LibroNoDisponible(Exception):
 
 class Prestamo(Resource):
     # Ver los prestamos puede hacerlo administrador y los usuarios solo logueados pueden ver todos los prestamos, pero con info menos detallada
-    @role_required(roles=["admin", "users"])
+    @role_required(roles=["admin", "user"])
     def get(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -61,7 +61,7 @@ class Prestamo(Resource):
 
 
 class Prestamos(Resource):
-    @role_required(['admin', "user"])
+    @role_required(['admin', "user", "bibliotecary"])
     def get(self):
         page = 1
         per_page = 5
@@ -80,7 +80,7 @@ class Prestamos(Resource):
             prestamos = prestamos.filter(PrestamoModel.prestamo == prestamo)
 
         # Si el usuario es admin, mostrar todos los préstamos
-        if user_rol == 'admin':
+        if (user_rol == 'admin' or user_rol == 'bibliotecary'):
             prestamos = prestamos.paginate(
                 page=page, per_page=per_page, error_out=True)
         else:

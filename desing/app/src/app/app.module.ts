@@ -29,6 +29,7 @@ import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admi
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbmComponent } from './components/abm/abm.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MybooksComponent,
     ResenaadminComponent,
     NavbarBackHomeAdminComponent,
+    AbmComponent,
   ],
   imports: [
     BrowserModule,

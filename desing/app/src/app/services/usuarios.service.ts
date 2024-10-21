@@ -34,6 +34,6 @@ export class UsuariosService {
 
     const requestOptions = { headers: headers };
 
-    return this.httpClient.get(`${this.url}/profile`, requestOptions);
+    return this.httpClient.get(`${this.url}/usuarios/me`, requestOptions);
   }
 }
