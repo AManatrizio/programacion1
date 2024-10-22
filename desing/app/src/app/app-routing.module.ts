@@ -17,6 +17,9 @@ import { MybooksComponent } from './page/mybooks/mybooks.component';
 import { MyloansComponent } from './page/myloans/myloans.component';
 import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
 import { authsessionGuard } from './guards/authsession.guard';
+import { AddbooksComponent } from './components/addbooks/addbooks.component';
+import { AddloansComponent } from './components/addloans/addloans.component';
+import { EditloansComponent } from './components/editloans/editloans.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -35,6 +38,22 @@ const routes: Routes = [
   {
     path: 'allloans',
     component: AllloansComponent,
+    canActivate: [authsessionGuard],
+  },
+
+  {
+    path: 'libros/addbooks',
+    component: AddbooksComponent,
+    canActivate: [authsessionGuard],
+  },
+  {
+    path: 'prestamo/editloans',
+    component: EditloansComponent,
+    canActivate: [authsessionGuard],
+  },
+  {
+    path: 'prestamos/addloans',
+    component: AddloansComponent,
     canActivate: [authsessionGuard],
   },
 

@@ -54,8 +54,18 @@ export class AllbooksComponent {
     console.log('Editando usuario:', book);
   }
 
-  eliminarlibro(id: number) {
-    console.log('Eliminando usuario con ID:', id);
+  deleteBook(id: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este préstamo?')) {
+      this.booksService.deleteBooks(id).subscribe(
+        () => {
+          console.log(`Libro con id ${id} eliminado`);
+          this.loadBooks(); // Recargar la lista después de eliminar
+        },
+        (error) => {
+          console.error('Error al eliminar el libro:', error);
+        }
+      );
+    }
   }
 
   get admin_and_bibliotecary() {

@@ -70,4 +70,18 @@ export class AllloansComponent {
   get is_admin() {
     return localStorage.getItem('rol') === 'admin';
   }
+
+  deleteLoan(id: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este préstamo?')) {
+      this.loansService.deleteLoans(id).subscribe(
+        () => {
+          console.log(`Préstamo con id ${id} eliminado`);
+          this.loadAllLoans(); // Recargar la lista después de eliminar
+        },
+        (error) => {
+          console.error('Error al eliminar el préstamo:', error);
+        }
+      );
+    }
+  }
 }

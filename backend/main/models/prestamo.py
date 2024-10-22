@@ -1,5 +1,5 @@
 from .. import db
-# from main.models import UsuarioModel, LibroModel
+from flask import request, jsonify, Blueprint
 
 
 class Prestamos(db.Model):
@@ -43,16 +43,15 @@ class Prestamos(db.Model):
 
     @staticmethod
     def from_json(prestamo_json):
-        id = prestamo_json.get('id')
         prestamo = prestamo_json.get('prestamo')
         fecha_inicio = prestamo_json.get('fecha_inicio')
         fecha_vencimiento = prestamo_json.get('fecha_vencimiento')
         usuario_id = prestamo_json.get('usuario_id')
         libro_id = prestamo_json.get('libro_id')
-        return Prestamos(id=id,
-                         prestamo=prestamo,
-                         fecha_inicio=fecha_inicio,
-                         fecha_vencimiento=fecha_vencimiento,
-                         usuario_id=usuario_id,
-                         libro_id=libro_id,
-                         )
+        return Prestamos(
+            prestamo=prestamo,
+            fecha_inicio=fecha_inicio,
+            fecha_vencimiento=fecha_vencimiento,
+            usuario_id=usuario_id,
+            libro_id=libro_id,
+        )

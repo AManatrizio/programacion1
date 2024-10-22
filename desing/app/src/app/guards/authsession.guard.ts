@@ -20,7 +20,13 @@ export const authsessionGuard: CanActivateFn = (route, state) => {
     router.navigateByUrl('home');
   }
 
-  const restrictedRoutesForUsers = ['allloans', 'allemployees', 'allusers'];
+  const restrictedRoutesForUsers = [
+    'allloans',
+    'allemployees',
+    'allusers',
+    'libros/addbooks',
+    'prestamos/addloans',
+  ];
 
   if (
     rol === 'user' &&

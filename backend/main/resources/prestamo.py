@@ -1,9 +1,12 @@
 from flask_jwt_extended import get_jwt, jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 from flask_restful import Resource, abort
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 from main.models import PrestamoModel
 from .. import db
+
+auth = Blueprint('/prestamos', __name__, url_prefix='/prestamos')
+auth1 = Blueprint('/prestamo', __name__, url_prefix='/prestamo')
 
 
 class IdEnUso(Exception):
@@ -44,6 +47,7 @@ class Prestamo(Resource):
             abort(500, message=str(
                 "404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
 
+    @auth1.route('/editloans', methods=['PUT'])
     @role_required(['admin'])
     def put(self, id):
         try:
@@ -104,6 +108,7 @@ class Prestamos(Resource):
             'page': page
         })
 
+    @auth.route('/addbooks', methods=['POST'])
     @role_required(['admin'])
     def post(self):
         data = request.get_json()
@@ -114,7 +119,6 @@ class Prestamos(Resource):
             prestamo = PrestamoModel.from_json(prestamo_data)
             try:
                 tabla = PrestamoModel.query.all()
-                self.verificacion(prestamo_data, tabla)
             except Exception as e:
                 return {'error': str(e)}, 403
             db.session.add(prestamo)
@@ -122,16 +126,3 @@ class Prestamos(Resource):
         db.session.commit()
         prestamos_json = [prestamo.to_json() for prestamo in prestamos_list]
         return prestamos_json, 201
-
-    def verificacion(self, prestamo, tabla):
-        for i in tabla:
-            id = i.id
-            id_nuevo = prestamo['id']
-            id_libro = i.libro_id
-            id_libro_nuevo = prestamo['libro_id']
-            if id_libro == id_libro_nuevo:
-                raise LibroNoDisponible('El libro no esta disponible')
-            elif id == id_nuevo:
-                raise IdEnUso('El ID esta en uso')
-            else:
-                return None

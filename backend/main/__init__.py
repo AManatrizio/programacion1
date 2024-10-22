@@ -47,10 +47,11 @@ def create_app():
                      '/usuario/<int:id>', '/usuarios/me')
     api.add_resource(resources.OpinionesResources, '/opiniones')
     api.add_resource(resources.OpinionResource, '/opinion/<int:id>')
-    api.add_resource(resources.PrestamosResource, '/prestamos')
+    api.add_resource(resources.PrestamosResource,
+                     '/prestamos', "/prestamos/addloans", "/prestamos/editloans")
     api.add_resource(resources.PrestamoResource, '/prestamo/<int:id>')
     api.add_resource(resources.NotificacionesResources, '/notificaciones')
-    api.add_resource(resources.LibrosResources, '/libros')
+    api.add_resource(resources.LibrosResources, '/libros', '/libros/addbooks')
     api.add_resource(resources.LibroResources, '/libro/<int:id>')
     api.add_resource(resources.ConfiguracionesResources, '/configuraciones')
     api.add_resource(resources.AutoresResource, '/autores')

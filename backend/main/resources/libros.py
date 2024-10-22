@@ -3,9 +3,15 @@ from flask import request, jsonify
 from main.models import LibroModel, AutorModel
 from .. import db
 from .exception import IdEnUso
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from main.auth.decorators import role_required
-from sqlalchemy import func, desc, asc
+from sqlalchemy import func
+from flask import request, jsonify, Blueprint
+from .. import db
+
+
+# Blueprint para acceder a los métodos de autenticación
+auth = Blueprint('/libros', __name__, url_prefix='/libros')
 
 
 class Libro(Resource):
@@ -80,28 +86,25 @@ class Libros(Resource):
                         'page': page
                         })
 
+    @auth.route('/addbooks', methods=['POST'])
     @role_required(['admin'])
     def post(self):
         data = request.get_json()
         libros_list = []
+
         if isinstance(data, dict):
             data = [data]
+
         for libro_data in data:
             libros = LibroModel.from_json(libro_data)
             try:
                 tabla = LibroModel.query.all()
-                self.verificacion(libro_data, tabla)
             except Exception as e:
                 return {'error': str(e)}, 403
+
             db.session.add(libros)
             libros_list.append(libros)
+
         db.session.commit()
         libros_json = [libro.to_json() for libro in libros_list]
         return libros_json, 201
-
-    def verificacion(self, libro, tabla):
-        for i in tabla:
-            id_libro = i.id
-            id_libro_nuevo = libro['id']
-            if id_libro == id_libro_nuevo:
-                raise IdEnUso('El ID esta en uso')

@@ -30,6 +30,11 @@ import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admi
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AbmComponent } from './components/abm/abm.component';
+import { AddbooksComponent } from './components/addbooks/addbooks.component';
+import { AddloansComponent } from './components/addloans/addloans.component';
+import { EditusersComponent } from './components/editusers/editusers.component';
+import { EditloansComponent } from './components/editloans/editloans.component';
+import { EditbooksComponent } from './components/editbooks/editbooks.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +63,11 @@ import { AbmComponent } from './components/abm/abm.component';
     ResenaadminComponent,
     NavbarBackHomeAdminComponent,
     AbmComponent,
+    AddbooksComponent,
+    AddloansComponent,
+    EditusersComponent,
+    EditloansComponent,
+    EditbooksComponent,
   ],
   imports: [
     BrowserModule,

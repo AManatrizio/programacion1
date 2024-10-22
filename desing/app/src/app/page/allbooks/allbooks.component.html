@@ -45,8 +45,9 @@
                                 </nav>
                                 
                                 <a 
-                                    class="btn btn-primary ms-2" 
-                                    routerLink="/libro/null/Alta"
+                                *ngIf="admin_and_bibliotecary"    
+                                class="btn btn-primary ms-2" 
+                                    routerLink="/libros/addbooks"
                                 >
                                     <i class="fa-solid fa-plus"></i>
                                 </a>
@@ -81,7 +82,7 @@
                                 <button 
                                     *ngIf="admin_and_bibliotecary" 
                                     class="delete-button btn btn-sm"
-                                    (click)="eliminarlibro(book.id)"
+                                    (click)="deleteBook(book.id)"
                                 >
                                     <i class="fa-solid fa-trash"></i>
                                 </button>               

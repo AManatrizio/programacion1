@@ -42,7 +42,7 @@
                                 </nav>   
                                 <a 
                                     class="btn btn-primary ms-2" 
-                                    routerLink="/prestamo/null/Alta"
+                                    routerLink="/prestamos/addloans"
                                 >
                                     <i class="fa-solid fa-plus"></i>
                                 </a>
@@ -66,12 +66,15 @@
                             <div class="ms-auto">
                                 <button 
                                 *ngIf="admin_and_bibliotecary" class="edit-button btn btn-sm me-2" 
-                                    (click)="editarprestamo(loans)"
+                                    routerLink="/prestamo/editloans"
+
                                 >
                                     <i  class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 
                                 *ngIf="admin_and_bibliotecary" class="delete-button btn btn-sm"
+                                (click)="deleteLoan(loans.id)"
+
                                 >
                                     <i class="fa-solid fa-trash"></i>
                                 </button>               

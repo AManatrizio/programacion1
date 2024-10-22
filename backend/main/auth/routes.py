@@ -36,28 +36,6 @@ def login():
         return 'La contraseña ingresada es incorrecta', 401
 
 
-# Método de registro
-
-#
-# @auth.route('/register', methods=['POST'])
-# def register():
-#     usuario = UsuarioModel.from_json(request.get_json())
-
-#     exists = db.session.query(UsuarioModel).filter(
-#         UsuarioModel.email == usuario.email).scalar() is not None
-#     if exists:
-#         return 'El mail ingresado, ya existe', 409
-#     else:
-#         try:
-#             db.session.add(usuario)
-#             db.session.commit()
-#             send = sendMail(
-#                 [usuario.email], "Mensaje de bienvenida", "register", usuario=usuario)
-#         except Exception as error:
-#             db.session.rollback()
-#             return str(error), 409
-#         return usuario.to_json(), 201
-
 @auth.route('/register', methods=['POST'])
 def register():
     # Obtener el usuario del JSON del request

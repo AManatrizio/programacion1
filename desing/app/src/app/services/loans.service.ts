@@ -25,4 +25,43 @@ export class LoansService {
       requestOptions
     );
   }
+  addLoans(userData: any): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+
+    const requestOptions = { headers: headers };
+
+    return this.httpClient.post(
+      this.url + '/prestamos/addloans',
+      userData,
+      requestOptions
+    );
+  }
+
+  deleteLoans(id: number): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+
+    const requestOptions = { headers: headers };
+
+    return this.httpClient.delete(`${this.url}/prestamo/${id}`, requestOptions);
+  }
+
+  // Obtener préstamo por ID
+  getLoanById(id: string): Observable<any> {
+    return this.httpClient.get(`${this.url}/${id}`);
+  }
+
+  // Actualizar préstamo
+  updateLoan(id: string, loanData: any): Observable<any> {
+    return this.httpClient.put(`${this.url}/${id}`, loanData);
+  }
 }

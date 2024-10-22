@@ -10,10 +10,9 @@ autor_libro = db.Table(
 
 
 class Libros(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # El id es auto-incremental
     nombre = db.Column(db.String(100), nullable=False)
     genero = db.Column(db.String(100), nullable=False)
-    # Nuevo campo para la URL de la imagen
     imagen_url = db.Column(db.String(255), nullable=True)
 
     autores = db.relationship(
@@ -24,23 +23,23 @@ class Libros(db.Model):
     def __repr__(self):
         return ('<Libro: %r >' % (self.nombre))
 
-    def from_json(libro_json):
-        id = libro_json.get('id')
+    @staticmethod
+    def from_json(libro_json):  # El método from_json no debe pedir un id
         nombre = libro_json.get('nombre')
         genero = libro_json.get('genero')
-        # Obtiene la URL de la imagen desde el JSON
         imagen_url = libro_json.get('imagen_url')
-        return Libros(id=id,
-                      nombre=nombre,
-                      genero=genero, imagen_url=imagen_url
-                      )
+        return Libros(
+            nombre=nombre,
+            genero=genero,
+            imagen_url=imagen_url
+        )
 
     def to_json(self):
         libro_json = {
             'id': self.id,
-            'nombre': str(self.nombre),
-            'genero': str(self.genero),
-            'imagen_url': self.imagen_url,  # Incluye la URL de la imagen en el JSON
+            'nombre': self.nombre,
+            'genero': self.genero,
+            'imagen_url': self.imagen_url,
             'autores': [autor.to_json() for autor in self.autores]
         }
         return libro_json
