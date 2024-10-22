@@ -54,10 +54,6 @@ export class AllusersComponent {
     console.log('Editando usuario:', user);
   }
 
-  eliminarUsuario(id: number) {
-    console.log('Eliminando usuario con ID:', id);
-  }
-
   get admin_and_bibliotecary() {
     return (
       localStorage.getItem('rol') === 'admin' ||
@@ -67,5 +63,18 @@ export class AllusersComponent {
 
   get is_admin() {
     return localStorage.getItem('rol') === 'admin';
+  }
+  deleteUsers(id: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este préstamo?')) {
+      this.usuariosService.deleteUsers(id).subscribe(
+        () => {
+          console.log(`Préstamo con id ${id} eliminado`);
+          this.loadUsers(); // Recargar la lista después de eliminar
+        },
+        (error) => {
+          console.error('Error al eliminar el préstamo:', error);
+        }
+      );
+    }
   }
 }
