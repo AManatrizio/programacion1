@@ -5,14 +5,13 @@
       <h4 class="carousel-subtitle">EXPLORE THE MAGIC</h4>
       <h1 class="carousel-title d-flex justify-content-beetween align-items-center">The Complete Saga
         <div class="ms-auto">
-            <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>                
+            <button *ngIf="admin_and_bibliotecary" class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>                
         </div>
       </h1>
       
   </div>
   <div id="bookCarousel1" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-          <!-- Primera fila de libros -->
           <div class="carousel-item">
               <div class="row ">
                   <div class="col">
@@ -29,7 +28,6 @@
                   </div>
               </div>
           </div>
-          <!-- Segunda fila de libros -->
           <div class="carousel-item active">
               <div class="row">
                   <div class="col">
@@ -63,13 +61,12 @@
       <h4 class="carousel-subtitle">MUST READ</h4>
       <h1 class="carousel-title d-flex justify-content-beetween align-items-center">Trending Now
         <div class="ms-auto">
-            <button class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>                
+            <button *ngIf="admin_and_bibliotecary" class="edit-button btn btn-sm me-2"><i class="fa-solid fa-pen-to-square"></i></button>                
         </div>
       </h1>
   </div>
   <div id="bookCarousel2" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-          <!-- Primera fila de libros -->
           <div class="carousel-item active">
               <div class="row">
                   <div class="col">
@@ -86,7 +83,6 @@
                   </div>
               </div>
           </div>
-          <!-- Segunda fila de libros -->
           <div class="carousel-item">
               <div class="row">
                   <div class="col">

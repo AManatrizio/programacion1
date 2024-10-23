@@ -24,25 +24,18 @@ export class LoginComponent {
     });
   }
 
-  // EL ARCHIVO .TS IMPORTA FUNCIONALIDADES DE LOS SERVICIOS Y LOS .HTML IMPORTAN FUNCIONALIDADES DE LOS .TS
-
-  // El archivo .ts se va a definir
   irAlLogin(dataLogin: any) {
-    // Suscribe: 3 estados (Next, Error, )
     this.authService.login(dataLogin).subscribe({
       next: (rta: any) => {
         alert('Credenciales correctas!!!');
         console.log('Exito: ', rta);
 
-        // Decodifica el token para obtener el valor de la clave "rol"
         const decodedToken: any = jwt_decode(rta.access_token);
         const rol = decodedToken.rol;
 
-        // Guarda el valor de la clave "rol" en el Local Storage
         localStorage.setItem('rol', rol);
-        this.router.navigateByUrl('home');
-        // Agrega el token al Local Storage
         localStorage.setItem('token', rta.access_token);
+        this.router.navigateByUrl('home');
       },
       error: (err: any) => {
         alert('Usuario o contraseña incorrecta.');

@@ -1,0 +1,80 @@
+<!-- <form [formGroup]="addBooksForms"> -->
+
+  <div class="container-flex">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="background-square">
+            <div class="square2">
+                <h1 class="text">Agregar Libro</h1>
+            </div>
+            <form [formGroup]="addBooksForms">
+              <div class="col justify-content-center align-items-center">
+                    <div class="mb-2">
+                        <div class="row-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                  <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre del libro">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="genero" class="form-label">Genero</label>
+                                    <input type="text" formControlName="genero" class="form-control" placeholder="Genero del libro">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="imagen_url" class="form-label">Imagen url</label>
+                                    <input type="imagen_url" formControlName="imagen_url" class="form-control" placeholder="URL para asignar como imagen">
+                                  </div>
+                                  <div class="d-grid gap-2">
+                                    <button type="button" (click)="submit()" class="btn btn-secondary btn-lg signin-btn">Crear Libro</button>
+                                  </div>
+                      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
+  
+  
+  
+  
+  
+  
+<!--   
+  
+  <div class="col justify-content-center align-items-center">
+      <div class="mb-2">
+        <div class="row-md-5">
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre del libro">
+              </div>
+              <div class="mb-3">
+                <label for="genero" class="form-label">Genero</label>
+                <input type="text" formControlName="genero" class="form-control" placeholder="Genero del libro">
+              </div>
+              <div class="mb-3">
+                <label for="imagen_url" class="form-label">Imagen url</label>
+                <input type="imagen_url" formControlName="imagen_url" class="form-control" placeholder="URL para asignar como imagen">
+              </div>
+              <div class="d-grid gap-2">
+                <button type="button" (click)="submit()" class="btn btn-secondary btn-lg signin-btn">Crear Libro</button>
+              </div>
+            </div>              
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  
+
+
+
+ -->
