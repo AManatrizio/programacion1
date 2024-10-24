@@ -24,7 +24,7 @@ export class PerfilComponent {
     if (
       userRole === 'admin' ||
       userRole === 'user' ||
-      userRole === 'bibliotecary'
+      userRole === 'librarian'
     ) {
       this.usuariosService.getProfile().subscribe(
         (rta: any) => {
@@ -70,10 +70,10 @@ export class PerfilComponent {
     );
   }
 
-  get admin_and_bibliotecary() {
+  get admin_and_librarian() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecary'
+      localStorage.getItem('rol') === 'librarian'
     );
   }
 

@@ -36,15 +36,11 @@ export const authsessionGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
-  const restrictedRoutesForBibliotecary = [
-    'mybooks',
-    'allemployees',
-    'myloans',
-  ];
+  const restrictedRoutesForLibrarian = ['mybooks', 'allemployees', 'myloans'];
 
   if (
-    rol === 'bibliotecary' &&
-    restrictedRoutesForBibliotecary.includes(route.routeConfig?.path || '')
+    rol === 'librarian' &&
+    restrictedRoutesForLibrarian.includes(route.routeConfig?.path || '')
   ) {
     router.navigateByUrl('home');
   }

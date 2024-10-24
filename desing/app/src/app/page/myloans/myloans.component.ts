@@ -61,10 +61,10 @@ export class MyloansComponent {
     );
   }
 
-  get admin_and_bibliotecary() {
+  get admin_and_librarian() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecary'
+      localStorage.getItem('rol') === 'librarian'
     );
   }
 

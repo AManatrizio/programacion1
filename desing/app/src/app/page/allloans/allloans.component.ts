@@ -34,7 +34,7 @@ export class AllloansComponent {
         this.totalPages = rta.pages;
       },
       (error) => {
-        console.error('Error al obtener usuarios:', error);
+        console.error('Error al obtener prestamos:', error);
       }
     );
   }
@@ -48,11 +48,6 @@ export class AllloansComponent {
     }
   }
 
-  editarprestamo(loan: any) {
-    console.log('Estoy editando', loan);
-    this.router.navigate(['/prestamo/' + loan.id + '/Editar']);
-  }
-
   buscar() {
     console.log('buscar: ', this.searchQuery);
     this.filteredPrestamos = this.arrayPrestamos.filter((loans) =>
@@ -60,10 +55,10 @@ export class AllloansComponent {
     );
   }
 
-  get admin_and_bibliotecary() {
+  get admin_and_librarian() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecary'
+      localStorage.getItem('rol') === 'librarian'
     );
   }
 

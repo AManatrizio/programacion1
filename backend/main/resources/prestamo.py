@@ -65,7 +65,7 @@ class Prestamo(Resource):
 
 
 class Prestamos(Resource):
-    @role_required(['admin', "user", "bibliotecary"])
+    @role_required(['admin', "user", "librarian"])
     def get(self):
         page = 1
         per_page = 5
@@ -84,7 +84,7 @@ class Prestamos(Resource):
             prestamos = prestamos.filter(PrestamoModel.prestamo == prestamo)
 
         # Si el usuario es admin, mostrar todos los préstamos
-        if (user_rol == 'admin' or user_rol == 'bibliotecary'):
+        if (user_rol == 'admin' or user_rol == 'librarian'):
             prestamos = prestamos.paginate(
                 page=page, per_page=per_page, error_out=True)
         else:

@@ -45,7 +45,7 @@
                                 </nav>
                                 
                                 <a 
-                                *ngIf="admin_and_bibliotecary"    
+                                *ngIf="admin_and_librarian"    
                                 class="btn btn-primary ms-2" 
                                     routerLink="/libros/addbooks"
                                 >
@@ -73,14 +73,14 @@
                             </div>
                             <div class="ms-auto">
                                 <button 
-                                    *ngIf="admin_and_bibliotecary"    
+                                    *ngIf="admin_and_librarian"    
                                     class="edit-button btn btn-sm me-2" 
                                     (click)="editarlibro(book)"
                                 >
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 
-                                    *ngIf="admin_and_bibliotecary" 
+                                    *ngIf="admin_and_librarian" 
                                     class="delete-button btn btn-sm"
                                     (click)="deleteBook(book.id)"
                                 >

@@ -58,21 +58,19 @@
                             </div>
                             
                             <div class="loan-details ms-3 flex-grow-1">
-                                <span>IdPrestamo: {{ loans.id }}</span>
                                 <span>Libro: {{ loans.libro_nombre }}</span> 
                                 <span>Usuario: {{ loans.usuario_nombre }}</span> 
-                                <span>Fecha : {{ loans.fecha_inicio }}</span>
                             </div>
                             <div class="ms-auto">
                                 <button 
-                                *ngIf="admin_and_bibliotecary" class="edit-button btn btn-sm me-2" 
+                                *ngIf="admin_and_librarian" class="edit-button btn btn-sm me-2" 
                                     routerLink="/prestamo/editloans"
 
                                 >
                                     <i  class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 
-                                *ngIf="admin_and_bibliotecary" class="delete-button btn btn-sm"
+                                *ngIf="admin_and_librarian" class="delete-button btn btn-sm"
                                 (click)="deleteLoan(loans.id)"
 
                                 >

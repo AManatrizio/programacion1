@@ -76,7 +76,7 @@ class Usuario(Resource):
 
 
 class Usuarios(Resource):
-    @role_required(roles=["admin", "bibliotecary"])
+    @role_required(roles=["admin", "librarian"])
     def get(self):
         page = 1
         per_page = 5

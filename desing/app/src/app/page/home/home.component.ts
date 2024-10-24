@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  get admin_and_bibliotecary() {
+  get admin_and_librarian() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecary'
+      localStorage.getItem('rol') === 'librarian'
     );
   }
 }

@@ -25,7 +25,7 @@ export class AllemployeesComponent {
       (rta: any) => {
         console.log('Respuesta del API:', rta);
         this.arrayUsuarios = rta.usuarios.filter(
-          (usuarios: any) => usuarios.rol === 'bibliotecary'
+          (usuarios: any) => usuarios.rol === 'librarian'
         );
         this.filteredUsers = [...this.arrayUsuarios];
       },
@@ -48,10 +48,10 @@ export class AllemployeesComponent {
     );
   }
 
-  get admin_and_bibliotecary() {
+  get admin_and_librarian() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecary'
+      localStorage.getItem('rol') === 'librarian'
     );
   }
 
