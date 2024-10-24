@@ -10,12 +10,11 @@ from flask import request, jsonify, Blueprint
 from .. import db
 
 
-# Blueprint para acceder a los métodos de autenticación
 auth = Blueprint('/libros', __name__, url_prefix='/libros')
 
 
 class Libro(Resource):
-    @role_required(roles=['admin', 'user'])
+    @role_required(roles=['admin', 'user', "librarian"])
     def get(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
@@ -24,7 +23,7 @@ class Libro(Resource):
             abort(404, message=str(
                 "Error 404 Not Found: No se encuentra el ID del libro."))
 
-    @role_required(roles=['admin'])
+    @role_required(roles=['admin', "librarian"])
     def delete(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
@@ -36,7 +35,7 @@ class Libro(Resource):
             abort(404, message=str(
                 "404 Not Found: No se encuentra el libro para eliminar. El ID no existe"))
 
-    @role_required(roles=['admin'])
+    @role_required(roles=['admin', "librarian"])
     def put(self, id):
         try:
             libro = db.session.query(LibroModel).get_or_404(id)
@@ -87,7 +86,7 @@ class Libros(Resource):
                         })
 
     @auth.route('/addbooks', methods=['POST'])
-    @role_required(['admin'])
+    @role_required(roles=["librarian", "admin"])
     def post(self):
         data = request.get_json()
         libros_list = []

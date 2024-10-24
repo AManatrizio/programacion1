@@ -30,7 +30,7 @@ export class AllbooksComponent {
         this.totalPages = rta.pages;
       },
       (error) => {
-        console.error('Error al obtener usuarios:', error);
+        console.error('Error al obtener libros:', error);
       }
     );
   }
@@ -51,15 +51,15 @@ export class AllbooksComponent {
   }
 
   editarlibro(book: any) {
-    console.log('Editando usuario:', book);
+    console.log('Editando libro:', book);
   }
 
   deleteBook(id: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este préstamo?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este libro?')) {
       this.booksService.deleteBooks(id).subscribe(
         () => {
           console.log(`Libro con id ${id} eliminado`);
-          this.loadBooks(); // Recargar la lista después de eliminar
+          this.loadBooks();
         },
         (error) => {
           console.error('Error al eliminar el libro:', error);

@@ -10,7 +10,7 @@ autor_libro = db.Table(
 
 
 class Libros(db.Model):
-    id = db.Column(db.Integer, primary_key=True)  # El id es auto-incremental
+    id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     genero = db.Column(db.String(100), nullable=False)
     imagen_url = db.Column(db.String(255), nullable=True)
@@ -24,7 +24,7 @@ class Libros(db.Model):
         return ('<Libro: %r >' % (self.nombre))
 
     @staticmethod
-    def from_json(libro_json):  # El método from_json no debe pedir un id
+    def from_json(libro_json):
         nombre = libro_json.get('nombre')
         genero = libro_json.get('genero')
         imagen_url = libro_json.get('imagen_url')

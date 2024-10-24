@@ -35,8 +35,8 @@
   
 
   .img-fluid {
-    max-width: 100%; /* Asegura que la imagen no se salga del contenedor */
-    height:auto; /* Mantén la proporción de la imagen */
+    max-width: 100%; 
+    height:auto; 
 
 }
 
@@ -177,20 +177,20 @@
 
 
     .card-img {
-        max-width: 100%;  /* Asegura que la imagen ocupe todo el ancho disponible */
-        height: auto;     /* Mantén la proporción de la imagen */
-        object-fit: contain; /* Ajusta la imagen para que siempre se ajuste dentro del contenedor */
+        max-width: 100%;  
+        height: auto;     
+        object-fit: contain; 
         
     }
 
     .img-fluid {
-        max-width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
-        height:auto; /* Mantén la proporción de la imagen */
+        max-width: 100%; 
+             height:auto; 
         object-fit: contain;
     }
     .card {
-        max-width: none;  /* Elimina cualquier límite de ancho para pantallas pequeñas */
-        width: 100%;      /* La tarjeta ocupará todo el ancho disponible */
+        max-width: none;  
+        width: 100%;      
         margin-top: 700px;
         object-fit: contain;
     }
@@ -203,7 +203,7 @@
     }
 
     .col-md-auto {
-        flex: 0 0 100%; /* Asegura que las columnas tomen todo el ancho en pantallas pequeñas */
+        flex: 0 0 100%; 
         max-width: 100%;
     }
 }

@@ -65,14 +65,14 @@ export class AllusersComponent {
     return localStorage.getItem('rol') === 'admin';
   }
   deleteUsers(id: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este préstamo?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
       this.usuariosService.deleteUsers(id).subscribe(
         () => {
-          console.log(`Préstamo con id ${id} eliminado`);
-          this.loadUsers(); // Recargar la lista después de eliminar
+          console.log(`Usuario con id ${id} eliminado`);
+          this.loadUsers();
         },
         (error) => {
-          console.error('Error al eliminar el préstamo:', error);
+          console.error('Error al eliminar el usuario:', error);
         }
       );
     }

@@ -36,7 +36,7 @@ export class LoansService {
     const requestOptions = { headers: headers };
 
     return this.httpClient.post(
-      this.url + '/prestamos/addloans',
+      this.url + '/prestamos',
       userData,
       requestOptions
     );
@@ -55,13 +55,32 @@ export class LoansService {
     return this.httpClient.delete(`${this.url}/prestamo/${id}`, requestOptions);
   }
 
-  // Obtener préstamo por ID
-  getLoanById(id: string): Observable<any> {
-    return this.httpClient.get(`${this.url}/${id}`);
+  getLoanById(id: number): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+
+    const requestOptions = { headers: headers };
+    return this.httpClient.get(`${this.url}/prestamo/${id}`, requestOptions);
   }
 
-  // Actualizar préstamo
-  updateLoan(id: string, loanData: any): Observable<any> {
-    return this.httpClient.put(`${this.url}/${id}`, loanData);
+  updateLoan(id: number, loanData: any): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+
+    const requestOptions = { headers: headers };
+
+    return this.httpClient.put(
+      `${this.url}/prestamo/${id}`,
+      loanData,
+      requestOptions
+    );
   }
 }

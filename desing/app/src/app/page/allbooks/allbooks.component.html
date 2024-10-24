@@ -75,8 +75,8 @@
                                 <button 
                                     *ngIf="admin_and_librarian"    
                                     class="edit-button btn btn-sm me-2" 
-                                    (click)="editarlibro(book)"
-                                >
+                                    [routerLink]="['/libro/editbooks', book.id]"
+                                    >
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 

@@ -20,6 +20,8 @@ import { authsessionGuard } from './guards/authsession.guard';
 import { AddbooksComponent } from './components/addbooks/addbooks.component';
 import { AddloansComponent } from './components/addloans/addloans.component';
 import { EditloansComponent } from './components/editloans/editloans.component';
+import { EditusersComponent } from './components/editusers/editusers.component';
+import { EditbooksComponent } from './components/editbooks/editbooks.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,8 +49,18 @@ const routes: Routes = [
     canActivate: [authsessionGuard],
   },
   {
-    path: 'prestamo/editloans',
+    path: 'prestamo/editloans/:id',
     component: EditloansComponent,
+    canActivate: [authsessionGuard],
+  },
+  {
+    path: 'usuario/editusers/:id',
+    component: EditusersComponent,
+    canActivate: [authsessionGuard],
+  },
+  {
+    path: 'libro/editbooks/:id',
+    component: EditbooksComponent,
     canActivate: [authsessionGuard],
   },
   {

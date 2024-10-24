@@ -7,23 +7,23 @@
   }
 
 .info-user-bg {
-  background-color: #8bce9b; /* Verde */
-  color: white; /* Texto en blanco */
-  padding: 10px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  margin-bottom: 10px; /* Espaciado inferior */
+  background-color: #8bce9b; 
+  color: white; 
+  padding: 10px; 
+  border-radius: 5px; 
+  margin-bottom: 10px; 
 }
 
   
   .user-icon {
-    font-size: 200px; /* Tamaño del ícono */
-    color: var(--quaternary-color); /* Color del ícono */
+    font-size: 200px; 
+    color: var(--quaternary-color); 
   }
   .loan-details {
     display: flex;
     flex-direction: row;
-    gap: 20px; /* Espacio entre los spans */
-    align-items: center; /* Alineación vertical */
+    gap: 20px; 
+    align-items: center; 
   }
   
 

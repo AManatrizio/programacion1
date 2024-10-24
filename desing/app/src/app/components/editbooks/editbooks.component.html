@@ -1,1 +1,36 @@
-<p>editbooks works!</p>
+<form [formGroup]="editBooksForm" (ngSubmit)="submit()">
+    <div class="container-flex">
+      <div class="row justify-content-center align-items-center vh-100">
+        <div class="background-square">
+          <div class="square2">
+            <h1 class="text">Editar Libro</h1>
+          </div>
+          <div class="col justify-content-center align-items-center">
+            <div class="mb-2">
+              <div class="row-md-4">
+                <div class="card">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control" placeholder="Estado del préstamo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="genero" class="form-label">Gènero</label>
+                    <input type="text" formControlName="genero" class="form-control" placeholder="Fecha de inicio">
+                  </div>
+                  <div class="mb-3">
+                    <label for="imagen_url" class="form-label">Url de la imagen</label>
+                    <input type="text" formControlName="imagen_url" class="form-control" placeholder="Fecha de vencimiento">
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-secondary btn-lg signin-btn">Guardar Cambios</button>
+                  </div>    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  

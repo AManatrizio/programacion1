@@ -15,7 +15,7 @@ export class EditloansComponent {
 
   constructor(
     private fb: FormBuilder,
-    private loansService: LoansService, // Servicio para interactuar con el backend
+    private loansService: LoansService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -29,10 +29,8 @@ export class EditloansComponent {
   }
 
   ngOnInit(): void {
-    // Obtener el ID del préstamo desde la URL
     this.loanId = this.route.snapshot.paramMap.get('id') || '';
 
-    // Cargar los datos del préstamo existente
     this.loansService.getLoanById(this.loanId).subscribe((loan) => {
       this.editLoanForm.patchValue({
         prestamo: loan.prestamo,
@@ -44,15 +42,19 @@ export class EditloansComponent {
     });
   }
 
-  // Función para enviar el formulario
   submit(): void {
     if (this.editLoanForm.valid) {
       this.loansService
         .updateLoan(this.loanId, this.editLoanForm.value)
-        .subscribe(() => {
-          // Redirigir o mostrar un mensaje de éxito
-          this.router.navigate(['/loans']); // Redirigir a la página de lista de préstamos
-        });
+        .subscribe(
+          () => {
+            this.router.navigate(['/allloans']);
+          },
+          (error) => {
+            console.error('Error al actualizar el préstamo:', error);
+            alert('Revisar datos ingresados');
+          }
+        );
     }
   }
 }

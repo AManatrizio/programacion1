@@ -22,22 +22,6 @@ body, html {
   z-index: 1;
 }
 
-/* .img-harry-potter-1 {
-  width: 300px;
-  height: auto;
-  border: 2px solid #000;
-  border-radius: 10px;
-  image: url('../../../assets/hp1.jpg');
-}
-
-.img-harry-potter-2 {
-  width: 300px;
-  height: auto;
-  border: 2px solid #000;
-  border-radius: 10px;
-  image: url('../../../assets/hp2.jpg');
-  } */
-
 .square {
   position: absolute;
   align-items: center;
@@ -147,7 +131,7 @@ body, html {
 
 
 .edit-button {
-  background-color: var(--primary-color); /* Color verde para el botón de editar */
-  color: white; /* Texto blanco */
+  background-color: var(--primary-color); 
+  color: white; 
 }
 

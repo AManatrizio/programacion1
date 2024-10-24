@@ -53,4 +53,33 @@ export class BooksService {
 
     return this.httpClient.delete(`${this.url}/libro/${id}`, requestOptions);
   }
+
+  getBooksById(id: number): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+
+    const requestOptions = { headers: headers };
+    return this.httpClient.get(`${this.url}/libro/${id}`, requestOptions);
+  }
+
+  updateBooks(id: number, loanData: any): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth_token}`,
+    });
+
+    const requestOptions = { headers: headers };
+
+    return this.httpClient.put(
+      `${this.url}/libro/${id}`,
+      loanData,
+      requestOptions
+    );
+  }
 }

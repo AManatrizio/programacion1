@@ -71,7 +71,7 @@ export class AllloansComponent {
       this.loansService.deleteLoans(id).subscribe(
         () => {
           console.log(`Préstamo con id ${id} eliminado`);
-          this.loadAllLoans(); // Recargar la lista después de eliminar
+          this.loadAllLoans();
         },
         (error) => {
           console.error('Error al eliminar el préstamo:', error);
