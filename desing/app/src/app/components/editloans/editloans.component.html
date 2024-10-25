@@ -1,0 +1,43 @@
+<form [formGroup]="editLoanForm" (ngSubmit)="submit()">
+    <div class="container-flex">
+      <div class="row justify-content-center align-items-center vh-100">
+        <div class="background-square">
+          <div class="square2">
+            <h1 class="text">Editar Prestamo</h1>
+          </div>
+          <div class="col justify-content-center align-items-center">
+            <div class="mb-2">
+              <div class="row-md-4">
+                <div class="card">
+                  <div class="mb-3">
+                    <label for="prestamo" class="form-label">Estado</label>
+                    <input type="text" formControlName="prestamo" class="form-control" placeholder="Estado del préstamo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
+                    <input type="text" formControlName="fecha_inicio" class="form-control" placeholder="Fecha de inicio">
+                  </div>
+                  <div class="mb-3">
+                    <label for="fecha_vencimiento" class="form-label">Fecha Vencimiento</label>
+                    <input type="text" formControlName="fecha_vencimiento" class="form-control" placeholder="Fecha de vencimiento">
+                  </div>
+                  <div class="mb-3">
+                    <label for="usuario_id" class="form-label">ID Usuario</label>
+                    <input type="text" formControlName="usuario_id" class="form-control" placeholder="ID usuario asociado">
+                  </div>
+                  <div class="mb-3">
+                    <label for="libro_id" class="form-label">ID Libro</label>
+                    <input type="text" formControlName="libro_id" class="form-control" placeholder="ID libro asociado">
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-secondary btn-lg signin-btn">Guardar Cambios</button>
+                  </div>    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  

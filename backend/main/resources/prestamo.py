@@ -1,9 +1,12 @@
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import get_jwt, jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 from flask_restful import Resource, abort
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 from main.models import PrestamoModel
 from .. import db
+
+auth = Blueprint('/prestamos', __name__, url_prefix='/prestamos')
+auth1 = Blueprint('/prestamo', __name__, url_prefix='/prestamo')
 
 
 class IdEnUso(Exception):
@@ -16,7 +19,7 @@ class LibroNoDisponible(Exception):
 
 class Prestamo(Resource):
     # Ver los prestamos puede hacerlo administrador y los usuarios solo logueados pueden ver todos los prestamos, pero con info menos detallada
-    @role_required(roles=["admin", "users"])
+    @role_required(roles=["admin", "user"])
     def get(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -44,6 +47,7 @@ class Prestamo(Resource):
             abort(500, message=str(
                 "404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
 
+    @auth1.route('/editloans', methods=['PUT'])
     @role_required(['admin'])
     def put(self, id):
         try:
@@ -61,34 +65,50 @@ class Prestamo(Resource):
 
 
 class Prestamos(Resource):
-    @role_required(['admin'])
+    @role_required(['admin', "user", "bibliotecary"])
     def get(self):
         page = 1
-        per_page = 10
+        per_page = 5
         prestamos = db.session.query(PrestamoModel)
+        current_identity = get_jwt_identity()  # Obtener el ID del usuario autenticado
+        user_rol = get_jwt()['rol']  # Obtener el rol desde el token JWT
 
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
-        # if request.args.get('estado'):
-        #     prestamo=prestamo.filter(PrestamoModel.estado.like("%"+request.args.get('estado')+"%"))
-
-        # Filtrar por estado prestamo
+        # Filtros opcionales que ya tenías
         if request.args.get('prestamo'):
             prestamo = request.args.get('prestamo')
             prestamos = prestamos.filter(PrestamoModel.prestamo == prestamo)
 
-        prestamos = prestamos.paginate(
-            page=page, per_page=per_page, error_out=True)
+        # Si el usuario es admin, mostrar todos los préstamos
+        if (user_rol == 'admin' or user_rol == 'bibliotecary'):
+            prestamos = prestamos.paginate(
+                page=page, per_page=per_page, error_out=True)
+        else:
+            # Si es usuario, filtrar los préstamos para que solo vea los suyos
+            prestamos = prestamos.filter(
+                PrestamoModel.usuario_id == current_identity)
+            prestamos = prestamos.paginate(
+                page=page, per_page=per_page, error_out=True)
 
-        return jsonify({'prestamos': [prestamo.to_json() for prestamo in prestamos],
-                        'total': prestamos.total,
-                        'pages': prestamos.pages,
-                        'page': page
-                        })
+        return jsonify({
+            'prestamos': [{
+                'id': prestamo.id,
+                'prestamo': prestamo.prestamo,
+                'fecha_inicio': prestamo.fecha_inicio,
+                'fecha_vencimiento': prestamo.fecha_vencimiento,
+                'usuario_nombre': prestamo.usuario.nombre,  # Nombre del usuario
+                'libro_nombre': prestamo.libro.nombre  # Nombre del libro
+            } for prestamo in prestamos.items],
+            'total': prestamos.total,
+            'pages': prestamos.pages,
+            'page': page
+        })
 
+    @auth.route('/addbooks', methods=['POST'])
     @role_required(['admin'])
     def post(self):
         data = request.get_json()
@@ -99,7 +119,6 @@ class Prestamos(Resource):
             prestamo = PrestamoModel.from_json(prestamo_data)
             try:
                 tabla = PrestamoModel.query.all()
-                self.verificacion(prestamo_data, tabla)
             except Exception as e:
                 return {'error': str(e)}, 403
             db.session.add(prestamo)
@@ -107,16 +126,3 @@ class Prestamos(Resource):
         db.session.commit()
         prestamos_json = [prestamo.to_json() for prestamo in prestamos_list]
         return prestamos_json, 201
-
-    def verificacion(self, prestamo, tabla):
-        for i in tabla:
-            id = i.id
-            id_nuevo = prestamo['id']
-            id_libro = i.libro_id
-            id_libro_nuevo = prestamo['libro_id']
-            if id_libro == id_libro_nuevo:
-                raise LibroNoDisponible('El libro no esta disponible')
-            elif id == id_nuevo:
-                raise IdEnUso('El ID esta en uso')
-            else:
-                return None

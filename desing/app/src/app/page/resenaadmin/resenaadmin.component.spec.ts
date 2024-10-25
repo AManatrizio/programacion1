@@ -8,9 +8,8 @@ describe('ResenaadminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ResenaadminComponent]
-    })
-    .compileComponents();
+      declarations: [ResenaadminComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ResenaadminComponent);
     component = fixture.componentInstance;
