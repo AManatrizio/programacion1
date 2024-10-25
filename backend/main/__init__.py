@@ -37,7 +37,8 @@ def create_app():
 
     api.add_resource(resources.UsuariosResource, '/usuarios')
     api.add_resource(resources.UsuarioResource,
-                     '/usuario/<int:id>', '/usuarios/me')
+                     '/usuario/<int:id>')
+    api.add_resource(resources.UsuarioProfileResource, '/usuarios/me')
     api.add_resource(resources.OpinionesResources, '/opiniones')
     api.add_resource(resources.OpinionResource, '/opinion/<int:id>')
     api.add_resource(resources.PrestamosResource,

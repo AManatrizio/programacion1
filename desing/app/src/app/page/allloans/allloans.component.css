@@ -73,12 +73,13 @@ body {
 
 .user-icon {
   font-size: 50px; 
-  color: #333;
+  color: #333; 
 }
 
 .square3 {
   font-size: 50px; 
-  color: #333;
+  color: #333; 
+}
 
 .loan-details {
   display: flex;
@@ -110,7 +111,7 @@ body {
   height: 30%;
   display: flex;
   background-image: url('../../../assets/header.jpg');
-  background-size: cover;
+  background-size: cover; 
   background-position: center; 
   z-index: 2;
   object-fit: cover;
@@ -246,7 +247,7 @@ body {
 
 .edit-button {
   background-color: var(--primary-color); 
-  color: white;
+  color: white; 
 }
 
 .delete-button {
@@ -255,37 +256,41 @@ body {
 }
 
 @media (max-width: 768px) {
-  .loan-details {
-      gap: 10px; 
-      flex-direction: column; 
+  
+  .list-group-item {
+    padding: 10px; 
+    font-size: 0.9rem; 
   }
 
-  .background-square {
-      width: 100%; 
+  .user-icon {
+    font-size: 30px; 
+  }
+
+  .loan-details span {
+    margin-right: 20px; 
+    font-size: 0.8rem; 
+  }
+
+  .loan-details {
+    gap: 10px; 
   }
 
   .btn {
-      font-size: 0.8rem; 
+    font-size: 0.8rem; 
+    padding: 5px 10px; 
   }
-
-  .pagination .page-link {
-      padding: 5px 10px;
+  
+  .background-square .row{
+      margin-top: 250px;
+      height: 90%;
   }
 }
 
 @media (max-width: 576px) {
   .loan-details {
-      flex-direction: column; 
-      font-size: 0.75rem; 
-  }
-
-  .loan-details span {
-      margin-right: 10px; 
-  }
-
-  .background-square {
-      width: 100%;
-      padding: 20px; 
+    flex-direction: column; 
   }
 }
-}
+
+
+

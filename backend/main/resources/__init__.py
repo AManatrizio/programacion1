@@ -2,6 +2,7 @@ from .libros import Libro as LibroResource
 from .libros import Libros as LibrosResource
 from .usuario import Usuario as UsuarioResource
 from .usuario import Usuarios as UsuariosResource
+from .usuario import UsuarioProfile as UsuarioProfileResource
 from .opinion import Opinion as OpinionResource
 from .opinion import Opiniones as OpinionesResources
 from .configuracion import Configuraciones as ConfiguracionesResources

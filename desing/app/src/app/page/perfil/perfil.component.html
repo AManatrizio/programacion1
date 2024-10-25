@@ -6,12 +6,17 @@
     <div class="col-12 col-md-6 text-center card-body">
       <div class="user-icon" style="height: 300px;">
         <i 
-        *ngIf="!admin_and_librarian"
-        class="fas fa-user-circle"></i>
-        <i 
-        *ngIf="admin_and_librarian"
-        class="bi bi-duffle-fill"></i>
+        *ngIf="is_librarian" class="fas fa-user-tie"></i>
 
+        <i
+        *ngIf="is_user" class="fas fa-user-circle"
+
+        ></i>
+
+        <i
+        *ngIf="is_admin" class="fas fa-crown"
+
+        ></i>
       </div>
       </div>
       <div class="info-user text-start bg-success p-3">

@@ -15,7 +15,7 @@ class LibroNoDisponible(Exception):
 
 
 class Prestamo(Resource):
-    @role_required(roles=["admin", "user"])
+    @role_required(roles=["librarian", "admin"])
     def get(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -32,7 +32,7 @@ class Prestamo(Resource):
         except Exception as e:
             return jsonify({'message': str(e)}), 500
 
-    @role_required(['admin'])
+    @role_required(roles=["librarian", "admin"])
     def delete(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
@@ -115,7 +115,7 @@ class Prestamos(Resource):
             'page': page
         })
 
-    @role_required(['admin'])
+    @role_required(roles=["librarian", "admin"])
     def post(self):
         data = request.get_json()
         if isinstance(data, dict):

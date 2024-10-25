@@ -27,7 +27,8 @@ body {
 }
 
 .list-group {
-  margin-top: 0px;
+  margin-top: 0px; 
+}
 
 
 .row.justify-content-center.flex-grow-1 {
@@ -40,8 +41,9 @@ body {
   border-radius: 20px;
   margin-bottom: 10px;
   padding: 15px;
-}
+  width: 100%; 
 
+}
 .loan-details {
   display: flex;
   flex-direction: row;
@@ -84,6 +86,7 @@ body {
   flex-direction: row;
   gap: 20px; 
   align-items: center; 
+}
 
 
 .square {
@@ -107,8 +110,8 @@ body {
   width: 100%;
   height: 30%;
   display: flex;
-  background-image: url('../../../assets/header.jpg'); 
-  background-size: cover;
+  background-image: url('../../../assets/header.jpg');
+  background-size: cover; 
   background-position: center; 
   z-index: 2;
   object-fit: cover;
@@ -156,7 +159,6 @@ body {
 }
 
 
-
   
 .card {
   border-radius: 20px;
@@ -168,8 +170,8 @@ body {
 
 .card img {
   max-width: 100%; 
-  height: auto;   
-  border-radius: 10px;
+  height: auto;    
+  border-radius: 10px; 
   width: 150px;
 }
   
@@ -253,7 +255,6 @@ body {
   color: white; 
 }
 
-
 @media (max-width: 768px) {
   
   .list-group-item {
@@ -283,4 +284,13 @@ body {
       margin-top: 250px;
       height: 90%;
   }
-}}}
+}
+
+@media (max-width: 576px) {
+  .loan-details {
+    flex-direction: column; 
+  }
+}
+
+
+

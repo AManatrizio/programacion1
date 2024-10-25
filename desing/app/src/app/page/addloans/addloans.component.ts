@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BooksService } from './../../services/books.service';
+import { BooksService } from '../../services/books.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoansService } from '../../services/loans.service';

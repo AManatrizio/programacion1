@@ -5,7 +5,7 @@ from .. import jwt
 from sqlalchemy import func, desc
 from main.auth.decorators import role_required
 from flask_restful import Resource, abort
-from flask import request
+from flask import Blueprint, request
 from main.models import UsuarioModel
 from .. import db
 from flask import jsonify
@@ -17,7 +17,7 @@ class IdEnUso(Exception):
 
 class Usuario(Resource):
     @jwt_required()
-    @role_required(roles=['admin', "librarian"])
+    @role_required(roles=["librarian", "admin"])
     def get(self, id):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
@@ -34,7 +34,7 @@ class Usuario(Resource):
         except Exception as e:
             return jsonify({'message': str(e)}), 500
 
-    @role_required(roles=['admin', "librarian"])
+    @role_required(roles=["librarian", "admin"])
     def delete(self, id):
         self.id = id
         try:
@@ -116,3 +116,26 @@ class Usuarios(Resource):
                 'pages': usuarios.pages,
                 'page': page
             })
+
+
+class UsuarioProfile(Resource):
+    @jwt_required()
+    def get(self, id=None):
+        if id is None:
+            # Si no se proporciona un ID, devolver el perfil del usuario actual
+            current_identity = get_jwt_identity()
+            usuario = db.session.query(
+                UsuarioModel).get_or_404(current_identity)
+            return usuario.to_json(), 200
+
+        try:
+            usuario = db.session.query(UsuarioModel).get_or_404(id)
+            current_identity = get_jwt_identity()
+
+            # Si el usuario autenticado es el mismo que el solicitado
+            if current_identity == id:
+                return usuario.to_json_complete()
+            else:
+                return usuario.to_json_short()  # Si no es el mismo, mostrar solo info básica
+        except Exception:
+            abort(404, message=str("Error 404: el id del usuario no existe"))

@@ -70,14 +70,15 @@ export class PerfilComponent {
     );
   }
 
-  get admin_and_librarian() {
-    return (
-      localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'librarian'
-    );
-  }
-
   get is_admin() {
     return localStorage.getItem('rol') === 'admin';
+  }
+
+  get is_librarian() {
+    return localStorage.getItem('rol') === 'librarian';
+  }
+
+  get is_user() {
+    return localStorage.getItem('rol') === 'user';
   }
 }
