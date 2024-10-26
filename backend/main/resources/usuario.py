@@ -91,6 +91,10 @@ class Usuarios(Resource):
             usuario_id = request.args.get('id')
             usuarios = usuarios.filter(UsuarioModel.id == usuario_id)
 
+        if request.args.get('nombre'):
+            usuarios = usuarios.filter(UsuarioModel.nombre.like(
+                "%"+request.args.get('nombre')+"%"))
+
         if request.args.get('email'):
             email = request.args.get('email')
             usuarios = usuarios.filter(UsuarioModel.email.ilike(f"%{email}%"))
@@ -122,7 +126,6 @@ class UsuarioProfile(Resource):
     @jwt_required()
     def get(self, id=None):
         if id is None:
-            # Si no se proporciona un ID, devolver el perfil del usuario actual
             current_identity = get_jwt_identity()
             usuario = db.session.query(
                 UsuarioModel).get_or_404(current_identity)
@@ -132,10 +135,9 @@ class UsuarioProfile(Resource):
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             current_identity = get_jwt_identity()
 
-            # Si el usuario autenticado es el mismo que el solicitado
             if current_identity == id:
                 return usuario.to_json_complete()
             else:
-                return usuario.to_json_short()  # Si no es el mismo, mostrar solo info básica
+                return usuario.to_json_short()
         except Exception:
             abort(404, message=str("Error 404: el id del usuario no existe"))

@@ -7,13 +7,13 @@ import { BooksService } from '../../services/books.service';
   styleUrl: './allbooks.component.css',
 })
 export class AllbooksComponent {
-  arrayLibros: any[] = [];
-  filteredBooks: any[] = [];
-
-  currentPage = 1;
-  perPage = 5;
-  totalPages = 1;
+  arrayLibros = [];
+  filteredBooks = [];
   searchQuery: string = '';
+  currentPage: number = 1;
+  searchField: string = '';
+  perPage: number = 5;
+  totalPages: number = 1;
 
   constructor(private booksService: BooksService) {}
 
@@ -22,17 +22,19 @@ export class AllbooksComponent {
   }
 
   loadBooks() {
-    this.booksService.getBooks(this.currentPage, this.perPage).subscribe(
-      (rta: any) => {
-        console.log('Respuesta del API:', rta);
-        this.arrayLibros = rta.libros || [];
-        this.filteredBooks = [...this.arrayLibros];
-        this.totalPages = rta.pages;
-      },
-      (error) => {
-        console.error('Error al obtener libros:', error);
-      }
-    );
+    this.booksService
+      .getBooks(this.currentPage, this.perPage, this.searchQuery)
+      .subscribe(
+        (rta: any) => {
+          console.log('Respuesta del API:', rta);
+          this.arrayLibros = rta.libros || [];
+          this.filteredBooks = [...this.arrayLibros];
+          this.totalPages = rta.pages;
+        },
+        (error) => {
+          console.error('Error al obtener libros:', error);
+        }
+      );
   }
 
   changePage(page: number, event: Event) {
@@ -45,13 +47,8 @@ export class AllbooksComponent {
   }
 
   buscar() {
-    this.filteredBooks = this.arrayLibros.filter((book) =>
-      book.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-  }
-
-  editarlibro(book: any) {
-    console.log('Editando libro:', book);
+    this.currentPage = 1;
+    this.loadBooks();
   }
 
   deleteBook(id: number) {

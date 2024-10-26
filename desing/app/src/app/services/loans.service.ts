@@ -10,7 +10,7 @@ export class LoansService {
   url = '/api';
   constructor(private httpClient: HttpClient) {}
 
-  getLoans(page: number = 1, perPage: number = 5) {
+  getLoans(page: number = 1, perPage: number = 5, searchQuery: string = '') {
     let auth_token = localStorage.getItem('token');
 
     let headers = new HttpHeaders({
@@ -20,11 +20,14 @@ export class LoansService {
 
     const requestOptions = { headers: headers };
 
+    const searchParam = searchQuery ? `&prestamo=${searchQuery}` : '';
+
     return this.httpClient.get(
-      `${this.url}/prestamos?page=${page}&per_page=${perPage}`,
+      `${this.url}/prestamos?page=${page}&per_page=${perPage}${searchParam}`,
       requestOptions
     );
   }
+
   addLoans(userData: any): Observable<any> {
     let auth_token = localStorage.getItem('token');
 

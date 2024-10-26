@@ -11,6 +11,9 @@
                     <ul class="list-group">
                         <li class="list-group align-items-center mb-2 mt-3">
                             <div class="col-9 col-sm-10 d-flex">  
+                                <select [(ngModel)]="searchField" class="form-select">
+                                    <option value="prestamo">Prestamo</option>
+                                </select>
                                 <input 
                                     type="text" 
                                     class="form-control w-100 me-2 flex-grow-1" 

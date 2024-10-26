@@ -9,7 +9,7 @@ export class UsuariosService {
   url = '/api';
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(page: number = 1, perPage: number = 5) {
+  getUsers(page: number = 1, perPage: number = 5, searchQuery: string = '') {
     let auth_token = localStorage.getItem('token');
 
     let headers = new HttpHeaders({
@@ -19,8 +19,10 @@ export class UsuariosService {
 
     const requestOptions = { headers: headers };
 
+    const searchParam = searchQuery ? `&nombre=${searchQuery}` : '';
+
     return this.httpClient.get(
-      `${this.url}/usuarios?page=${page}&per_page=${perPage}`,
+      `${this.url}/usuarios?page=${page}&per_page=${perPage}${searchParam}`,
       requestOptions
     );
   }

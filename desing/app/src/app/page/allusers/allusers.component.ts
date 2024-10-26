@@ -10,29 +10,34 @@ export class AllusersComponent {
   arrayUsuarios: any[] = [];
   filteredUsers: any[] = [];
 
-  currentPage = 1;
-  perPage = 5;
-  totalPages = 1;
   searchQuery: string = '';
+  searchField: string = 'nombre';
+  currentPage: number = 1;
+  perPage: number = 5;
+  totalPages: number = 1;
 
   constructor(private usuariosService: UsuariosService) {}
+
+  users: any[] = [];
 
   ngOnInit() {
     this.loadUsers();
   }
 
   loadUsers() {
-    this.usuariosService.getUsers(this.currentPage, this.perPage).subscribe(
-      (rta: any) => {
-        console.log('Respuesta del API:', rta);
-        this.arrayUsuarios = rta.usuarios || [];
-        this.filteredUsers = [...this.arrayUsuarios];
-        this.totalPages = rta.pages;
-      },
-      (error) => {
-        console.error('Error al obtener usuarios:', error);
-      }
-    );
+    this.usuariosService
+      .getUsers(this.currentPage, this.perPage, this.searchQuery)
+      .subscribe(
+        (rta: any) => {
+          console.log('Respuesta del API:', rta);
+          this.arrayUsuarios = rta.usuarios || [];
+          this.filteredUsers = [...this.arrayUsuarios];
+          this.totalPages = rta.pages;
+        },
+        (error) => {
+          console.error('Error al obtener usuarios:', error);
+        }
+      );
   }
 
   changePage(page: number, event: Event) {
@@ -45,9 +50,8 @@ export class AllusersComponent {
   }
 
   buscar() {
-    this.filteredUsers = this.arrayUsuarios.filter((user) =>
-      user.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    this.currentPage = 1;
+    this.loadUsers();
   }
 
   editarusuario(user: any) {

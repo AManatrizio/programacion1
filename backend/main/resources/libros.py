@@ -67,6 +67,10 @@ class Libros(Resource):
             libros = libros.filter(LibroModel.genero.like(
                 "%"+request.args.get('genero')+"%"))
 
+        if request.args.get('nombre'):
+            libros = libros.filter(LibroModel.nombre.like(
+                "%"+request.args.get('nombre')+"%"))
+
         if request.args.get('sortby_autor'):
             libros = libros.join(LibroModel.autores).\
                 group_by(LibroModel.id).\
