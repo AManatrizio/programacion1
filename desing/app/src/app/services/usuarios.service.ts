@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,22 +9,30 @@ export class UsuariosService {
   url = '/api';
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(page: number = 1, perPage: number = 5, searchQuery: string = '') {
-    let auth_token = localStorage.getItem('token');
+  getUsers(
+    page: number = 1,
+    perPage: number = 5,
+    searchField: string = 'prestamo',
+    searchQuery: string = ''
+  ) {
+    const auth_token = localStorage.getItem('token');
 
-    let headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${auth_token}`,
     });
 
-    const requestOptions = { headers: headers };
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('per_page', perPage.toString());
 
-    const searchParam = searchQuery ? `&nombre=${searchQuery}` : '';
+    if (searchField && searchQuery) {
+      params = params.set(searchField, searchQuery);
+    }
 
-    return this.httpClient.get(
-      `${this.url}/usuarios?page=${page}&per_page=${perPage}${searchParam}`,
-      requestOptions
-    );
+    const requestOptions = { headers: headers, params: params };
+
+    return this.httpClient.get(`${this.url}/usuarios`, requestOptions);
   }
 
   getProfile() {

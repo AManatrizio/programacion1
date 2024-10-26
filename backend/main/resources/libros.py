@@ -71,15 +71,9 @@ class Libros(Resource):
             libros = libros.filter(LibroModel.nombre.like(
                 "%"+request.args.get('nombre')+"%"))
 
-        if request.args.get('sortby_autor'):
-            libros = libros.join(LibroModel.autores).\
-                group_by(LibroModel.id).\
-                order_by(func.group_concat(AutorModel.autor).desc())
-
-        if request.args.get('autores'):
-            autor_id = request.args.get('autores')
-            libros = libros.filter(
-                LibroModel.autores.any(AutorModel.id == autor_id))
+        if request.args.get('id'):
+            libro_id = request.args.get('id')
+            libros = libros.filter(LibroModel.id == libro_id)
 
         libros = libros.paginate(page=page, per_page=per_page, error_out=True)
 

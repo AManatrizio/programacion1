@@ -26,7 +26,12 @@ export class AllloansComponent {
 
   loadAllLoans() {
     this.loansService
-      .getLoans(this.currentPage, this.perPage, this.searchQuery)
+      .getLoans(
+        this.currentPage,
+        this.perPage,
+        this.searchField,
+        this.searchQuery
+      )
       .subscribe(
         (rta: any) => {
           console.log('Respuesta del API:', rta);

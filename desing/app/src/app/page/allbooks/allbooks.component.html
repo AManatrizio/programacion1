@@ -9,7 +9,7 @@
             <div class="row justify-content-center flex-grow-1">
                 <div class="col-md-8 col-sm-12">
                     <ul class="list-group">
-                        <li class="list-group align-items-center mb-2 mt-3">
+                        <li class="list-group align-items-center mb-2 mt-3" >
     
                             <div class="col-9 col-sm-10 d-flex">  
                                 <select [(ngModel)]="searchField" class="form-select">
@@ -65,7 +65,7 @@
                         >
                             <div class="book-icon">
                                 <img 
-                                  [src]="book.imagen_url || 'ruta-de-imagen-predeterminada.jpg'" 
+                                  [src]="book.imagen_url" 
                                   alt="Imagen del libro" 
                                   class="book-image" 
                                   width="50" 

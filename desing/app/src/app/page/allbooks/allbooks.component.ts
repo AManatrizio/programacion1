@@ -11,9 +11,10 @@ export class AllbooksComponent {
   filteredBooks = [];
   searchQuery: string = '';
   currentPage: number = 1;
-  searchField: string = '';
+  searchField: string = 'nombre';
   perPage: number = 5;
   totalPages: number = 1;
+  books: any[] = [];
 
   constructor(private booksService: BooksService) {}
 
@@ -23,7 +24,12 @@ export class AllbooksComponent {
 
   loadBooks() {
     this.booksService
-      .getBooks(this.currentPage, this.perPage, this.searchQuery)
+      .getBooks(
+        this.currentPage,
+        this.perPage,
+        this.searchField,
+        this.searchQuery
+      )
       .subscribe(
         (rta: any) => {
           console.log('Respuesta del API:', rta);

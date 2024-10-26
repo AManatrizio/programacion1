@@ -95,14 +95,9 @@ class Usuarios(Resource):
             usuarios = usuarios.filter(UsuarioModel.nombre.like(
                 "%"+request.args.get('nombre')+"%"))
 
-        if request.args.get('email'):
-            email = request.args.get('email')
-            usuarios = usuarios.filter(UsuarioModel.email.ilike(f"%{email}%"))
-
-        if request.args.get('telefono'):
-            telefono = request.args.get('telefono')
-            usuarios = usuarios.filter(
-                UsuarioModel.telefono.ilike(f"%{telefono}%"))
+        if request.args.get('rol'):
+            usuarios = usuarios.filter(UsuarioModel.rol.like(
+                "%"+request.args.get('rol')+"%"))
 
         if request.args.get('all') == 'true':
             usuarios = usuarios.all()

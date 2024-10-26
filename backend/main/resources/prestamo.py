@@ -88,17 +88,13 @@ class Prestamos(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
-        # if request.args.get('prestamo'):
-        #     prestamo = request.args.get('prestamo')
-        #     prestamos = prestamos.filter(PrestamoModel.prestamo == prestamo)
-
         if request.args.get('prestamo'):
             prestamos = prestamos.filter(PrestamoModel.prestamo.like(
                 "%"+request.args.get('prestamo')+"%"))
 
-        # if request.args.get('id'):
-        #     prestamos = prestamos.filter(PrestamoModel.prestamo.like(
-        #         "%"+request.args.get('id')+"%"))
+        if request.args.get('id'):
+            prestamo_id = request.args.get('id')
+            prestamos = prestamos.filter(PrestamoModel.id == prestamo_id)
 
         if (user_rol == 'admin' or user_rol == 'librarian'):
             prestamos = prestamos.paginate(

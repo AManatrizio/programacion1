@@ -26,7 +26,12 @@ export class AllusersComponent {
 
   loadUsers() {
     this.usuariosService
-      .getUsers(this.currentPage, this.perPage, this.searchQuery)
+      .getUsers(
+        this.currentPage,
+        this.perPage,
+        this.searchField,
+        this.searchQuery
+      )
       .subscribe(
         (rta: any) => {
           console.log('Respuesta del API:', rta);
@@ -35,7 +40,7 @@ export class AllusersComponent {
           this.totalPages = rta.pages;
         },
         (error) => {
-          console.error('Error al obtener usuarios:', error);
+          console.error('Error al obtener prestamos:', error);
         }
       );
   }
