@@ -54,11 +54,13 @@
   
   .card {
     background-color: #ddf8fa;
-    height: 70%;
+    height: 80%;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 5px;
+    margin-top: 110px; 
   }
   
+
   .background-square {
     position: relative;
     overflow: hidden;

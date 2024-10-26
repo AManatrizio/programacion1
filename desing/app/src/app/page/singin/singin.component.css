@@ -20,9 +20,9 @@
   width: 100%;
   height: 30%;
   display: flex;
-  background-image: linear-gradient(to right, #708BD0, #98a0ce); /* Cambia a tu ruta de imagen */
-  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-  background-position: center; /* Centra la imagen */
+  background-image: linear-gradient(to right, #708BD0, #98a0ce); 
+  background-size: cover;
+  background-position: center; 
   z-index: 2;
   object-fit: cover;
   flex-direction: column;

@@ -7,7 +7,6 @@ import { HomeComponent } from './page/home/home.component';
 import { ErrorPageComponent } from './page/error-page/error-page.component';
 
 import { FooterComponent } from './components/footer/footer.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { LoginComponent } from './page/login/login.component';
 import { SinginComponent } from './page/singin/singin.component';
@@ -18,23 +17,20 @@ import { MyloansComponent } from './page/myloans/myloans.component';
 import { AllloansComponent } from './page/allloans/allloans.component';
 import { AllemployeesComponent } from './page/allemployees/allemployees.component';
 import { AllusersComponent } from './page/allusers/allusers.component';
-import { NavbarBackHomeComponent } from './components/navbar-back-home/navbar-back-home.component';
 import { AllbooksComponent } from './page/allbooks/allbooks.component';
 import { PerfilComponent } from './page/perfil/perfil.component';
 import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
 import { NavbaradminComponent } from './components/navbaradmin/navbaradmin.component';
-import { MybooksComponent } from './page/mybooks/mybooks.component';
 import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
-import { NavbarBackHomeAdminComponent } from './components/navbar-back-home-admin/navbar-back-home-admin.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AbmComponent } from './components/abm/abm.component';
-import { AddbooksComponent } from './components/addbooks/addbooks.component';
-import { AddloansComponent } from './components/addloans/addloans.component';
-import { EditusersComponent } from './components/editusers/editusers.component';
-import { EditloansComponent } from './components/editloans/editloans.component';
-import { EditbooksComponent } from './components/editbooks/editbooks.component';
+import { AddbooksComponent } from './page/addbooks/addbooks.component';
+import { AddloansComponent } from './page/addloans/addloans.component';
+import { EditusersComponent } from './page/editusers/editusers.component';
+import { EditloansComponent } from './page/editloans/editloans.component';
+import { EditbooksComponent } from './page/editbooks/editbooks.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +39,6 @@ import { EditbooksComponent } from './components/editbooks/editbooks.component';
     ErrorPageComponent,
 
     FooterComponent,
-    NavbarComponent,
 
     LoginComponent,
     SinginComponent,
@@ -54,14 +49,11 @@ import { EditbooksComponent } from './components/editbooks/editbooks.component';
     AllloansComponent,
     AllemployeesComponent,
     AllusersComponent,
-    NavbarBackHomeComponent,
     AllbooksComponent,
     PerfilComponent,
     LoginadminComponent,
     NavbaradminComponent,
-    MybooksComponent,
     ResenaadminComponent,
-    NavbarBackHomeAdminComponent,
     AbmComponent,
     AddbooksComponent,
     AddloansComponent,

@@ -10,29 +10,39 @@ export class AllusersComponent {
   arrayUsuarios: any[] = [];
   filteredUsers: any[] = [];
 
-  currentPage = 1;
-  perPage = 5;
-  totalPages = 1;
   searchQuery: string = '';
+  searchField: string = 'nombre';
+  currentPage: number = 1;
+  perPage: number = 5;
+  totalPages: number = 1;
 
   constructor(private usuariosService: UsuariosService) {}
+
+  users: any[] = [];
 
   ngOnInit() {
     this.loadUsers();
   }
 
   loadUsers() {
-    this.usuariosService.getUsers(this.currentPage, this.perPage).subscribe(
-      (rta: any) => {
-        console.log('Respuesta del API:', rta);
-        this.arrayUsuarios = rta.usuarios || [];
-        this.filteredUsers = [...this.arrayUsuarios];
-        this.totalPages = rta.pages;
-      },
-      (error) => {
-        console.error('Error al obtener usuarios:', error);
-      }
-    );
+    this.usuariosService
+      .getUsers(
+        this.currentPage,
+        this.perPage,
+        this.searchField,
+        this.searchQuery
+      )
+      .subscribe(
+        (rta: any) => {
+          console.log('Respuesta del API:', rta);
+          this.arrayUsuarios = rta.usuarios || [];
+          this.filteredUsers = [...this.arrayUsuarios];
+          this.totalPages = rta.pages;
+        },
+        (error) => {
+          console.error('Error al obtener prestamos:', error);
+        }
+      );
   }
 
   changePage(page: number, event: Event) {
@@ -45,19 +55,18 @@ export class AllusersComponent {
   }
 
   buscar() {
-    this.filteredUsers = this.arrayUsuarios.filter((user) =>
-      user.nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    this.currentPage = 1;
+    this.loadUsers();
   }
 
   editarusuario(user: any) {
     console.log('Editando usuario:', user);
   }
 
-  get admin_and_bibliotecary() {
+  get admin_and_librarian() {
     return (
       localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'bibliotecary'
+      localStorage.getItem('rol') === 'librarian'
     );
   }
 
@@ -65,14 +74,14 @@ export class AllusersComponent {
     return localStorage.getItem('rol') === 'admin';
   }
   deleteUsers(id: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este préstamo?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
       this.usuariosService.deleteUsers(id).subscribe(
         () => {
-          console.log(`Préstamo con id ${id} eliminado`);
-          this.loadUsers(); // Recargar la lista después de eliminar
+          console.log(`Usuario con id ${id} eliminado`);
+          this.loadUsers();
         },
         (error) => {
-          console.error('Error al eliminar el préstamo:', error);
+          console.error('Error al eliminar el usuario:', error);
         }
       );
     }

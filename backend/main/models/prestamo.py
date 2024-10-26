@@ -4,7 +4,6 @@ from flask import request, jsonify, Blueprint
 
 class Prestamos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # Estado, activo, inactivo, vencido --> enviar notificacion
     prestamo = db.Column(db.String(10), nullable=False)
     fecha_inicio = db.Column(db.String(100), nullable=False)
     fecha_vencimiento = db.Column(db.String(100), nullable=False)

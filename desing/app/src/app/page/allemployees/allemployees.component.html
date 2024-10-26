@@ -10,7 +10,8 @@
                 <div class="col-md-8 col-sm-12">
                     <ul class="list-group">
                         <li class="list-group align-items-center mb-2 mt-3">
-                            <div class="col-9 col-sm-10 d-flex">  
+                            <div class="col-9 col-sm-10 d-flex">
+                                  
                                 <input 
                                     type="text" 
                                     class="form-control w-100 me-2 flex-grow-1" 
@@ -42,15 +43,19 @@
                                 <i class="fas fa-user-circle"></i>
                             </div>
                             <div class="loan-details ms-3 flex-grow-1">
-                                <span>ID: {{ user.id }}</span>
-                                <span>Nombre: {{ user.nombre }}</span>
-                            </div>
+                                <li>
+                                    <span>ID: {{ user.id }}</span>
+                                </li>
+                                <li>
+                                    <span>Nombre: {{ user.nombre }}</span>
+                                </li>
+                                </div>
                             <div class="ms-auto">
                                 <button 
                                     class="edit-button btn btn-sm me-2" 
-                                    (click)="editarusuario(user)"
+                                    [routerLink]="['/usuario/editusers', user.id]"
                                 >
-                                    <i *ngIf="admin_and_bibliotecary" class="fa-solid fa-pen-to-square"></i>
+                                    <i *ngIf="admin_and_librarian" class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 
                                     class="delete-button btn btn-sm"

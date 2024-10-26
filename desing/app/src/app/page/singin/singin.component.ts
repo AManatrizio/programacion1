@@ -35,7 +35,9 @@ export class SinginComponent {
       this.authService.signup(this.signupForm.value).subscribe({
         next: (response: any) => {
           console.log('Respuesta del servidor: ', response);
-          alert('Usuario creado exitosamente. Inicie sesiòn');
+          alert(
+            'Usuario creado exitosamente. Aguarde autorizacion para desbloquear funcionalidades'
+          );
           this.router.navigateByUrl('/login');
         },
         error: (err: any) => {

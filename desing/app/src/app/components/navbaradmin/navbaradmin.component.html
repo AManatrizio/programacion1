@@ -3,16 +3,31 @@
   <div class="container-fluid">
 
       <a class="nav-link d-inline-block" type="button" routerLink="/menu" href="#">
-        <i class="fa-solid fa-bars" ></i> MENU
+        <i class="fa-solid fa-bars" style="font-size: 1.4rem;" ></i>
+        <span style="font-family: Montserrat, sans-serif; font-size: 1.3rem;"> Menù </span>
+
       </a>
+        <a class="nav-link d-inline-block" type="button" routerLink="/home" href="#">
+          <i class="fa-solid fa-book" style="font-size: 1.4rem;" ></i> 
+          <span style="font-size: 1.65rem;">  Letras Prestadas </span>
+
+        </a>
+
       <form *ngIf="ver" class="d-flex">
         <a *ngIf="!isToken" class="nav-link" routerLink="/login" href="#">
           <i class="bi bi-person-circle" style="font-size: 1.5rem; font-family: Monsterrat, sans-serif;"> Login</i>
       </a>
         <a *ngIf="isToken" class="nav-link" (click)="cerrarSesion()" href="#">
-            <i class="bi bi-person-circle" style="font-size: 1.5rem; font-family: Monsterrat, sans-serif;"> Cerrar sesión </i> 
-        </a>
+          <i *ngIf="is_librarian" class="fas fa-user-tie" style="font-size: 1.5rem;"></i> 
+          <i *ngIf="is_user" class="fas fa-user-circle" style="font-size: 1.5rem;"></i> 
+          <i *ngIf="is_admin" class="fas fa-crown" style="font-size: 1.5rem;"></i> 
+
+          <span style="font-family: Montserrat, sans-serif; font-size: 1.5rem;"> Cerrar sesión </span>
+                  </a>
       </form>
+
 
   </div>
 </nav>
+
+

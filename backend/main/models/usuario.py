@@ -1,7 +1,6 @@
 from .. import db
 from datetime import datetime
 
-# Importamos de python 2 funciones
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -19,17 +18,13 @@ class Usuarios(db.Model):
     notificacion = db.relationship(
         "Notificaciones", back_populates="usuario", cascade="all, delete-orphan")
 
-  # Getter de la contraseña plana no permite leerla
     @property
     def plain_password(self):
         raise AttributeError('Password cant be read')
-    # Setter de la contraseña toma un valor en texto plano
-    # calcula el hash y lo guarda en el atributo password
 
     @plain_password.setter
     def plain_password(self, password):
         self.password = generate_password_hash(password)
-    # compara una contraseña en texto plano con la hasheada para ver si son iguales
 
     def validate_pass(self, password):
         return check_password_hash(self.password, password)
@@ -59,16 +54,15 @@ class Usuarios(db.Model):
 
     @staticmethod
     def from_json(usuario_json):
-        id = usuario_json.get('id')
         nombre = usuario_json.get('nombre')
         telefono = usuario_json.get('telefono')
         email = usuario_json.get('email')
         password = usuario_json.get('password')
         rol = usuario_json.get('rol')
 
-        return Usuarios(id=id,
-                        nombre=nombre,
-                        telefono=telefono,
-                        email=email,
-                        plain_password=password,
-                        rol=rol)
+        return Usuarios(
+            nombre=nombre,
+            telefono=telefono,
+            email=email,
+            plain_password=password,
+            rol=rol)

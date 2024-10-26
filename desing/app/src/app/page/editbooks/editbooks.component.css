@@ -11,7 +11,7 @@
     background-image: linear-gradient(to right, #708BD0, #98a0ce);
     z-index: 2;
   } 
-
+  
   .square2 {
     position: absolute;
     align-items: center;
@@ -28,7 +28,7 @@
     flex-direction: column;
     border-radius: 50px, 50px, 0px, 0px;
   }  
-
+  
   
   .text {
     color: white;
@@ -54,10 +54,12 @@
   
   .card {
     background-color: #ddf8fa;
-    height: 70%;
+    height: 80%;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 5px;
+    margin-top: 110px; 
   }
+  
   
   .background-square {
     position: relative;

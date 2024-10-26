@@ -8,8 +8,8 @@ body {
 }
 
 .header-image {
-  width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-  height: auto; /* Mantiene la proporción de la imagen */
+  width: 100%; 
+  height: auto; 
 }
 
 .title {
@@ -27,7 +27,7 @@ body {
 }
 
 .list-group {
-  margin-top: 0px; /* Asegura que el contenido tenga algo de separación respecto a la imagen */
+  margin-top: 0px; 
 }
 
 
@@ -41,27 +41,28 @@ body {
   border-radius: 20px;
   margin-bottom: 10px;
   padding: 15px;
-}
+  width: 100%; 
 
+}
 .loan-details {
   display: flex;
   flex-direction: row;
-  gap: 20px; /* Ajusta este valor para más o menos separación */
+  gap: 20px; 
   color: #333;
-  align-items: center; /* Alinea verticalmente los textos */
+  align-items: center; 
   font-weight: bold;
 }
 
 .loan-details span {
-  margin-right: 60px; /* Espacio a la derecha de cada span */
+  margin-right: 60px; 
 }
 
 .loan-details span:last-child {
-  margin-right: 0; /* Elimina el margen derecho del último span */
+  margin-right: 0; 
 }
 
 .loan-details span:first-child {
-  margin-left: 20px; /* Elimina el margen derecho del último span */
+  margin-left: 20px; 
 }
 
 .user-img {
@@ -71,20 +72,20 @@ body {
 }
 
 .user-icon {
-  font-size: 50px; /* Tamaño del ícono */
-  color: #333; /* Color del ícono */
+  font-size: 50px; 
+  color: #333; 
 }
 
 .square3 {
-  font-size: 50px; /* Tamaño del ícono */
-  color: #333; /* Color del ícono */
+  font-size: 50px; 
+  color: #333; 
 }
 
 .loan-details {
   display: flex;
   flex-direction: row;
-  gap: 20px; /* Espacio entre los spans */
-  align-items: center; /* Alineación vertical */
+  gap: 20px; 
+  align-items: center; 
 }
 
 
@@ -109,9 +110,9 @@ body {
   width: 100%;
   height: 30%;
   display: flex;
-  background-image: url('../../../assets/header.jpg'); /* Cambia a tu ruta de imagen */
-  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-  background-position: center; /* Centra la imagen */
+  background-image: url('../../../assets/header.jpg');
+  background-size: cover; 
+  background-position: center; 
   z-index: 2;
   object-fit: cover;
   flex-direction: column;
@@ -157,12 +158,6 @@ body {
   z-index: 1;
 }
 
-/* .card {
-  background-color: #ddf8fa;
-  height: 70%;
-  width: 100%;
-  border-radius: 20px;
-} */
 
   
 .card {
@@ -174,9 +169,9 @@ body {
 }
 
 .card img {
-  max-width: 100%; /* La imagen ocupará el 100% del ancho del contenedor, pero no más */
-  height: auto;    /* Mantiene la proporción de la imagen */
-  border-radius: 10px; /* Si deseas un borde redondeado, ajusta este valor o elimínalo si no es necesario */
+  max-width: 100%; 
+  height: auto;    
+  border-radius: 10px; 
   width: 150px;
 }
   
@@ -251,38 +246,38 @@ body {
 }
 
 .edit-button {
-  background-color: var(--primary-color); /* Color verde para el botón de editar */
-  color: white; /* Texto blanco */
+  background-color: var(--primary-color); 
+  color: white; 
 }
 
 .delete-button {
-  background-color: var(--secondary-color); /* Color rojo para el botón de borrar */
-  color: white; /* Texto blanco */
+  background-color: var(--secondary-color); 
+  color: white; 
 }
 
 @media (max-width: 768px) {
   
   .list-group-item {
-    padding: 10px; /* Reducir el padding para móviles */
-    font-size: 0.9rem; /* Reducir el tamaño del texto */
+    padding: 10px; 
+    font-size: 0.9rem; 
   }
 
   .user-icon {
-    font-size: 30px; /* Reducir el tamaño del ícono */
+    font-size: 30px; 
   }
 
   .loan-details span {
-    margin-right: 20px; /* Ajustar el espacio entre los spans */
-    font-size: 0.8rem; /* Reducir el tamaño del texto */
+    margin-right: 20px; 
+    font-size: 0.8rem; 
   }
 
   .loan-details {
-    gap: 10px; /* Reducir el espacio entre los detalles del préstamo */
+    gap: 10px; 
   }
 
   .btn {
-    font-size: 0.8rem; /* Reducir el tamaño de los botones */
-    padding: 5px 10px; /* Ajustar el padding de los botones */
+    font-size: 0.8rem; 
+    padding: 5px 10px; 
   }
   
   .background-square .row{
@@ -290,3 +285,12 @@ body {
       height: 90%;
   }
 }
+
+@media (max-width: 576px) {
+  .loan-details {
+    flex-direction: column; 
+  }
+}
+
+
+

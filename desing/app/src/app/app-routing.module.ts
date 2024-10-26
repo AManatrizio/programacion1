@@ -13,13 +13,14 @@ import { AllusersComponent } from './page/allusers/allusers.component';
 import { AllbooksComponent } from './page/allbooks/allbooks.component';
 import { PerfilComponent } from './page/perfil/perfil.component';
 import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
-import { MybooksComponent } from './page/mybooks/mybooks.component';
 import { MyloansComponent } from './page/myloans/myloans.component';
 import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
 import { authsessionGuard } from './guards/authsession.guard';
-import { AddbooksComponent } from './components/addbooks/addbooks.component';
-import { AddloansComponent } from './components/addloans/addloans.component';
-import { EditloansComponent } from './components/editloans/editloans.component';
+import { AddbooksComponent } from './page/addbooks/addbooks.component';
+import { AddloansComponent } from './page/addloans/addloans.component';
+import { EditloansComponent } from './page/editloans/editloans.component';
+import { EditusersComponent } from './page/editusers/editusers.component';
+import { EditbooksComponent } from './page/editbooks/editbooks.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,8 +48,18 @@ const routes: Routes = [
     canActivate: [authsessionGuard],
   },
   {
-    path: 'prestamo/editloans',
+    path: 'prestamo/editloans/:id',
     component: EditloansComponent,
+    canActivate: [authsessionGuard],
+  },
+  {
+    path: 'usuario/editusers/:id',
+    component: EditusersComponent,
+    canActivate: [authsessionGuard],
+  },
+  {
+    path: 'libro/editbooks/:id',
+    component: EditbooksComponent,
     canActivate: [authsessionGuard],
   },
   {
@@ -78,12 +89,6 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
 
   { path: 'loginadmin', component: LoginadminComponent },
-
-  {
-    path: 'mybooks',
-    component: MybooksComponent,
-    canActivate: [authsessionGuard],
-  },
 
   {
     path: 'myloans',

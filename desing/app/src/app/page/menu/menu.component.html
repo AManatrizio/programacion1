@@ -1,5 +1,4 @@
-
-
+<app-navbaradmin></app-navbaradmin>
 <div class="container-flex">
     <div class="row justify-content-center align-items-center vh-100">
         <div class="background-square">
@@ -9,8 +8,8 @@
 
             <div class="d-grid gap-2 mt-5">
               <div class="row justify-content-center d-grid gap-2 mt-5">
-              <a *ngIf="admin_and_bibliotecary" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allloans" href="#">All loans</a>
-              <a *ngIf="admin_and_bibliotecary" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allusers" href="#">All users</a>
+              <a *ngIf="admin_and_librarian" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allloans" href="#">All loans</a>
+              <a *ngIf="admin_and_librarian" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allusers" href="#">All users</a>
               <a *ngIf="is_admin"  class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allemployees" href="#">All employees</a>
               <a class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allbooks" href="#">All Books</a>
               <a *ngIf="!isToken" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/welcome" href="#">Login / Sign In</a>

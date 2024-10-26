@@ -9,9 +9,14 @@
             <div class="row justify-content-center flex-grow-1">
                 <div class="col-md-8 col-sm-12">
                     <ul class="list-group">
-                        <li class="list-group align-items-center mb-2 mt-3">
+                        <li class="list-group align-items-center mb-2 mt-3" >
     
                             <div class="col-9 col-sm-10 d-flex">  
+                                <select [(ngModel)]="searchField" class="form-select">
+                                    <option value="genero">Género</option>
+                                    <option value="nombre">Título</option>
+                                    <option value="id">ID</option>
+                                </select>
                                 <input 
                                     type="text" 
                                     class="form-control w-100 me-2 flex-grow-1" 
@@ -45,7 +50,7 @@
                                 </nav>
                                 
                                 <a 
-                                *ngIf="admin_and_bibliotecary"    
+                                *ngIf="admin_and_librarian"    
                                 class="btn btn-primary ms-2" 
                                     routerLink="/libros/addbooks"
                                 >
@@ -60,7 +65,7 @@
                         >
                             <div class="book-icon">
                                 <img 
-                                  [src]="book.imagen_url || 'ruta-de-imagen-predeterminada.jpg'" 
+                                  [src]="book.imagen_url" 
                                   alt="Imagen del libro" 
                                   class="book-image" 
                                   width="50" 
@@ -73,14 +78,14 @@
                             </div>
                             <div class="ms-auto">
                                 <button 
-                                    *ngIf="admin_and_bibliotecary"    
+                                    *ngIf="admin_and_librarian"    
                                     class="edit-button btn btn-sm me-2" 
-                                    (click)="editarlibro(book)"
-                                >
+                                    [routerLink]="['/libro/editbooks', book.id]"
+                                    >
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 
-                                    *ngIf="admin_and_bibliotecary" 
+                                    *ngIf="admin_and_librarian" 
                                     class="delete-button btn btn-sm"
                                     (click)="deleteBook(book.id)"
                                 >

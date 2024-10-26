@@ -1,16 +1,20 @@
 <app-navbaradmin></app-navbaradmin>
 
-<div class="container-flex">
+<div class="container-fluid"> 
     <div class="row justify-content-center align-items-center vh-100">
         <div class="background-square">
             <div class="square2">
                 <h1 class="title">All Loans</h1>
             </div>
             <div class="row justify-content-center flex-grow-1">
-                <div class="col-md-8 col-sm-12">
+                <div class="col-lg-8 col-md-10 col-sm-12">
                     <ul class="list-group">
                         <li class="list-group align-items-center mb-2 mt-3">
                             <div class="col-9 col-sm-10 d-flex">  
+                                <select [(ngModel)]="searchField" class="form-select">
+                                    <option value="prestamo">Estado</option>
+                                    <option value="id">ID</option>
+                                </select>
                                 <input 
                                     type="text" 
                                     class="form-control w-100 me-2 flex-grow-1" 
@@ -58,21 +62,19 @@
                             </div>
                             
                             <div class="loan-details ms-3 flex-grow-1">
-                                <span>IdPrestamo: {{ loans.id }}</span>
                                 <span>Libro: {{ loans.libro_nombre }}</span> 
                                 <span>Usuario: {{ loans.usuario_nombre }}</span> 
-                                <span>Fecha : {{ loans.fecha_inicio }}</span>
                             </div>
                             <div class="ms-auto">
                                 <button 
-                                *ngIf="admin_and_bibliotecary" class="edit-button btn btn-sm me-2" 
-                                    routerLink="/prestamo/editloans"
+                                *ngIf="admin_and_librarian" class="edit-button btn btn-sm me-2" 
+                                [routerLink]="['/prestamo/editloans', loans.id]"
 
                                 >
                                     <i  class="fa-solid fa-pen-to-square"></i>
                                 </button>
                                 <button 
-                                *ngIf="admin_and_bibliotecary" class="delete-button btn btn-sm"
+                                *ngIf="admin_and_librarian" class="delete-button btn btn-sm"
                                 (click)="deleteLoan(loans.id)"
 
                                 >
