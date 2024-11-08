@@ -14,7 +14,7 @@ export class AllbooksComponent {
   searchField: string = 'nombre';
   perPage: number = 5;
   totalPages: number = 1;
-  book: any[] = [];
+  book: any = {};
 
   constructor(private booksService: BooksService) {}
 

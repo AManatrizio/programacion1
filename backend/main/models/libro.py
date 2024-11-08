@@ -40,6 +40,5 @@ class Libros(db.Model):
             'nombre': self.nombre,
             'genero': self.genero,
             'imagen_url': self.imagen_url,
-            'autores': [autor.to_json() for autor in self.autores]
         }
         return libro_json
