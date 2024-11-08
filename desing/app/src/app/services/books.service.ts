@@ -19,7 +19,7 @@ export class BooksService {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth_token}`,
+      // Authorization: `Bearer ${auth_token}`,
     });
 
     let params = new HttpParams()
@@ -40,7 +40,7 @@ export class BooksService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth_token}`,
+      // Authorization: `Bearer ${auth_token}`,
     });
 
     const requestOptions = { headers: headers };
@@ -57,7 +57,7 @@ export class BooksService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth_token}`,
+      // Authorization: `Bearer ${auth_token}`,
     });
 
     const requestOptions = { headers: headers };
@@ -70,7 +70,7 @@ export class BooksService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth_token}`,
+      // Authorization: `Bearer ${auth_token}`,
     });
 
     const requestOptions = { headers: headers };
@@ -82,7 +82,7 @@ export class BooksService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${auth_token}`,
+      // Authorization: `Bearer ${auth_token}`,
     });
 
     const requestOptions = { headers: headers };

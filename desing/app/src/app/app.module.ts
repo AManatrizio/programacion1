@@ -31,7 +31,8 @@ import { AddloansComponent } from './page/addloans/addloans.component';
 import { EditusersComponent } from './page/editusers/editusers.component';
 import { EditloansComponent } from './page/editloans/editloans.component';
 import { EditbooksComponent } from './page/editbooks/editbooks.component';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './services/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,13 @@ import { EditbooksComponent } from './page/editbooks/editbooks.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

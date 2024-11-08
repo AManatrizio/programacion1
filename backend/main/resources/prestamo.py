@@ -25,7 +25,7 @@ class Prestamo(Resource):
             claims = get_jwt()
             user_roles = claims.get('rol', [])
 
-            if current_identity == id_usuario or "admin" in user_roles:
+            if current_identity == id_usuario or "admin" in user_roles or "librarian" in user_roles:
                 return jsonify(prestamo.to_json())
             else:
                 return jsonify(prestamo.to_json_short())
