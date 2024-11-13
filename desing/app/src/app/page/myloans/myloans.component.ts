@@ -15,7 +15,7 @@ export class MyloansComponent {
   filteredPrestamos: any[] = [];
 
   currentPage = 1;
-  perPage = 5;
+  perPage = 4;
   totalPages = 1;
   searchQuery: string = '';
 

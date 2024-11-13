@@ -24,4 +24,12 @@ export class MenuComponent {
   get is_user() {
     return localStorage.getItem('rol') === 'user';
   }
+
+  get is_admin_librarian_user() {
+    return (
+      localStorage.getItem('rol') === 'admin' ||
+      localStorage.getItem('rol') === 'librarian' ||
+      localStorage.getItem('rol') === 'user'
+    );
+  }
 }

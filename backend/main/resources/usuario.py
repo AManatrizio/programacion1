@@ -61,8 +61,15 @@ class Usuario(Resource):
         try:
             usuario = db.session.query(UsuarioModel).get_or_404(id)
             data = request.get_json().items()
+            rol_original = usuario.rol
             for key, value in data:
                 setattr(usuario, key, value)
+
+            if rol_original == "null" and usuario.rol == "user":
+                print("Enviando correo de cambio de rol a:", usuario.email)
+                sendMail(
+                    [usuario.email], "Actualizacion del rol", "cambio_rol", usuario=usuario
+                )
             db.session.add(usuario)
             db.session.commit()
             return usuario.to_json(), 201

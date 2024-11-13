@@ -14,7 +14,7 @@
               <a class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/allbooks" href="#">All Books</a>
               <a *ngIf="!isToken" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/welcome" href="#">Login / Sign In</a>
               <a *ngIf="is_user" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/myloans" href="#">My loans</a>
-              <a class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/usuarios/me" href="#">Perfil</a>
+              <a  *ngIf="is_admin_librarian_user" class="btn btn-secondary btn-lg login-btn" type="button" routerLink="/usuarios/me" href="#">Perfil</a>
               <a class="btn btn-secondary btn-lg login-btn mt-5" type="button" routerLink="/home" href="#">
                 <i class="bi bi-arrow-90deg-left" style="font-size: 1.5rem;"> Back to Home </i>
               </a>
@@ -24,3 +24,5 @@
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+

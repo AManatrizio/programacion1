@@ -14,7 +14,7 @@ export class PerfilComponent {
   filteredUsers: any[] = [];
 
   currentPage = 1;
-  perPage = 5;
+  perPage = 4;
   totalPages = 1;
   searchQuery: string = '';
 

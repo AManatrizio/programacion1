@@ -11,7 +11,7 @@ export class BooksService {
 
   getBooks(
     page: number = 1,
-    perPage: number = 5,
+    perPage: number = 4,
     searchField: string = 'nombre',
     searchQuery: string = ''
   ) {

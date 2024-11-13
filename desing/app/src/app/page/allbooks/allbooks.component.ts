@@ -12,9 +12,9 @@ export class AllbooksComponent {
   searchQuery: string = '';
   currentPage: number = 1;
   searchField: string = 'nombre';
-  perPage: number = 5;
+  perPage: number = 4;
   totalPages: number = 1;
-  book: any = {};
+  books: any = {};
 
   constructor(private booksService: BooksService) {}
 
