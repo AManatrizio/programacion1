@@ -14,7 +14,7 @@ export class AllemployeesComponent {
   searchQuery: string = '';
   searchField: string = 'nombre';
   currentPage: number = 1;
-  perPage: number = 5;
+  perPage: number = 105;
   totalPages: number = 1;
   constructor(
     private router: Router,

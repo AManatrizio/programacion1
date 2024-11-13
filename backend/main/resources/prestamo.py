@@ -78,7 +78,7 @@ class Prestamos(Resource):
     @role_required(['admin', "user", "librarian"])
     def get(self):
         page = 1
-        per_page = 5
+        per_page = 4
         prestamos = db.session.query(PrestamoModel)
         current_identity = get_jwt_identity()
         user_rol = get_jwt()['rol']

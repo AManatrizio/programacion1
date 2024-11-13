@@ -12,7 +12,7 @@ export class LoansService {
 
   getLoans(
     page: number = 1,
-    perPage: number = 5,
+    perPage: number = 4,
     searchField: string = 'prestamo',
     searchQuery: string = ''
   ) {

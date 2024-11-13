@@ -13,7 +13,7 @@ export class AllloansComponent {
   searchQuery: string = '';
   searchField: string = 'prestamo';
   currentPage: number = 1;
-  perPage: number = 5;
+  perPage: number = 4;
   totalPages: number = 1;
 
   loans: any[] = [];

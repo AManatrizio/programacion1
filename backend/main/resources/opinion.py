@@ -6,6 +6,7 @@ from .. import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 
+
 class Opinion(Resource):
     @jwt_required(optional=True)
     def get(self, id):
@@ -14,7 +15,7 @@ class Opinion(Resource):
             return opinion.to_json()
         except Exception:
             abort(500, message=str("Error 404: el id de la opinion no existe"))
-    
+
     @role_required(["admin"])
     def delete(self, id):
         try:
@@ -26,22 +27,23 @@ class Opinion(Resource):
                 return 'La opinion fue borrada de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str("404 Not Found: No se encuentra la opinion para eliminar. El ID no existe"))
-    
+            abort(500, message=str(
+                "404 Not Found: No se encuentra la opinion para eliminar. El ID no existe"))
+
     @role_required(['user'])
     def put(self, id):
         try:
             opinion = db.session.query(OpinionModel).get_or_404(id)
             data = request.get_json().items()
-            for key , value in data:
+            for key, value in data:
                 setattr(opinion, key, value)
             db.session.add(opinion)
             db.session.commit()
             return opinion.to_json(), 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str("Error 404 Not Found: No se encuentra la opinion para modificar"))
-  
+            abort(500, message=str(
+                "Error 404 Not Found: No se encuentra la opinion para modificar"))
 
 
 class Opiniones(Resource):
@@ -50,25 +52,27 @@ class Opiniones(Resource):
         page = 1
         per_page = 5
         opiniones = db.session.query(OpinionModel)
-            
+
         if request.args.get('page'):
             page = int(request.args.get('page'))
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
-        
+
         if request.args.get('valoracion'):
             cant_ast = int(request.args.get('valoracion'))
             valoracion_a_buscar = '*' * cant_ast
-            opiniones = opiniones.filter(OpinionModel.valoracion == valoracion_a_buscar)
-        
-        opiniones = opiniones.paginate(page=page, per_page=per_page, error_out=True)
+            opiniones = opiniones.filter(
+                OpinionModel.valoracion == valoracion_a_buscar)
+
+        opiniones = opiniones.paginate(
+            page=page, per_page=per_page, error_out=True)
 
         return jsonify({'opiniones': [opinion.to_json() for opinion in opiniones],
-                  'total': opiniones.total,
-                  'pages': opiniones.pages,
-                  'page': page
-                })
-        
+                        'total': opiniones.total,
+                        'pages': opiniones.pages,
+                        'page': page
+                        })
+
     @role_required(["user"])
     def post(self):
         data = request.get_json()
@@ -87,7 +91,6 @@ class Opiniones(Resource):
         db.session.commit()
         opinion_json = [opinion.to_json() for opinion in opinion_list]
         return opinion_json, 201
-
 
     def verificacion(self, opinion, tabla):
         for i in tabla:

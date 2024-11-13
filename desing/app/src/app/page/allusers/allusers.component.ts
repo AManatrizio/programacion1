@@ -13,7 +13,7 @@ export class AllusersComponent {
   searchQuery: string = '';
   searchField: string = 'nombre';
   currentPage: number = 1;
-  perPage: number = 5;
+  perPage: number = 4;
   totalPages: number = 1;
 
   constructor(private usuariosService: UsuariosService) {}

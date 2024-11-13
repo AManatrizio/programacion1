@@ -14,19 +14,34 @@
                   <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrese su nombre">
+                    <div *ngIf="signupForm.get('nombre')?.hasError('required') && signupForm.get('nombre')?.touched" class="text-danger">
+                      El nombre es requerido.
+                    </div>
                   </div>
                   <div class="mb-3">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="text" formControlName="telefono" class="form-control" placeholder="Ingrese su telefono">
-                  </div>
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" formControlName="telefono" class="form-control" placeholder="Ingrese su teléfono">
+                    <div *ngIf="signupForm.get('telefono')?.hasError('minlength') && signupForm.get('telefono')?.touched" class="text-danger">
+                      El teléfono debe tener al menos 10 dígitos.
+                    </div>
+                    <div *ngIf="signupForm.get('telefono')?.hasError('required') && signupForm.get('telefono')?.touched" class="text-danger">
+                      El teléfono es requerido.
+                    </div>
+                  </div>                  
                   <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" formControlName="password" class="form-control" placeholder="Ingrese su contraseña">
+                    <div *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched" class="text-danger">
+                      Contrasena es requerida.
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirmar Password</label>
                     <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirme su contraseña">
-                  </div>
+                    <div *ngIf="signupForm.hasError('mismatch') && signupForm.get('confirmPassword')?.touched" class="text-danger">
+                      Las contraseñas no coinciden.
+                    </div>
+                  </div>                  
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" formControlName="email" class="form-control" placeholder="Ingrese su email">
