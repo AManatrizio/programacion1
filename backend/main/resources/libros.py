@@ -1,6 +1,6 @@
 from flask_restful import Resource, abort
 from flask import request, jsonify
-from main.models import LibroModel, AutorModel
+from main.models import LibroModel, StockModel
 from .. import db
 from .exception import IdEnUso
 from flask_jwt_extended import jwt_required
@@ -93,15 +93,20 @@ class Libros(Resource):
             data = [data]
 
         for libro_data in data:
-            libros = LibroModel.from_json(libro_data)
             try:
-                tabla = LibroModel.query.all()
-            except Exception as e:
-                return {'error': str(e)}, 403
+                libro = LibroModel.from_json(libro_data)
+                db.session.add(libro)
+                db.session.flush()  # Asegurarnos de obtener el ID del libro
 
-            db.session.add(libros)
-            libros_list.append(libros)
+                stock_inicial = libro_data.get('stock', 5)
+                stock = StockModel(libro_id=libro.id, cantidad=stock_inicial)
+                db.session.add(stock)
+
+                libros_list.append(libro)
+            except Exception as e:
+                db.session.rollback()
+                return {'error': str(e)}, 403
 
         db.session.commit()
         libros_json = [libro.to_json() for libro in libros_list]
-        return libros_json, 201
+        return libro.to_json(), 201

@@ -27,7 +27,12 @@
                                       </div>
                                       <div class="mb-3">
                                         <label for="rol" class="form-label">Rol</label>
-                                        <input type="text" formControlName="rol" class="form-control" placeholder="Rol">
+                                        <select formControlName="rol" class="form-select">
+                                            <option value="null">Null</option>
+                                            <option value="librarian">Librarian</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="user">User</option>
+                                          </select>
                                       </div>
                                       <div class="d-grid gap-2">
                                         <button type="submit()" class="btn btn-secondary btn-lg signin-btn">Guardar Cambios</button>

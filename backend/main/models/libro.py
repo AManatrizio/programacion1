@@ -20,6 +20,9 @@ class Libros(db.Model):
     prestamo = db.relationship(
         "Prestamos", back_populates="libro", cascade="all, delete-orphan")
 
+    stock = db.relationship(
+        "Stock", uselist=False, back_populates="libro", cascade="all, delete-orphan")
+
     def __repr__(self):
         return ('<Libro: %r >' % (self.nombre))
 
@@ -40,5 +43,7 @@ class Libros(db.Model):
             'nombre': self.nombre,
             'genero': self.genero,
             'imagen_url': self.imagen_url,
+            'stock': self.stock.cantidad if self.stock else None
+
         }
         return libro_json

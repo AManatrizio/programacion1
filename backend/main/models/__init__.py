@@ -6,3 +6,4 @@ from .prestamo import Prestamos as PrestamoModel
 from .autor import Autores as AutorModel
 from .opinion import Opiniones as OpinionModel
 from .libro import autor_libro as autor_libroModel
+from .stock import Stock as StockModel

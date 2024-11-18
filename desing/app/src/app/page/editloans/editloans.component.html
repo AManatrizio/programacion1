@@ -12,17 +12,12 @@
               <div class="row-md-4">
                 <div class="card">
                   <div class="mb-3">
-                    <label for="prestamo" class="form-label">Estado</label>
-                    <input type="text" formControlName="prestamo" class="form-control" placeholder="Estado del préstamo">
-                  </div>
-                  <div class="mb-3">
-                    <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
-                    <input type="text" formControlName="fecha_inicio" class="form-control" placeholder="Fecha de inicio">
-                  </div>
-                  <div class="mb-3">
-                    <label for="fecha_vencimiento" class="form-label">Fecha Vencimiento</label>
-                    <input type="text" formControlName="fecha_vencimiento" class="form-control" placeholder="Fecha de vencimiento">
-                  </div>
+                    <label for="estado" class="form-label">Estado</label>
+                    <select formControlName="estado" class="form-select">
+                      <option value="En uso">En uso</option>
+                      <option value="Finalizado">Finalizado</option>
+                    </select>
+                  </div>                  
                   <div class="mb-3">
                     <label for="usuario_id" class="form-label">ID Usuario</label>
                     <input type="text" formControlName="usuario_id" class="form-control" placeholder="ID usuario asociado">

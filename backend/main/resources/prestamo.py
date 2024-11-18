@@ -2,7 +2,7 @@ from flask_jwt_extended import get_jwt, jwt_required, get_jwt_identity
 from main.auth.decorators import role_required
 from flask_restful import Resource, abort
 from flask import request, jsonify, Blueprint
-from main.models import PrestamoModel, LibroModel, UsuarioModel
+from main.models import PrestamoModel, LibroModel, UsuarioModel, StockModel
 from .. import db
 
 
@@ -36,20 +36,27 @@ class Prestamo(Resource):
     def delete(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
+
+            # Recuperar el stock del libro asociado y aumentar la cantidad
+            stock = db.session.query(StockModel).filter_by(
+                libro_id=prestamo.libro_id).first()
+            if stock:
+                stock.cantidad += 1
+
             db.session.delete(prestamo)
             db.session.commit()
-            return 'El prestamo fue borrado de manera satisfactoria', 201
+            return 'El préstamo fue borrado de manera satisfactoria', 201
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str(
-                "404 Not Found: No se encuentra el prestamo para eliminar. El ID no existe"))
+            abort(500, message=str("Error al eliminar el préstamo: " + str(e)))
 
     @role_required(roles=['admin', "librarian"])
     def put(self, id):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
-
+            estado_anterior = prestamo.estado
             data = request.get_json()
+            nuevo_estado = data.get('estado')
 
             libro_id = data.get('libro_id')
             if not db.session.query(LibroModel).get(libro_id):
@@ -63,6 +70,13 @@ class Prestamo(Resource):
 
             for key, value in data.items():
                 setattr(prestamo, key, value)
+
+            if estado_anterior == "En uso" and nuevo_estado == "Finalizado":
+                stock = db.session.query(StockModel).filter_by(
+                    libro_id=prestamo.libro_id).first()
+                if stock:
+                    stock.cantidad = stock.cantidad + 1
+                    db.session.add(stock)
 
             db.session.add(prestamo)
             db.session.commit()
@@ -88,9 +102,9 @@ class Prestamos(Resource):
         if request.args.get('per_page'):
             per_page = int(request.args.get('per_page'))
 
-        if request.args.get('prestamo'):
-            prestamos = prestamos.filter(PrestamoModel.prestamo.like(
-                "%"+request.args.get('prestamo')+"%"))
+        if request.args.get('estado'):
+            prestamos = prestamos.filter(PrestamoModel.estado.like(
+                "%"+request.args.get('estado')+"%"))
 
         if request.args.get('id'):
             prestamo_id = request.args.get('id')
@@ -108,10 +122,10 @@ class Prestamos(Resource):
         return jsonify({
             'prestamos': [{
                 'id': prestamo.id,
-                'prestamo': prestamo.prestamo,
+                'estado': prestamo.estado,
                 'fecha_inicio': prestamo.fecha_inicio,
                 'fecha_vencimiento': prestamo.fecha_vencimiento,
-                'usuario_nombre': prestamo.usuario.nombre,
+                'usuario_nombre_completo': prestamo.usuario.nombre_completo,
                 'libro_nombre': prestamo.libro.nombre
             } for prestamo in prestamos.items],
             'total': prestamos.total,
@@ -119,20 +133,32 @@ class Prestamos(Resource):
             'page': page
         })
 
-    @role_required(roles=["librarian", "admin"])
+    @role_required(['admin', "user", "librarian"])
     def post(self):
-        data = request.get_json()
-        if isinstance(data, dict):
-            data = [data]
-        prestamos_list = []
-        for prestamo_data in data:
-            prestamo = PrestamoModel.from_json(prestamo_data)
-            try:
-                tabla = PrestamoModel.query.all()
-            except Exception as e:
-                return {'error': str(e)}, 403
-            db.session.add(prestamo)
-            prestamos_list.append(prestamo)
-        db.session.commit()
-        prestamos_json = [prestamo.to_json() for prestamo in prestamos_list]
-        return prestamos_json, 201
+        try:
+            data = request.get_json()
+            libro_id = data.get('libro_id')
+            if not db.session.query(LibroModel).get(libro_id):
+                abort(404, message="El libro con el ID proporcionado no existe")
+
+            # Verificar si hay stock disponible
+            stock = db.session.query(StockModel).filter_by(
+                libro_id=libro_id).first()
+            if not stock or stock.cantidad <= 0:
+                raise LibroNoDisponible(
+                    "No hay stock disponible para el libro solicitado")
+
+            # Crear el préstamo
+            nuevo_prestamo = PrestamoModel.from_json(data)
+            db.session.add(nuevo_prestamo)
+
+            # Reducir el stock en 1
+            stock.cantidad -= 1
+            db.session.commit()
+
+            return nuevo_prestamo.to_json(), 201
+        except LibroNoDisponible as e:
+            return {'message': str(e)}, 400
+        except Exception as e:
+            db.session.rollback()
+            return {'message': str(e)}, 500

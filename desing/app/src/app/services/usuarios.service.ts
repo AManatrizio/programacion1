@@ -88,4 +88,14 @@ export class UsuariosService {
       requestOptions
     );
   }
+
+  getUsersByRole(role: string): Observable<any[]> {
+    const headers = new HttpHeaders({
+      // 'Authorization': `Bearer ${token}`
+    });
+
+    return this.httpClient.get<any[]>(`${this.url}?role=${role}`, {
+      headers,
+    });
+  }
 }

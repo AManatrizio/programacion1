@@ -63,7 +63,7 @@ const routes: Routes = [
     canActivate: [authsessionGuard],
   },
   {
-    path: 'prestamos/addloans',
+    path: 'prestamos/addloans/:id',
     component: AddloansComponent,
     canActivate: [authsessionGuard],
   },

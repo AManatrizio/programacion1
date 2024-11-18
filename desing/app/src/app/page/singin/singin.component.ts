@@ -18,7 +18,7 @@ export class SinginComponent {
   ) {
     this.signupForm = this.formBuilder.group(
       {
-        nombre: ['', Validators.required],
+        nombre_completo: ['', Validators.required],
         telefono: ['', [Validators.required, Validators.minLength(10)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(3)]],
