@@ -9,72 +9,82 @@
             <div class="row justify-content-center flex-grow-1">
                 <div class="col-md-8 col-sm-12">
                     <ul class="list-group">
-                        <li class="list-group align-items-center mb-2 mt-3" >
-    
-                            <div class="col-9 col-sm-10 d-flex">  
+                        <li class="list-group align-items-center mb-2 mt-3">
+                            <div class="col-9 col-sm-10 d-flex">
                                 <select [(ngModel)]="searchField" class="form-select">
                                     <option value="genero">Género</option>
                                     <option value="nombre">Título</option>
                                     <option value="id">ID</option>
                                 </select>
-                                <input 
-                                    type="text" 
-                                    class="form-control w-100 me-2 flex-grow-1" 
-                                    placeholder="Buscar Libro..." 
+                                <input
+                                    type="text"
+                                    class="form-control w-100 me-2 flex-grow-1"
+                                    placeholder="Buscar Libro..."
                                     [(ngModel)]="searchQuery"
                                     (input)="buscar()"
                                 />
-
-                                <button 
-                                    class="btn btn-outline-secondary" 
-                                    type="button" 
+                                <button
+                                    class="btn btn-outline-secondary"
+                                    type="button"
                                     (click)="buscar()"
                                 >
                                     <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>   
-                                
-                                <a 
-                                *ngIf="admin_and_librarian"    
-                                class="btn btn-primary ms-2" 
+                                </button>
+                                <button
+                                    *ngIf="admin_and_librarian"
+                                    class="btn btn-success btn-sm me-2"
                                     routerLink="/libros/addbooks"
                                 >
                                     <i class="fa-solid fa-plus"></i>
-                                </a>
+                                </button>
                             </div>
                         </li>
-
-                        <li 
-                            class="list-group-item d-flex align-items-center" 
+                        <li
+                            class="list-group-item d-flex align-items-center"
                             *ngFor="let book of filteredBooks"
                         >
                             <div class="book-icon">
-                                <img 
-                                  [src]="book.imagen_url" 
-                                  alt="Imagen del libro" 
-                                  class="book-image" 
-                                  width="50" 
-                                  height="75"
+                                <img
+                                    [src]="book.imagen_url"
+                                    alt="Imagen del libro"
+                                    class="book-image"
+                                    width="50"
+                                    height="75"
                                 />
                             </div>
                             <div class="loan-details ms-3 flex-grow-1">
-                                <span>IdLibro: {{ book.id }}</span>
-                                <span>Nombre: {{ book.nombre }}</span>
+                                <span>IdLibro {{ book.id }}</span>
+                                <span>Nombre {{ book.nombre }}</span>
+                                <span>Stock {{ book.stock }}</span>
                             </div>
                             <div class="ms-auto">
-                                <button 
-                                    *ngIf="admin_and_librarian"    
-                                    class="edit-button btn btn-sm me-2" 
+                                <button
+                                    *ngIf="admin_and_librarian"
+                                    class="edit-button btn btn-sm me-2"
                                     [routerLink]="['/libro/editbooks', book.id]"
-                                    >
+                                >
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
-                                <button 
-                                    *ngIf="admin_and_librarian" 
+                                <button
+                                    *ngIf="admin_and_librarian"
+                                    class="btn btn-success btn-sm me-2"
+                                    [routerLink]="['/prestamos/addloans', book.id]"
+                                >
+                                    <i class="bi bi-check-circle"></i>
+                                </button>
+                                <button
+                                    *ngIf="admin_and_librarian"
                                     class="delete-button btn btn-sm"
                                     (click)="deleteBook(book.id)"
                                 >
                                     <i class="fa-solid fa-trash"></i>
-                                </button>               
+                                </button>
+                                <button
+                                class="btn btn-primary btn-sm me-2"
+                                (click)="verResenas(book.id)"
+                            >
+                                Ver Reseñas
+                            </button>
                             </div>
                         </li>
                     </ul>
@@ -83,11 +93,9 @@
                             <li class="page-item" [class.disabled]="currentPage === 1">
                                 <a class="page-link" href="#" (click)="changePage(currentPage - 1, $event)">Anterior</a>
                             </li>
-
                             <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
                                 <a class="page-link" href="#" (click)="changePage(i + 1, $event)">{{ i + 1 }}</a>
                             </li>
-
                             <li class="page-item" [class.disabled]="currentPage === totalPages">
                                 <a class="page-link" href="#" (click)="changePage(currentPage + 1, $event)">Siguiente</a>
                             </li>

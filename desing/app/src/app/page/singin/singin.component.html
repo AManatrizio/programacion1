@@ -12,9 +12,9 @@
               <div class="card">
                 <div class="card-body">
                   <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrese su nombre">
-                    <div *ngIf="signupForm.get('nombre')?.hasError('required') && signupForm.get('nombre')?.touched" class="text-danger">
+                    <label for="nombre_completo" class="form-label">Nombre</label>
+                    <input type="text" formControlName="nombre_completo" class="form-control" placeholder="Ingrese su nombre">
+                    <div *ngIf="signupForm.get('nombre_completo')?.hasError('required') && signupForm.get('nombre_completo')?.touched" class="text-danger">
                       El nombre es requerido.
                     </div>
                   </div>

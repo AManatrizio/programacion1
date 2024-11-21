@@ -1,40 +1,35 @@
 from .. import db
 
-opinion_prestamo = db.Table(
-    'opinion_prestamo',
-    db.Column('opinion', db.Integer, db.ForeignKey("opiniones.id"), primary_key = True),
-    db.Column('prestamo', db.Integer, db.ForeignKey("prestamos.id"), primary_key = True)
-    )
 
 class Opiniones(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    comentario = db.Column(db.String(300), nullable = False)
-    valoracion = db.Column(db.String(5), nullable = False)
-    prestamo_id = db.Column(db.Integer, db.ForeignKey("prestamos.id"), nullable = False)
-    
-    prestamos = db.relationship('Prestamos', uselist = True, secondary = opinion_prestamo, backref = db.backref('opiniones', lazy = 'dynamic'))
+    id = db.Column(db.Integer, primary_key=True)
+    comentario = db.Column(db.String(300), nullable=False)
+    valoracion = db.Column(db.Integer, nullable=False)
+    prestamo_id = db.Column(db.Integer, db.ForeignKey(
+        "prestamos.id"), nullable=False)
+
+    prestamos = db.relationship("Prestamos", back_populates="opinion")
 
     def __repr__(self):
-        return ('<Comentario: %r >' % (self.comentario) )
+        return f"<Opinion: {self.valoracion} - {self.comentario}>"
 
     def to_json(self):
-        opinion_json = {
+        return {
             'id': self.id,
-            'comentario': str(self.comentario),
-            'valoracion': str(self.valoracion),
-            'prestamo_id': int(self.prestamo_id),
-            'libro_y_usuario': [prestamo.to_json_short() for prestamo in self.prestamos]
-
+            'comentario': self.comentario,
+            'valoracion': self.valoracion,
+            'prestamo_id': self.prestamo_id
         }
-        return opinion_json
-    
+
     @staticmethod
     def from_json(opinion_json):
-        id = opinion_json.get('id')
-        comentario = opinion_json.get('comentario')
         valoracion = opinion_json.get('valoracion')
-        prestamo_id = opinion_json.get('prestamo_id')
-        return Opiniones(id = id,
-                       comentario = comentario,
-                       valoracion = valoracion,
-                       prestamo_id = prestamo_id,)
+        if not isinstance(valoracion, int) or not (1 <= valoracion <= 5):
+            raise ValueError(
+                'La valoración debe ser un número entero entre 1 y 5.')
+
+        return Opiniones(
+            comentario=opinion_json.get('comentario'),
+            valoracion=opinion_json.get('valoracion'),
+            prestamo_id=opinion_json.get('prestamo_id')
+        )

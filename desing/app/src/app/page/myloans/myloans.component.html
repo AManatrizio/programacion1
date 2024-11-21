@@ -38,9 +38,24 @@
                             <i class="bi bi-file-text"></i>
                         </div>
                             <div class="loan-details ms-3 flex-grow-1">
-                                <span>IdPrestamo: {{ loans.id }}</span>
                                 <span>Libro: {{ loans.libro_nombre }}</span> 
-                                <span>Fecha: {{ loans.fecha_inicio }}</span>
+                                <span>Fecha Venc: {{ loans.fecha_vencimiento }}</span>
+                                <span>Estado: {{ loans.estado }}</span>
+                                <button
+                                *ngIf="loans.estado === 'Finalizado' && !tieneOpinion(loans.id)"
+                                class="btn btn-primary"
+                                [routerLink]="['/opiniones/addopinion', loans.id]"
+                              >
+                              <i class="bi bi-star-fill"></i>
+                            </button>
+                            <button
+                                *ngIf="loans.estado === 'Finalizado' && tieneOpinion(loans.id)"
+                                class="btn btn-warning btn-sm me-2"
+                                [routerLink]="['/opinion/editopinion', loans.id]"
+                                style="position: relative;">
+                                <i class="bi bi-star-fill" style="color: rgb(255, 255, 255); font-size: 20px;"></i>
+                                <i class="fa-solid fa-pen-to-square" style="position: absolute; top: 0; right: 0; color: black; font-size: 12px;"></i>
+                                </button>
                             </div>
                         </li>
                     </ul>

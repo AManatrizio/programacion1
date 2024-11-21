@@ -135,3 +135,62 @@ body, html {
   color: white; 
 }
 
+
+.carousel-container {
+  margin: 20px auto;
+}
+
+.carousel-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.book-card {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff6f61;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.book-image {
+  max-height: 300px; /* Ajusta el tamaño de las imágenes */
+  margin-bottom: 15px;
+  object-fit: contain;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.book-info {
+  text-align: center;
+}
+
+.book-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.book-rating {
+  font-size: 1rem;
+  color: #555;
+}
+
+.star-icon {
+  color: gold;
+  font-size: 1.2rem;
+  margin-left: 5px;
+}

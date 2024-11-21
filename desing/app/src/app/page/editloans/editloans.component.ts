@@ -3,6 +3,7 @@ import { BooksService } from '../../services/books.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoansService } from '../../services/loans.service';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-editloans',
@@ -16,13 +17,12 @@ export class EditloansComponent {
   constructor(
     private fb: FormBuilder,
     private loansService: LoansService,
+    private usuarioService: UsuariosService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.editLoanForm = this.fb.group({
-      prestamo: ['', Validators.required],
-      fecha_inicio: ['', Validators.required],
-      fecha_vencimiento: ['', Validators.required],
+      estado: ['', Validators.required],
       usuario_id: ['', Validators.required],
       libro_id: ['', Validators.required],
     });
@@ -33,7 +33,7 @@ export class EditloansComponent {
 
     this.loansService.getLoanById(this.loanId).subscribe((loan) => {
       this.editLoanForm.patchValue({
-        prestamo: loan.prestamo,
+        estado: loan.estado,
         fecha_inicio: loan.fecha_inicio,
         fecha_vencimiento: loan.fecha_vencimiento,
         usuario_id: loan.usuario_id,

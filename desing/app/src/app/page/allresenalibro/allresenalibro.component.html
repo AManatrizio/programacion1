@@ -1,0 +1,29 @@
+<app-navbaradmin></app-navbaradmin>
+
+<div class="container my-4">
+    <h2 class="text-center mb-4">Reseñas del Libro</h2>
+    <div *ngFor="let resena of resenas" class="card shadow-sm mb-4">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <div class="user-icon me-3">
+            <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Avatar Usuario" class="rounded-circle" />
+        </div>
+          <h5 class="mb-0">{{ resena.usuario }}</h5>
+        </div>
+        <p class="card-text"><strong>Comentario:</strong></p>
+        <p class="card-text">{{ resena.comentario }}</p>
+        <p class="card-text">
+          <strong>Valoración:</strong>
+          <span class="text-warning">
+            <ng-container *ngFor="let star of [].constructor(resena.valoracion)">
+              <i class="fa fa-star"></i>
+            </ng-container>
+            <ng-container *ngFor="let emptyStar of [].constructor(5 - resena.valoracion)">
+              <i class="fa fa-star-o"></i>
+            </ng-container>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  

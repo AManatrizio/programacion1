@@ -70,6 +70,12 @@ class Usuario(Resource):
                 sendMail(
                     [usuario.email], "Actualizacion del rol", "cambio_rol", usuario=usuario
                 )
+
+            elif rol_original == "user" and usuario.rol == "null":
+                print("Enviando correo de cambio de rol a:", usuario.email)
+                sendMail(
+                    [usuario.email], "Solicitud devolucion de libro", "devolucion_libro", usuario=usuario
+                )
             db.session.add(usuario)
             db.session.commit()
             return usuario.to_json(), 201
@@ -99,7 +105,7 @@ class Usuarios(Resource):
             usuarios = usuarios.filter(UsuarioModel.id == usuario_id)
 
         if request.args.get('nombre'):
-            usuarios = usuarios.filter(UsuarioModel.nombre.like(
+            usuarios = usuarios.filter(UsuarioModel.nombre_completo.like(
                 "%"+request.args.get('nombre')+"%"))
 
         if request.args.get('rol'):

@@ -9,12 +9,16 @@ from main.auth.decorators import role_required
 
 class Opinion(Resource):
     @jwt_required(optional=True)
-    def get(self, id):
+    def get(self, prestamo_id):
         try:
-            opinion = db.session.query(OpinionModel).get_or_404(id)
+            print(f"Solicitando opinión para préstamo ID: {prestamo_id}")
+            opinion = db.session.query(OpinionModel).filter_by(
+                prestamo_id=prestamo_id).first_or_404()
             return opinion.to_json()
-        except Exception:
-            abort(500, message=str("Error 404: el id de la opinion no existe"))
+        except Exception as e:
+            print(f"Error al obtener la opinión: {str(e)}")
+            abort(
+                500, message="Error 404: No se encontró la opinión asociada al préstamo.")
 
     @role_required(["admin"])
     def delete(self, id):
@@ -31,19 +35,26 @@ class Opinion(Resource):
                 "404 Not Found: No se encuentra la opinion para eliminar. El ID no existe"))
 
     @role_required(['user'])
-    def put(self, id):
+    def put(self, prestamo_id):
         try:
-            opinion = db.session.query(OpinionModel).get_or_404(id)
-            data = request.get_json().items()
-            for key, value in data:
-                setattr(opinion, key, value)
+            opinion = db.session.query(OpinionModel).filter_by(
+                prestamo_id=prestamo_id).first_or_404()
+            data = request.get_json()
+            print(f"Datos recibidos: {data}")
+
+            if 'comentario' in data:
+                opinion.comentario = data['comentario']
+            if 'valoracion' in data:
+                opinion.valoracion = int(data['valoracion'])
+
             db.session.add(opinion)
             db.session.commit()
             return opinion.to_json(), 201
+
         except Exception as e:
             db.session.rollback()
-            abort(500, message=str(
-                "Error 404 Not Found: No se encuentra la opinion para modificar"))
+            print(f"Error al procesar PUT: {str(e)}")
+            abort(500, message="Error interno del servidor")
 
 
 class Opiniones(Resource):
@@ -73,30 +84,26 @@ class Opiniones(Resource):
                         'page': page
                         })
 
-    @role_required(["user"])
-    def post(self):
+    @role_required(['user'])
+    def post(self, prestamo_id):
         data = request.get_json()
-        if isinstance(data, dict):
-            data = [data]
-        opinion_list = []
-        for opinion_data in data:
-            opinion = OpinionModel.from_json(opinion_data)
-            try:
-                tabla = OpinionModel.query.all()
-                self.verificacion(opinion_data, tabla)
-            except Exception as e:
-                return {'error': str(e)}, 403
-            db.session.add(opinion)
-            opinion_list.append(opinion)
-        db.session.commit()
-        opinion_json = [opinion.to_json() for opinion in opinion_list]
-        return opinion_json, 201
 
-    def verificacion(self, opinion, tabla):
-        for i in tabla:
-            id = i.id
-            id_nuevo = opinion['id']
-            if id == id_nuevo:
-                raise IdEnUso('El ID esta en uso')
-            else:
-                return None
+        if 'comentario' not in data or 'valoracion' not in data:
+            return {'error': 'Faltan campos obligatorios (comentario, valoracion).'}, 400
+
+        usuario_id = get_jwt_identity()
+
+        prestamo = PrestamoModel.query.get_or_404(prestamo_id)
+
+        if prestamo.usuario_id != usuario_id:
+            return {'error': 'No puedes emitir una opinión sobre un préstamo que no te pertenece.'}, 403
+
+        if prestamo.opinion:
+            return {'message': 'Este préstamo ya tiene una opinión asociada.'}, 400
+
+        opinion = OpinionModel.from_json(data)
+        opinion.prestamo_id = prestamo_id
+        db.session.add(opinion)
+        db.session.commit()
+
+        return opinion.to_json(), 201

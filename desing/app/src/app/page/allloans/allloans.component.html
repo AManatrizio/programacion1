@@ -12,8 +12,9 @@
                         <li class="list-group align-items-center mb-2 mt-3">
                             <div class="col-9 col-sm-10 d-flex">  
                                 <select [(ngModel)]="searchField" class="form-select">
-                                    <option value="prestamo">Estado</option>
+                                    <option value="estado">Estado</option>
                                     <option value="id">ID</option>
+                                    <option value="usuario_id">Usuario ID</option>
                                 </select>
                                 <input 
                                     type="text" 
@@ -29,13 +30,6 @@
                                 >
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
-
-                                <a 
-                                    class="btn btn-primary ms-2" 
-                                    routerLink="/prestamos/addloans"
-                                >
-                                    <i class="fa-solid fa-plus"></i>
-                                </a>
                             </div>
                         </li>
 
@@ -49,11 +43,15 @@
                             
                             <div class="loan-details ms-3 flex-grow-1">
                                 <span>Libro: {{ loans.libro_nombre }}</span> 
-                                <span>Usuario: {{ loans.usuario_nombre }}</span> 
+                                <span>Fecha Venc: {{ loans.fecha_vencimiento }}</span>
+                                <span>Usuario: {{ loans.usuario_nombre_completo }}</span> 
+                                <span>Estado: {{ loans.estado }}</span> 
+
                             </div>
                             <div class="ms-auto">
                                 <button 
-                                *ngIf="admin_and_librarian" class="edit-button btn btn-sm me-2" 
+                                *ngIf="admin_and_librarian && loans.estado !== 'Finalizado'" 
+                                class="edit-button btn btn-sm me-2" 
                                 [routerLink]="['/prestamo/editloans', loans.id]"
 
                                 >

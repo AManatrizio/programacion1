@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuarios(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
+    nombre_completo = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.String(14), nullable=False)
     email = db.Column(db.String(64), unique=True, index=True, nullable=False)
 
@@ -30,12 +30,12 @@ class Usuarios(db.Model):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return ('<Usuario: %r >' % (self.nombre))
+        return ('<Usuario: %r >' % (self.nombre_completo))
 
     def to_json(self):
         usuario_json = {
             'id': self.id,
-            'nombre': str(self.nombre),
+            'nombre': str(self.nombre_completo),
             'email': str(self.email),
             'rol': str(self.rol),
 
@@ -45,7 +45,7 @@ class Usuarios(db.Model):
     def to_json_complete(self):
         usuario_json = {
             'id': self.id,
-            'nombre': str(self.nombre),
+            'nombre': str(self.nombre_completo),
             'email': str(self.email),
             'telefono': str(self.telefono),
             'rol': str(self.rol),
@@ -54,14 +54,14 @@ class Usuarios(db.Model):
 
     @staticmethod
     def from_json(usuario_json):
-        nombre = usuario_json.get('nombre')
+        nombre_completo = usuario_json.get('nombre_completo')
         telefono = usuario_json.get('telefono')
         email = usuario_json.get('email')
         password = usuario_json.get('password')
         rol = usuario_json.get('rol')
 
         return Usuarios(
-            nombre=nombre,
+            nombre_completo=nombre_completo,
             telefono=telefono,
             email=email,
             plain_password=password,

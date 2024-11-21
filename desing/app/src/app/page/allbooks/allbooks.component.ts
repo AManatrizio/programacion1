@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoansService } from '../../services/loans.service';
+import { UsuariosService } from '../../services/usuarios.service';
 import { BooksService } from '../../services/books.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-allbooks',
@@ -14,9 +18,13 @@ export class AllbooksComponent {
   searchField: string = 'nombre';
   perPage: number = 4;
   totalPages: number = 1;
-  books: any = {};
+  book: any = {};
 
-  constructor(private booksService: BooksService) {}
+  constructor(
+    private booksService: BooksService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.loadBooks();
@@ -80,5 +88,8 @@ export class AllbooksComponent {
 
   get is_admin() {
     return localStorage.getItem('rol') === 'admin';
+  }
+  verResenas(libroId: number) {
+    this.router.navigate(['/resenas/libro', libroId]);
   }
 }

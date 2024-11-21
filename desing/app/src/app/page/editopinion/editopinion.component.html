@@ -1,0 +1,39 @@
+<app-navbaradmin></app-navbaradmin>
+
+   
+   <div class="container mt-4">
+    <h2>Editar Opinión</h2>
+    <form (ngSubmit)="guardarOpinion()">
+      <div class="mb-3">
+        <label for="comentario" class="form-label">Comentario</label>
+        <textarea
+          id="comentario"
+          class="form-control"
+          [(ngModel)]="comentario"
+          name="comentario"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="valoracion" class="form-label">Valoración</label>
+        <select
+          id="valoracion"
+          class="form-select"
+          [(ngModel)]="valoracion"
+          name="valoracion"
+          required
+        >
+          <option *ngFor="let valor of [1, 2, 3, 4, 5]" [value]="valor">
+            {{ valor }}
+          </option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">
+        Guardar
+      </button>
+    </form>
+  </div>
+  

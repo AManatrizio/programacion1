@@ -20,6 +20,7 @@ export class AddbooksComponent {
       nombre: ['', Validators.required],
       genero: ['', [Validators.required]],
       imagen_url: ['', [Validators.required]],
+      stock: ['', [Validators.required]],
     });
   }
 
