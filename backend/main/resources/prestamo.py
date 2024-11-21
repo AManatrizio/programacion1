@@ -37,7 +37,6 @@ class Prestamo(Resource):
         try:
             prestamo = db.session.query(PrestamoModel).get_or_404(id)
 
-            # Recuperar el stock del libro asociado y aumentar la cantidad
             stock = db.session.query(StockModel).filter_by(
                 libro_id=prestamo.libro_id).first()
             if stock:
@@ -106,6 +105,10 @@ class Prestamos(Resource):
             prestamos = prestamos.filter(PrestamoModel.estado.like(
                 "%"+request.args.get('estado')+"%"))
 
+        if request.args.get('usuario_id'):
+            prestamos = prestamos.filter(PrestamoModel.usuario_id.like(
+                "%"+request.args.get('usuario_id')+"%"))
+
         if request.args.get('id'):
             prestamo_id = request.args.get('id')
             prestamos = prestamos.filter(PrestamoModel.id == prestamo_id)
@@ -141,18 +144,15 @@ class Prestamos(Resource):
             if not db.session.query(LibroModel).get(libro_id):
                 abort(404, message="El libro con el ID proporcionado no existe")
 
-            # Verificar si hay stock disponible
             stock = db.session.query(StockModel).filter_by(
                 libro_id=libro_id).first()
             if not stock or stock.cantidad <= 0:
                 raise LibroNoDisponible(
                     "No hay stock disponible para el libro solicitado")
 
-            # Crear el préstamo
             nuevo_prestamo = PrestamoModel.from_json(data)
             db.session.add(nuevo_prestamo)
 
-            # Reducir el stock en 1
             stock.cantidad -= 1
             db.session.commit()
 

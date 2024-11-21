@@ -1,6 +1,6 @@
 from flask_restful import Resource, abort
 from flask import request, jsonify
-from main.models import LibroModel, StockModel
+from main.models import LibroModel, StockModel, OpinionModel, PrestamoModel, UsuarioModel
 from .. import db
 from .exception import IdEnUso
 from flask_jwt_extended import jwt_required
@@ -96,7 +96,7 @@ class Libros(Resource):
             try:
                 libro = LibroModel.from_json(libro_data)
                 db.session.add(libro)
-                db.session.flush()  # Asegurarnos de obtener el ID del libro
+                db.session.flush()
 
                 stock_inicial = libro_data.get('stock', 5)
                 stock = StockModel(libro_id=libro.id, cantidad=stock_inicial)
@@ -110,3 +110,56 @@ class Libros(Resource):
         db.session.commit()
         libros_json = [libro.to_json() for libro in libros_list]
         return libro.to_json(), 201
+
+
+class LibroValoracionResource(Resource):
+    def get(self):
+        try:
+            promedios = (
+                db.session.query(
+                    LibroModel.nombre,
+                    LibroModel.imagen_url,
+                    db.func.avg(OpinionModel.valoracion).label(
+                        'promedio'),
+                    db.func.count(OpinionModel.id).label(
+                        'cantidad')
+                )
+                .join(PrestamoModel, PrestamoModel.id == OpinionModel.prestamo_id)
+                .join(LibroModel, LibroModel.id == PrestamoModel.libro_id)
+                .group_by(LibroModel.id)
+                .order_by(db.desc(db.func.avg(OpinionModel.valoracion)))
+                .all()
+            )
+
+            return [
+                {
+                    "nombre": libro[0],
+                    "imagen_url": libro[1],
+                    "promedio": round(libro[2], 2),
+                    "cantidad": libro[3]
+                }
+                for libro in promedios
+            ], 200
+        except Exception as e:
+            print(f"Error al calcular promedios: {e}")
+            abort(500, message="Error interno del servidor")
+
+
+class LibroResenasResource(Resource):
+    @jwt_required(optional=True)
+    def get(self, libro_id):
+        try:
+            print(f"Solicitando reseñas para libro ID: {libro_id}")
+            resenas = (
+                db.session.query(OpinionModel)
+                .join(PrestamoModel, PrestamoModel.id == OpinionModel.prestamo_id)
+                .join(LibroModel, LibroModel.id == PrestamoModel.libro_id)
+                .filter(LibroModel.id == libro_id)
+                .all()
+            )
+            if not resenas:
+                abort(404, message="No se encontraron resenas para este libro.")
+            return jsonify([resena.to_json() for resena in resenas])
+        except Exception as e:
+            print(f"Error al obtener las reseñas: {str(e)}")
+            abort(500, message="Error interno del servidor")

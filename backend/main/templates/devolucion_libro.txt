@@ -1,0 +1,5 @@
+{{usuario.nombre}}!
+
+Las funcionaliades de su cuenta han sido restringidas porque se ha registrado un vencimiento en el prestamo.
+Le recomendamos acercarse y hacer la devolucion del libro para poder volver a hacer uso total de su cuenta
+Gracias.

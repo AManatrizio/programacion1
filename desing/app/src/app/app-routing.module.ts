@@ -14,13 +14,14 @@ import { AllbooksComponent } from './page/allbooks/allbooks.component';
 import { PerfilComponent } from './page/perfil/perfil.component';
 import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
 import { MyloansComponent } from './page/myloans/myloans.component';
-import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
+import { EditopinionComponent } from './page/editopinion/editopinion.component';
 import { authsessionGuard } from './guards/authsession.guard';
 import { AddbooksComponent } from './page/addbooks/addbooks.component';
 import { AddloansComponent } from './page/addloans/addloans.component';
 import { EditloansComponent } from './page/editloans/editloans.component';
 import { EditusersComponent } from './page/editusers/editusers.component';
 import { EditbooksComponent } from './page/editbooks/editbooks.component';
+import { AllresenalibroComponent } from './page/allresenalibro/allresenalibro.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -96,7 +97,17 @@ const routes: Routes = [
     canActivate: [authsessionGuard],
   },
 
-  { path: 'resenaadmin', component: ResenaadminComponent },
+  {
+    path: 'opiniones/addopinion/:prestamo_id',
+    component: ResenaComponent,
+  },
+
+  { path: 'resenas/libro/:id', component: AllresenalibroComponent },
+
+  {
+    path: 'opinion/editopinion/:prestamo_id',
+    component: EditopinionComponent,
+  },
 
   { path: 'usuarios/me', component: PerfilComponent },
 

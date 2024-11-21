@@ -93,4 +93,8 @@ export class BooksService {
       requestOptions
     );
   }
+
+  getLibrosMejorValorados(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.url}/libros/mejorvalorados`);
+  }
 }

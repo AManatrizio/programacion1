@@ -39,14 +39,22 @@ def create_app():
     api.add_resource(resources.UsuarioResource,
                      '/usuario/<int:id>')
     api.add_resource(resources.UsuarioProfileResource, '/usuarios/me')
-    api.add_resource(resources.OpinionesResources, '/opiniones')
-    api.add_resource(resources.OpinionResource, '/opinion/<int:id>')
+    api.add_resource(resources.OpinionesResources,
+                     '/opiniones', '/opiniones/addopinion/<int:prestamo_id>')
+
+    api.add_resource(resources.OpinionResource, '/opinion/<int:prestamo_id>',
+                     '/opinion/editopinion/<int:prestamo_id>')
     api.add_resource(resources.PrestamosResource,
                      '/prestamos')
     api.add_resource(resources.PrestamoResource, '/prestamo/<int:id>')
     api.add_resource(resources.NotificacionesResources, '/notificaciones')
     api.add_resource(resources.LibrosResources, '/libros', '/libros/addbooks')
     api.add_resource(resources.LibroResources, '/libro/<int:id>')
+    api.add_resource(resources.LibroValoracionResource,
+                     '/libros/mejorvalorados')
+    api.add_resource(resources.LibroResenasResource,
+                     '/resenas/libro/<int:libro_id>')
+
     api.add_resource(resources.ConfiguracionesResources, '/configuraciones')
     api.add_resource(resources.AutoresResource, '/autores')
     api.add_resource(resources.AutorResource, '/autor/<int:id>')

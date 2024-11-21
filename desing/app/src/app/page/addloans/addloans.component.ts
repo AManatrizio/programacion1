@@ -77,14 +77,13 @@ export class AddloansComponent {
     }
   }
 
-  usuarios: any[] = []; // Asegúrate de definir 'empleados' como un array
+  usuarios: any[] = [];
 
   loadUsers(): void {
     this.usuarioService.getUsers(1, 100).subscribe(
       (data: any) => {
-        console.log('Datos obtenidos:', data); // Verifica la estructura de 'data'
+        console.log('Datos obtenidos:', data);
         if (data.usuarios) {
-          // Filtra los usuarios con el rol 'user'
           this.usuarios = data.usuarios.filter(
             (usuario: any) => usuario.rol === 'user'
           );

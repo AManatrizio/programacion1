@@ -1,0 +1,36 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    border-radius: 10px;
+    border: none;
+    background-color: #f8f9fa;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .user-icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  h2 {
+    color: #343a40;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #495057;
+  }
+  
+  .fa-star,
+  .fa-star-o {
+    font-size: 1.2rem;
+  }
+  

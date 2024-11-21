@@ -21,8 +21,6 @@ import { AllbooksComponent } from './page/allbooks/allbooks.component';
 import { PerfilComponent } from './page/perfil/perfil.component';
 import { LoginadminComponent } from './page/loginadmin/loginadmin.component';
 import { NavbaradminComponent } from './components/navbaradmin/navbaradmin.component';
-import { ResenaadminComponent } from './page/resenaadmin/resenaadmin.component';
-
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AbmComponent } from './components/abm/abm.component';
@@ -33,6 +31,8 @@ import { EditloansComponent } from './page/editloans/editloans.component';
 import { EditbooksComponent } from './page/editbooks/editbooks.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
+import { EditopinionComponent } from './page/editopinion/editopinion.component';
+import { AllresenalibroComponent } from './page/allresenalibro/allresenalibro.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,13 +54,14 @@ import { Interceptor } from './services/interceptor.service';
     PerfilComponent,
     LoginadminComponent,
     NavbaradminComponent,
-    ResenaadminComponent,
     AbmComponent,
     AddbooksComponent,
     AddloansComponent,
     EditusersComponent,
     EditloansComponent,
     EditbooksComponent,
+    EditopinionComponent,
+    AllresenalibroComponent,
   ],
   imports: [
     BrowserModule,

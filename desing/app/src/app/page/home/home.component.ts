@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BooksService } from '../../services/books.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,27 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  get admin_and_librarian() {
-    return (
-      localStorage.getItem('rol') === 'admin' ||
-      localStorage.getItem('rol') === 'librarian'
+  librosMejorValorados: any[] = [];
+
+  constructor(private libroService: BooksService) {}
+
+  ngOnInit(): void {
+    this.libroService.getLibrosMejorValorados().subscribe(
+      (books) => {
+        this.librosMejorValorados = books;
+        console.log('Libros mejor valorados:', books); // Imprime en la consola del navegador
+      },
+      (error) => {
+        console.error('Error al cargar libros mejor valorados:', error);
+      }
     );
+  }
+
+  agruparLibros(libros: any[], cantidadPorGrupo: number): any[][] {
+    const grupos = [];
+    for (let i = 0; i < libros.length; i += cantidadPorGrupo) {
+      grupos.push(libros.slice(i, i + cantidadPorGrupo));
+    }
+    return grupos;
   }
 }

@@ -11,7 +11,7 @@ export class AllloansComponent {
   arrayPrestamos: any[] = [];
   filteredPrestamos: any[] = [];
   searchQuery: string = '';
-  searchField: string = 'estado';
+  searchField: string = 'usuario_id';
   currentPage: number = 1;
   perPage: number = 4;
   totalPages: number = 1;
